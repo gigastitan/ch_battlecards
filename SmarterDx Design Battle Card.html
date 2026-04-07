@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmarterDx — Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ═══ VERIFIED SmarterDx Brand Colors (from live CSS, March 2026) ═══ */
+  --comp-primary: #48BBC9;          /* Primary accent — teal CTA, highlights, data visualization */
+  --comp-primary-dark: #208F9D;     /* Darker teal variant for hover states */
+  --comp-black: #010819;            /* Deep Navy — body background, rgb(1, 8, 25) */
+  --comp-dark-blue: #020C6A;        /* Dark Blue — nav borders, deep accents */
+  --comp-dark-purple: #3E4268;      /* Dark Purple — card backgrounds, borders */
+  --comp-light-teal: #C8EFF4;       /* Light Teal — highlight text, soft accents */
+  --comp-blaster-blue: #0463EF;     /* Blaster Blue — link/interactive accents */
+  --comp-sky-blue: #91BDFF;         /* Sky Blue — secondary accent */
+  --comp-light-purple: #AD7EDD;     /* Light Purple — SmarterDenials product accent */
+  --comp-gold: #E6B536;             /* Gold — warm accent */
+  --comp-light-green: #48C97C;      /* Light Green — SmarterNotes/SmarterPrebill accent */
+  --comp-off-purple: #9FA0B1;       /* Off Purple — muted text */
+  --comp-white: #FFFFFF;            /* Primary background */
+
+  /* Battle Card UI — NEVER CHANGE THESE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #1F2937;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── HEADER ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.card-header .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #EEF2FF;
+  color: #4338CA;
+  margin-bottom: 12px;
+}
+.card-header .date {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 24px;
+}
+.card-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.card-header .tagline {
+  font-size: 20px;
+  color: #6B7280;
+  margin-top: 12px;
+  font-weight: 400;
+}
+.card-header .url {
+  margin-top: 16px;
+}
+.card-header .url a {
+  color: #6366F1;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.card-header .url a:hover { text-decoration: underline; }
+
+/* ── SECTIONS ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.section-header .left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--comp-primary);
+  color: var(--comp-black);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+.badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-confirmed);
+  color: var(--badge-confirmed-text);
+}
+.badge-research {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-verify);
+  color: var(--badge-verify-text);
+}
+
+/* ── SECTION 1: LOGO ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.logo-preview {
+  border-radius: 12px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: transform 0.2s;
+}
+.logo-preview:hover { transform: translateY(-2px); }
+.logo-preview img { height: 40px; width: auto; }
+.logo-preview .bg-label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: #9CA3AF;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.logo-preview.on-white { background: #FFFFFF; }
+.logo-preview.on-dark { background: var(--comp-black); }
+.logo-preview.on-light { background: var(--comp-light-gray); }
+.logo-preview.on-primary { background: var(--comp-primary); }
+
+.logo-description {
+  background: #F9FAFB;
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid #F3F4F6;
+}
+.logo-description h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+.logo-description p {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.7;
+}
+.logo-description .asset-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #F3F4F6;
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+}
+
+/* ── SECTION 2: COLORS ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.color-card {
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.color-card:hover { transform: translateY(-2px); }
+.color-swatch {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+}
+.color-swatch .hex-overlay {
+  font-family: 'DM Sans', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.color-swatch.light-swatch .hex-overlay {
+  color: #374151;
+  text-shadow: none;
+}
+.color-info {
+  padding: 14px;
+}
+.color-info .name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.color-info .role {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+}
+.color-info .detail {
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+  line-height: 1.8;
+}
+
+.note-box {
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.verified-note {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #166534;
+}
+.warning-note {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+}
+
+/* ── SECTION 3: TYPOGRAPHY ── */
+.type-callout {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 2px solid #48BBC9;
+  background: #E0F9FC;
+  margin-bottom: 24px;
+}
+.type-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0C6E7C;
+  margin-bottom: 6px;
+}
+.type-callout p {
+  font-size: 13px;
+  color: #0C6E7C;
+  line-height: 1.6;
+}
+
+.type-specimen {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 16px;
+  transition: transform 0.2s;
+}
+.type-specimen:hover { transform: translateY(-2px); }
+.type-specimen .font-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.type-specimen .font-role {
+  font-size: 12px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+.type-specimen .display-sample {
+  font-size: 42px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.type-specimen .body-sample {
+  font-size: 16px;
+  color: #4B5563;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 640px;
+}
+.type-specimen .alphabet {
+  font-size: 14px;
+  color: #9CA3AF;
+  letter-spacing: 0.04em;
+  word-break: break-all;
+  margin-bottom: 16px;
+}
+.type-specimen .css-detail {
+  font-family: 'DM Sans', monospace;
+  font-size: 12px;
+  color: #6B7280;
+  background: #F9FAFB;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.8;
+}
+
+/* ── SECTION 4: POSITIONING ── */
+.position-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.position-card {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.position-card:hover { transform: translateY(-2px); }
+.position-card .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.position-card .value {
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.6;
+  font-weight: 500;
+}
+.position-card .value.italic { font-style: italic; color: #6B7280; font-weight: 400; }
+
+/* ── SECTION 5: DESIGN LANGUAGE ── */
+.design-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.design-attr {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.design-attr:hover { transform: translateY(-2px); }
+.design-attr .attr-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.design-attr .attr-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.strategy-callout {
+  padding: 28px 32px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #E0F9FC 0%, #F5F3FF 100%);
+  border: 1px solid #48BBC9;
+}
+.strategy-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #208F9D;
+  margin-bottom: 16px;
+}
+.strategy-callout ul {
+  list-style: none;
+  padding: 0;
+}
+.strategy-callout li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+}
+.strategy-callout li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #48BBC9;
+  font-weight: 600;
+}
+
+/* ── SECTION 6: REFERENCES ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ref-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ref-card:hover {
+  border-color: #48BBC9;
+  transform: translateY(-2px);
+}
+.ref-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #F3F4F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ref-card .ref-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.ref-card .ref-desc {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+/* ── FOOTER ── */
+.card-footer {
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 12px;
+  color: #9CA3AF;
+}
+.card-footer .main-line {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.card-footer .sub-line {
+  font-size: 11px;
+  color: #D1D5DB;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { padding: 0 16px 16px 16px; }
+  .card-header h1 { font-size: 36px; }
+  .color-grid { grid-template-columns: 1fr 1fr; }
+  .position-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr; }
+  .ref-grid { grid-template-columns: 1fr; }
+  .logo-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link comp-nav__link--active" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+
+<div class="battle-card">
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="card-header">
+    <div class="badge">Design Battle Card</div>
+    <div class="date">March 2026 · Confidential</div>
+    <h1>SmarterDx</h1>
+    <div class="tagline">Clinical AI to Capture Patient Journey Integrity — "Capture the differential"</div>
+    <div class="url"><a href="https://www.smarterdx.com/" target="_blank">www.smarterdx.com ↗</a></div>
+  </div>
+
+  <!-- ════════ SECTION 1: LOGO & LOGOMARK ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">1</span>
+        <span class="section-title">Logo &amp; Logomark</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="logo-grid">
+      <!-- White BG — dark silhouette (original SVG has white text, needs inversion) -->
+      <div class="logo-preview on-white">
+        <img src="https://cdn.prod.website-files.com/667d80f0eb58e0e9c52a2dfa/667d8d8e36b22524382a73ed_SmarterDx-Mark.svg" alt="SmarterDx Logo" style="height:40px;width:auto;filter:brightness(0);">
+        <span class="bg-label">White</span>
+      </div>
+      <!-- Dark BG — natural colors (designed for dark backgrounds) -->
+      <div class="logo-preview on-dark">
+        <img src="https://cdn.prod.website-files.com/667d80f0eb58e0e9c52a2dfa/667d8d8e36b22524382a73ed_SmarterDx-Mark.svg" alt="SmarterDx Logo" style="height:40px;width:auto;">
+        <span class="bg-label" style="color:#6B7280;">Dark (#010819)</span>
+      </div>
+      <!-- Light/Canvas BG — dark silhouette -->
+      <div class="logo-preview on-light">
+        <img src="https://cdn.prod.website-files.com/667d80f0eb58e0e9c52a2dfa/667d8d8e36b22524382a73ed_SmarterDx-Mark.svg" alt="SmarterDx Logo" style="height:40px;width:auto;filter:brightness(0);">
+        <span class="bg-label">Light (#F4F4F4)</span>
+      </div>
+      <!-- Primary Accent BG — white silhouette -->
+      <div class="logo-preview on-primary">
+        <img src="https://cdn.prod.website-files.com/667d80f0eb58e0e9c52a2dfa/667d8d8e36b22524382a73ed_SmarterDx-Mark.svg" alt="SmarterDx Logo" style="height:40px;width:auto;filter:brightness(0) invert(1);">
+        <span class="bg-label" style="color:#111827;">Primary (#48BBC9)</span>
+      </div>
+    </div>
+
+    <div class="logo-description">
+      <h4>Logo Analysis</h4>
+      <p>
+        <strong>Type:</strong> Horizontal wordmark with wave/swoosh logomark. The SmarterDx logotype features a distinctive wave or swoosh graphic paired with the word "SmarterDx" rendered in a geometric sans-serif typeface (Archivo). The logomark suggests motion and data capture — a visual metaphor for the "wave" of information flowing through healthcare systems. The "Dx" portion uses a different (teal) color to emphasize the clinical diagnostic focus. The overall impression is modern, tech-forward, and healthcare-specific without being clinical or sterile.
+      </p>
+      <p style="margin-top:8px;">
+        <strong>Design Agency:</strong> Not publicly disclosed. Site built on Webflow.
+      </p>
+      <span class="asset-tag">CDN-hosted SVG · 303×36 · loads from cdn.prod.website-files.com · designed for dark backgrounds (white text + colored wave mark)</span>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 2: BRAND COLOR PALETTE ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">2</span>
+        <span class="section-title">Brand Color Palette</span>
+      </div>
+      <span class="badge-verified">✓ Extracted from Live CSS</span>
+    </div>
+
+    <div class="color-grid">
+      <!-- Primary Teal -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#48BBC9;">
+          <span class="hex-overlay">#48BBC9</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Teal</div>
+          <div class="role">Primary Accent — CTAs, highlights, data points</div>
+          <div class="detail">
+            RGB: 72, 187, 201<br>
+            CSS: --comp-primary
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Teal -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#208F9D;">
+          <span class="hex-overlay">#208F9D</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Dark Teal</div>
+          <div class="role">Hover states, secondary accent</div>
+          <div class="detail">
+            RGB: 32, 143, 157<br>
+            CSS: --comp-primary-dark
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep Navy -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#010819;">
+          <span class="hex-overlay">#010819</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Deep Navy</div>
+          <div class="role">Primary dark — body background, core text</div>
+          <div class="detail">
+            RGB: 1, 8, 25<br>
+            CSS: --comp-black
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Blue -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#020C6A;">
+          <span class="hex-overlay">#020C6A</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Dark Blue</div>
+          <div class="role">Nav borders, deep accents, card outlines</div>
+          <div class="detail">
+            RGB: 2, 12, 106<br>
+            CSS: --comp-dark-blue
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Purple -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#3E4268;">
+          <span class="hex-overlay">#3E4268</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Dark Purple</div>
+          <div class="role">Card backgrounds, subtle borders</div>
+          <div class="detail">
+            RGB: 62, 66, 104<br>
+            CSS: --comp-dark-purple
+          </div>
+        </div>
+      </div>
+
+      <!-- Light Teal -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C8EFF4;">
+          <span class="hex-overlay" style="color:#010819;text-shadow:none;">#C8EFF4</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Light Teal</div>
+          <div class="role">Highlight text, soft accents, backgrounds</div>
+          <div class="detail">
+            RGB: 200, 239, 244<br>
+            CSS: --comp-light-teal
+          </div>
+        </div>
+      </div>
+
+      <!-- Blaster Blue -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#0463EF;">
+          <span class="hex-overlay">#0463EF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Blaster Blue</div>
+          <div class="role">Link accent, interactive elements</div>
+          <div class="detail">
+            RGB: 4, 99, 239<br>
+            CSS: --comp-blaster-blue
+          </div>
+        </div>
+      </div>
+
+      <!-- Sky Blue -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#91BDFF;">
+          <span class="hex-overlay" style="color:#010819;text-shadow:none;">#91BDFF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Sky Blue</div>
+          <div class="role">Secondary accent, data visualization</div>
+          <div class="detail">
+            RGB: 145, 189, 255<br>
+            CSS: --comp-sky-blue
+          </div>
+        </div>
+      </div>
+
+      <!-- Light Purple -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#AD7EDD;">
+          <span class="hex-overlay" style="color:#010819;text-shadow:none;">#AD7EDD</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Light Purple</div>
+          <div class="role">SmarterDenials product accent</div>
+          <div class="detail">
+            RGB: 173, 126, 221<br>
+            CSS: --comp-light-purple
+          </div>
+        </div>
+      </div>
+
+      <!-- Gold -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#E6B536;">
+          <span class="hex-overlay" style="color:#010819;text-shadow:none;">#E6B536</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Gold</div>
+          <div class="role">Warm accent, highlights, premium feel</div>
+          <div class="detail">
+            RGB: 230, 181, 54<br>
+            CSS: --comp-gold
+          </div>
+        </div>
+      </div>
+
+      <!-- Light Green -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#48C97C;">
+          <span class="hex-overlay" style="color:#010819;text-shadow:none;">#48C97C</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Light Green</div>
+          <div class="role">SmarterNotes/SmarterPrebill accent</div>
+          <div class="detail">
+            RGB: 72, 201, 124<br>
+            CSS: --comp-light-green
+          </div>
+        </div>
+      </div>
+
+      <!-- Off Purple -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#9FA0B1;">
+          <span class="hex-overlay" style="color:#010819;text-shadow:none;">#9FA0B1</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Off Purple</div>
+          <div class="role">Muted text, secondary labels</div>
+          <div class="detail">
+            RGB: 159, 160, 177<br>
+            CSS: --comp-off-purple
+          </div>
+        </div>
+      </div>
+
+      <!-- White -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background:#FFFFFF; border: 1px solid #E5E7EB;">
+          <span class="hex-overlay">#FFFFFF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">White</div>
+          <div class="role">Primary background on dark surfaces</div>
+          <div class="detail">
+            RGB: 255, 255, 255<br>
+            CSS: --comp-white
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Extraction Note:</strong> Colors extracted via computed styles from live site (March 2026). SmarterDx employs a sophisticated dark-first palette with teal as the dominant brand accent. The 12+ color system reflects the multi-product ecosystem — each "Smarter[X]" product has its own accent color (purple, green, gold). This approach creates visual richness and product differentiation within the platform, but risks brand fragmentation at scale. The deep navy background (#010819) combined with teal CTAs reads as "data infrastructure" and "clinical precision" — clinical AI with serious financial/operational impact.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 3: TYPOGRAPHY SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">3</span>
+        <span class="section-title">Typography System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live CSS</span>
+    </div>
+
+    <div class="type-callout">
+      <h4>✓ Free Google Font — Archivo</h4>
+      <p>
+        SmarterDx uses <strong>Archivo</strong> from Google Fonts exclusively — all headlines, body copy, navigation, and UI text. This is a smart choice: Archivo is freely available, highly legible at all sizes, condensed enough for impact at large sizes, and has multiple weights (400–700). No proprietary or licensed typefaces; maximum accessibility and zero licensing complexity.
+      </p>
+    </div>
+
+    <!-- Archivo Regular -->
+    <div class="type-specimen">
+      <div class="font-name">Archivo</div>
+      <div class="font-role">Headlines — Body Copy — Navigation — Primary Brand Typeface</div>
+      <div class="display-sample" style="font-family: 'Archivo', sans-serif; font-weight: 600;">
+        Capture the patient journey from care to payment
+      </div>
+      <div class="body-sample" style="font-family: 'Archivo', sans-serif;">
+        SmarterDx is a clinical AI platform built by physicians and hospital operators to ensure chart accuracy, capture clinical documentation, and manage denials. The Archivo typeface conveys professionalism and precision with its clean, geometric letterforms and generous spacing.
+      </div>
+      <div class="alphabet" style="font-family: 'Archivo', sans-serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%&amp;*()
+      </div>
+      <div class="css-detail">
+        font-family: Archivo, Google Fonts, sans-serif;<br>
+        H1: font-size: 64px · font-weight: 600 · color: white (on dark) · line-height: ~1.1<br>
+        Body: font-size: 16px · font-weight: 400 · color: rgb(51, 51, 51) or white
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Typography Note:</strong> The choice of Archivo is pragmatic and lean. Rather than licensing multiple premium typefaces like Suki, SmarterDx uses a single versatile Google Font that works across all contexts. Archivo's condensed proportions give headlines impact without feeling editorial or warm — they read clinical and authoritative. The @import approach (no custom fonts) means zero loading delay and maximum compatibility. This is a "function first" typography strategy aligned with the product's positioning as data infrastructure rather than lifestyle brand.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 4: BRAND POSITIONING & MESSAGING ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">4</span>
+        <span class="section-title">Brand Positioning &amp; Messaging</span>
+      </div>
+      <span class="badge-research">◐ Research-Based</span>
+    </div>
+
+    <div class="position-grid">
+      <div class="position-card">
+        <div class="label">Hero Headline (Live Site)</div>
+        <div class="value">"Capture the patient journey from care to payment"</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Brand Tagline</div>
+        <div class="value">"Physician founded. Hospital approved."</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Mission</div>
+        <div class="value">Clinical AI to ensure 100% chart accuracy for hospital revenue integrity and quality — capturing the full differential across diagnoses, procedures, and clinical documentation.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Vision</div>
+        <div class="value">Become the universal clinical intelligence layer that health systems trust to maximize revenue while improving patient outcomes through accurate documentation.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Category Descriptor</div>
+        <div class="value">Clinical AI Platform — Revenue Integrity, Clinical Documentation Intelligence, Denial Management, CDI &amp; Prebill</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Product Suite</div>
+        <div class="value">SmarterPrebill, SmarterDenials, SmarterNotes, SmarterCharges — each with distinct product accent colors (green, purple, teal, gold)</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Key Trust Signal</div>
+        <div class="value">"60+ health systems, 250+ hospital sites, 10,000+ diagnoses/procedures, 5:1 ROI Day 1, $2.5M avg annual net new revenue per 10K discharges" — KLAS recognition for prebill software</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Founder Credential</div>
+        <div class="value">Founded 2020 by Michael Gao, MD (physician-data scientist, former NewYork-Presbyterian AI lead) + Josh Haselkorn</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Funding &amp; Valuation</div>
+        <div class="value">$71M+ Series B ($50M led by Transformation Capital) — Bessemer Venture Partners, Flare Capital, Floodgate Fund investors. New Mountain Capital PE investment, $1B valuation. Part of Smarter Technologies platform (2025) combining SmarterDx + Thoughtful AI + Access Healthcare.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Design Agency</div>
+        <div class="value italic">Not publicly disclosed</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Headquarters</div>
+        <div class="value">San Francisco, CA</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Footer Tagline</div>
+        <div class="value">"Capture your differential"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 5: DESIGN LANGUAGE & VISUAL SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">5</span>
+        <span class="section-title">Design Language &amp; Visual System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="design-grid">
+      <div class="design-attr">
+        <div class="attr-label">Primary Theme</div>
+        <div class="attr-value">Dark-first — deep navy hero sections with teal & multicolor accents</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Palette Strategy</div>
+        <div class="attr-value">Monochrome dark foundation (navy) + bold teal primary + multi-color product system</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Accent Color Approach</div>
+        <div class="attr-value">Teal for primary CTAs &amp; data highlights; green, purple, gold for product-specific branding</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Photography Style</div>
+        <div class="attr-value">Mix of AI-generated/clinical imagery — faces with data point overlays, healthcare workflows, hospital scenes</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Graphic System</div>
+        <div class="attr-value">Dramatic gradient wave illustrations (purple→blue→teal→pink), 3D wireframe hospital isometric, dot-grid pattern overlays</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Identity Type</div>
+        <div class="attr-value">Wave/swoosh logomark + multi-product sub-brand color system ("Smarter[X]" ecosystem)</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">CTA Style</div>
+        <div class="attr-value">Teal pill buttons (border-radius: 150px), ghost/outlined secondary CTAs with dark-blue borders</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Data Visualization</div>
+        <div class="attr-value">Stats cards with gradient borders, metric callouts prominent, data-forward hierarchy</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Navigation</div>
+        <div class="attr-value">Sticky top nav, white text on dark bg, "Talk to us" primary CTA with pill border</div>
+      </div>
+    </div>
+
+    <div class="strategy-callout">
+      <h4>Strategic Analysis — Competitive Implications</h4>
+      <ul>
+        <li><strong>SmarterDx owns "revenue intelligence dark mode."</strong> The deep navy (#010819) background with teal accent mirrors Ambience's dark aesthetic but with a distinctly different color story. Navy + teal reads "data infrastructure" and "clinical precision" more than "clinical AI warmth." This positions the product as serious, hospital-grade backend technology rather than user-centric assistant.</li>
+        <li><strong>The multi-product color system creates visual complexity and differentiation.</strong> Each "Smarter[X]" product (green, purple, gold) has its own identity, enabling modular sub-brand communication. However, this can fragment recognition at scale — customers may remember "the green one" or "the purple one" rather than "SmarterDx." Suki, by contrast, uses consistent black + yellow everywhere, which is more memorable.</li>
+        <li><strong>Archivo is a lean, pragmatic font choice.</strong> Google Fonts + single typeface = zero licensing friction, maximum compatibility, instant loading. Lacks the personality of premium typefaces (Suki's General Grotesque, Narrative's Century), but signals "function first" and "hospital infrastructure" better than a warm, expensive font would.</li>
+        <li><strong>"Physician founded" messaging is a powerful differentiator.</strong> Michael Gao's MD credential + ex-NewYork-Presbyterian AI background immediately establishes clinical credibility that pure software entrepreneurs cannot. This is positioned prominently in copy ("Physician founded. Hospital approved.").</li>
+        <li><strong>The wave/swoosh logomark is distinctive and thematically strong.</strong> It evokes the "wave" of data flowing through healthcare — fitting for a data intelligence company. However, the sub-brand color system (4+ product colors) can dilute recognition of the parent mark.</li>
+        <li><strong>Dark background choice signals enterprise/infrastructure positioning.</strong> Most healthcare AI competitors use light, clinical white backgrounds (Ambience, Nabla). SmarterDx's dark hero sections feel more like fintech or cloud infrastructure than healthcare — a bold choice that differentiates but may feel unfamiliar to conservative hospital CIOs.</li>
+        <li><strong>White space opportunity: Light-first + clinical warmth.</strong> A competitor could differentiate by being the bright, approachable, clinical-first alternative to SmarterDx's dark infrastructure aesthetic. Leading with clinical quality and patient outcomes (not revenue) while maintaining modern, light design would be unique positioning.</li>
+        <li><strong>The "capture the differential" messaging is financially specific.</strong> SmarterDx leads with revenue and operational outcomes ("$2.5M avg annual net new revenue per 10K discharges"). A competitor could differentiate by leading with clinical quality improvements and patient safety first, financial benefit second.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 6: BRAND REFERENCES & RESOURCES ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">6</span>
+        <span class="section-title">Brand References &amp; Resources</span>
+      </div>
+    </div>
+
+    <div class="ref-grid">
+      <a href="https://www.smarterdx.com/" target="_blank" class="ref-card">
+        <div class="ref-icon">🌐</div>
+        <div>
+          <div class="ref-title">SmarterDx Website</div>
+          <div class="ref-desc">Primary company website — smarterdx.com (Webflow)</div>
+        </div>
+      </a>
+      <a href="https://www.smarterdx.com/company" target="_blank" class="ref-card">
+        <div class="ref-icon">ℹ️</div>
+        <div>
+          <div class="ref-title">About SmarterDx</div>
+          <div class="ref-desc">Company story, team, mission, founding background</div>
+        </div>
+      </a>
+      <a href="https://www.smarterdx.com/smarter-by-design" target="_blank" class="ref-card">
+        <div class="ref-icon">🎨</div>
+        <div>
+          <div class="ref-title">Smarter by Design</div>
+          <div class="ref-desc">Brand philosophy and design approach page</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/company/smarterdx" target="_blank" class="ref-card">
+        <div class="ref-icon">💼</div>
+        <div>
+          <div class="ref-title">LinkedIn</div>
+          <div class="ref-desc">Company profile and leadership team</div>
+        </div>
+      </a>
+      <a href="https://www.prnewswire.com/news-releases/smarterdx-raises-50m-to-bolster-hospital-revenue-integrity-and-quality-with-its-clinical-ai-solution-302144185.html" target="_blank" class="ref-card">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">Series B Press Release</div>
+          <div class="ref-desc">PRNewswire — $50M Series B led by Transformation Capital</div>
+        </div>
+      </a>
+      <a href="https://medcitynews.com/2024/05/healthcare-ai-revenue/" target="_blank" class="ref-card">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">MedCity News Coverage</div>
+          <div class="ref-desc">Healthcare AI revenue cycle management &amp; competitive landscape</div>
+        </div>
+      </a>
+      <a href="https://flarecapitalpartners.medium.com/from-seed-to-hyperscale-in-3-years-how-smarterdx-is-cracking-the-healthcare-ai-code-0350c95f8531" target="_blank" class="ref-card">
+        <div class="ref-icon">📝</div>
+        <div>
+          <div class="ref-title">Flare Capital Profile</div>
+          <div class="ref-desc">"From Seed to Hyperscale in 3 Years" — investor perspective</div>
+        </div>
+      </a>
+      <a href="https://www.crunchbase.com/organization/smarterdx" target="_blank" class="ref-card">
+        <div class="ref-icon">📊</div>
+        <div>
+          <div class="ref-title">Crunchbase Profile</div>
+          <div class="ref-desc">Financials, funding history, investors, and competitive metrics</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ════════ FOOTER ════════ -->
+  <div class="card-footer">
+    <div class="main-line">SmarterDx Design Battle Card · Prepared March 2026 · Confidential — For Internal Rebrand Use Only</div>
+    <div class="sub-line">Colors, fonts, and logo verified from smarterdx.com live site via Chrome DevTools computed styles extraction + web research</div>
+  </div>
+
+</div>
+
+</body>
+</html>

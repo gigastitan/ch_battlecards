@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitive Landscape — Design Battle Cards</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  :root {
+    --hub-bg: #F5F5F5;
+    --hub-surface: #FFFFFF;
+    --hub-border: #E5E7EB;
+    --hub-text: #1F2937;
+    --hub-muted: #6B7280;
+    --hub-accent: #374151;
+    --hub-hover: #F9FAFB;
+    --hub-divider: #F3F4F6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--hub-bg);
+    color: var(--hub-text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 24px 60px;
+  }
+
+  .hub-container {
+    max-width: 640px;
+    width: 100%;
+  }
+
+  .hub-header {
+    margin-bottom: 48px;
+  }
+
+  .hub-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--hub-muted);
+    margin-bottom: 16px;
+  }
+
+  .hub-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--hub-text);
+    letter-spacing: -0.8px;
+    margin-bottom: 10px;
+  }
+
+  .hub-subtitle {
+    font-size: 15px;
+    color: var(--hub-muted);
+    font-weight: 400;
+  }
+
+  .hub-count {
+    display: inline-block;
+    background: var(--hub-accent);
+    color: #FFF;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ── Competitor List ── */
+  .competitor-list {
+    background: var(--hub-surface);
+    border: 1px solid var(--hub-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .competitor-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    text-decoration: none;
+    color: var(--hub-text);
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--hub-divider);
+    transition: background 0.15s ease, padding-left 0.15s ease;
+  }
+
+  .competitor-link:last-child {
+    border-bottom: none;
+  }
+
+  .competitor-link:hover {
+    background: var(--hub-hover);
+    padding-left: 28px;
+  }
+
+  .competitor-link .arrow {
+    color: var(--hub-muted);
+    font-size: 14px;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .competitor-link:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* ── Footer ── */
+  .hub-footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--hub-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="hub-container">
+  <div class="hub-header">
+    <div class="hub-label">Competitive Intelligence</div>
+    <h1 class="hub-title">Design Battle Cards <span class="hub-count">13</span></h1>
+    <p class="hub-subtitle">Visual and strategic design analysis of key competitors.</p>
+  </div>
+
+  <nav class="competitor-list">
+    <a class="competitor-link" href="Abridge Design Battle Card.html">Abridge <span class="arrow">→</span></a>
+    <a class="competitor-link" href="Ambience Design Battle Card.html">Ambience <span class="arrow">→</span></a>
+    <a class="competitor-link" href="Doximity Design Battle Card.html">Doximity <span class="arrow">→</span></a>
+    <a class="competitor-link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health <span class="arrow">→</span></a>
+    <a class="competitor-link" href="LeanTaas Design Battle Card.html">LeanTaas <span class="arrow">→</span></a>
+    <a class="competitor-link" href="Nabla Design Battle Card.html">Nabla <span class="arrow">→</span></a>
+    <a class="competitor-link" href="Open Evidence Design Battle Card.html">Open Evidence <span class="arrow">→</span></a>
+    <a class="competitor-link" href="Qventus Design Battle Card.html">Qventus <span class="arrow">→</span></a>
+    <a class="competitor-link" href="Regard Design Battle Card.html">Regard <span class="arrow">→</span></a>
+    <a class="competitor-link" href="SmarterDx Design Battle Card.html">SmarterDx <span class="arrow">→</span></a>
+    <a class="competitor-link" href="Suki Design Battle Card.html">Suki <span class="arrow">→</span></a>
+    <a class="competitor-link" href="Thesis Design Battle Card.html">Thesis <span class="arrow">→</span></a>
+    <a class="competitor-link" href="Wellsheet Design Battle Card.html">Wellsheet <span class="arrow">→</span></a>
+  </nav>
+
+  <div class="hub-footer">March 2026 &bull; Confidential</div>
+</div>
+
+</body>
+</html>

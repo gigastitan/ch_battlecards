@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regard — Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ═══ VERIFIED Regard Brand Colors (from live CSS, April 2026) ═══ */
+  --comp-primary: #3D1CB2;           /* Vivid indigo-purple — primary CTA, hero BG accent, logo, headings */
+  --comp-hero-dark: #0E0629;         /* Near-black aubergine — hero background, dark sections */
+  --comp-lavender: #CFC6EC;          /* Soft lavender — donut charts, data viz accents, case study BGs */
+  --comp-dark-card: #342C4E;         /* Muted plum-gray — testimonial card backgrounds */
+  --comp-blue-banner: #024985;       /* Deep blue — simple banner/announcement bar */
+  --comp-near-black: #000000;        /* Pure black — body text */
+  --comp-white: #FFFFFF;             /* White — primary backgrounds, hero text */
+  --comp-light-gray: #F5F5F5;        /* Light gray — section backgrounds */
+  --comp-error: #C02B0A;             /* Red-orange — form validation */
+
+  /* Battle Card UI — NEVER CHANGE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #374151;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card { max-width: 1100px; margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── Header ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.card-header .badge {
+  display: inline-block;
+  background: var(--comp-primary);
+  color: #fff;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 18px; border-radius: 100px; margin-bottom: 16px;
+}
+.card-header .date { font-size: 13px; color: #9CA3AF; margin-bottom: 20px; }
+.card-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 52px; font-weight: 700; color: #111827;
+  letter-spacing: -1px; margin-bottom: 8px;
+}
+.card-header .tagline {
+  font-size: 18px; color: #6B7280; margin-bottom: 16px;
+  max-width: 640px; margin-left: auto; margin-right: auto;
+}
+.card-header .url { font-size: 14px; color: var(--comp-primary); text-decoration: none; font-weight: 500; }
+.card-header .url:hover { text-decoration: underline; }
+
+/* ── Section ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 36px 40px; margin-bottom: 24px;
+}
+.section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  background: var(--comp-primary); color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700; border-radius: 8px; flex-shrink: 0;
+}
+.section-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #111827; }
+.section-badge {
+  margin-left: auto; font-size: 11px; font-weight: 600;
+  padding: 4px 12px; border-radius: 100px; white-space: nowrap;
+}
+.badge-verified { background: var(--badge-confirmed); color: var(--badge-confirmed-text); }
+.badge-research { background: var(--badge-verify); color: var(--badge-verify-text); }
+
+/* ── Section 1: Logo ── */
+.logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.logo-preview {
+  border-radius: 12px; padding: 32px 24px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 120px; border: 1px solid var(--card-border); position: relative;
+}
+.logo-preview svg { max-width: 180px; height: auto; }
+.logo-preview .bg-label {
+  position: absolute; bottom: 8px; right: 12px;
+  font-size: 10px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.logo-description {
+  background: #F9FAFB; border: 1px solid var(--card-border);
+  border-radius: 12px; padding: 20px 24px;
+}
+.logo-description h4 { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px; }
+.logo-description p { font-size: 13px; color: #6B7280; line-height: 1.7; }
+.logo-description .asset-tag {
+  display: inline-block; background: #EEF2FF; color: #4338CA;
+  font-size: 11px; padding: 3px 8px; border-radius: 4px; margin-top: 10px;
+  font-family: 'DM Sans', monospace;
+}
+
+/* ── Section 2: Colors ── */
+.color-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.color-card { border: 1px solid var(--card-border); border-radius: 12px; overflow: hidden; transition: transform 0.15s ease; }
+.color-card:hover { transform: translateY(-2px); }
+.color-swatch { height: 100px; display: flex; align-items: flex-end; padding: 10px 14px; }
+.color-swatch .hex-overlay {
+  font-family: 'DM Sans', monospace; font-size: 13px; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.9); color: #111;
+}
+.color-swatch .hex-overlay.on-dark { background: rgba(0,0,0,0.5); color: #fff; }
+.color-info { padding: 14px; }
+.color-info .name { font-weight: 600; font-size: 13px; color: #111827; margin-bottom: 2px; }
+.color-info .role { font-size: 12px; color: #9CA3AF; margin-bottom: 8px; }
+.color-info .values { font-size: 11px; color: #6B7280; font-family: 'DM Sans', monospace; line-height: 1.8; }
+.note-box { border-radius: 10px; padding: 16px 20px; font-size: 13px; line-height: 1.7; color: #374151; }
+.note-verified { background: #ECFDF5; border: 1px solid #A7F3D0; }
+
+/* ── Section 3: Typography ── */
+.type-callout {
+  border-left: 4px solid #F97316; background: #FFF7ED;
+  border-radius: 0 12px 12px 0; padding: 16px 20px; margin-bottom: 24px;
+}
+.type-callout h4 { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: #9A3412; margin-bottom: 4px; }
+.type-callout p { font-size: 13px; color: #78350F; line-height: 1.6; }
+.type-specimen { border: 1px solid var(--card-border); border-radius: 12px; padding: 28px; margin-bottom: 16px; }
+.type-specimen .type-label { font-size: 11px; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+.type-specimen .type-display { font-size: 42px; font-weight: 700; color: #111827; margin-bottom: 12px; line-height: 1.15; letter-spacing: -0.5px; }
+.type-specimen .type-body { font-size: 16px; color: #6B7280; margin-bottom: 16px; line-height: 1.6; }
+.type-specimen .type-alpha { font-size: 14px; color: #9CA3AF; letter-spacing: 1px; margin-bottom: 16px; line-height: 1.8; }
+.type-specimen .type-css {
+  font-family: 'DM Sans', monospace; font-size: 12px; color: #6B7280;
+  background: #F9FAFB; padding: 12px 16px; border-radius: 8px; line-height: 1.8;
+}
+
+/* ── Section 4: Positioning ── */
+.positioning-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pos-card { border: 1px solid var(--card-border); border-radius: 12px; padding: 20px 24px; }
+.pos-card .pos-label { font-size: 11px; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.pos-card .pos-value { font-size: 15px; color: #111827; line-height: 1.6; }
+.pos-card .pos-value.not-found { color: #D1D5DB; font-style: italic; }
+
+/* ── Section 5: Design Language ── */
+.design-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+.design-card { border: 1px solid var(--card-border); border-radius: 12px; padding: 20px; }
+.design-card .design-label { font-size: 11px; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.design-card .design-value { font-size: 14px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.design-card .design-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+.strategy-box {
+  background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+  border: 2px solid #C4B5FD; border-radius: 14px; padding: 28px 32px;
+}
+.strategy-box h4 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; color: #4C1D95; margin-bottom: 16px; }
+.strategy-box ul { list-style: none; padding: 0; }
+.strategy-box li { font-size: 14px; color: #374151; line-height: 1.7; padding: 6px 0; padding-left: 24px; position: relative; }
+.strategy-box li::before { content: ''; position: absolute; left: 0; top: 13px; width: 10px; height: 10px; background: var(--comp-primary); border-radius: 3px; }
+
+/* ── Section 6: References ── */
+.ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ref-card {
+  border: 1px solid var(--card-border); border-radius: 12px; padding: 18px 20px;
+  display: flex; align-items: flex-start; gap: 14px; text-decoration: none; color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.ref-card:hover { border-color: var(--comp-primary); transform: translateY(-2px); }
+.ref-icon { width: 36px; height: 36px; background: #F3F4F6; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.ref-card .ref-title { font-weight: 600; font-size: 13px; color: #111827; margin-bottom: 2px; }
+.ref-card .ref-desc { font-size: 12px; color: #9CA3AF; }
+
+/* ── Footer ── */
+.card-footer { text-align: center; padding: 28px 40px; background: var(--section-bg); border: 1px solid var(--card-border); border-radius: 16px; }
+.card-footer p { font-size: 12px; color: #9CA3AF; margin-bottom: 4px; }
+.card-footer .footer-note { font-size: 11px; color: #D1D5DB; }
+
+@media (max-width: 768px) {
+  .logo-grid, .positioning-grid, .ref-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr 1fr; }
+  .card-header h1 { font-size: 36px; }
+  .section { padding: 24px 20px; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link comp-nav__link--active" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+<div class="battle-card">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="card-header">
+    <div class="badge">Design Battle Card</div>
+    <div class="date">April 2026 &bull; Confidential</div>
+    <h1>Regard</h1>
+    <p class="tagline">AI-powered clinical insights platform &mdash; &ldquo;Proactive Documentation&rdquo; to surface missed diagnoses, generate notes, and unlock revenue at the point of care</p>
+    <a class="url" href="https://regard.com" target="_blank">regard.com &nearr;</a>
+  </div>
+
+  <!-- ═══ SECTION 1: Logo ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Logo &amp; Logomark</div>
+      <span class="section-badge badge-verified">Verified from Live Site</span>
+    </div>
+    <div class="logo-grid">
+      <div class="logo-preview" style="background: #FFFFFF;">
+        <svg fill="none" viewBox="0 0 170 40" xmlns="http://www.w3.org/2000/svg"><clipPath id="rw"><path d="m0 0h169.59v40h-169.59z"/></clipPath><g clip-path="url(#rw)"><path fill="#3D1CB2" d="m43.1035 11.5056h4.9266v4.3497c.843-2.2195 3.2397-4.7935 7.9444-4.7935v5.3704c-4.8377 0-7.9444 2.3079-7.9444 8.0779v8.9655h-4.9266z"/><path fill="#3D1CB2" d="m57.2157 22.5129c-.0188-1.4977.2602-2.9843.8206-4.3734.5605-1.3891 1.3913-2.653 2.4442-3.7183s2.307-1.9109 3.6894-2.4876 2.8656-.8731 4.3635-.8718c5.8588 0 10.5635 5.1042 10.5635 11.2734-.007.6383-.0515 1.2756-.1331 1.9087h-16.6438c.7099 3.5063 3.5505 5.3258 6.8349 5.3258 2.2445.0089 4.4401-.6558 6.3027-1.9083l1.9529 3.6393c-2.4585 1.6847-5.3642 2.5965-8.3445 2.6187-6.258 0-11.8503-4.172-11.8503-11.4065zm17.0877-1.9087c-.193-1.4595-.9134-2.7979-2.0254-3.7628-1.112-.9648-2.5386-1.4893-4.0107-1.4746-2.8406 0-5.3262 2.086-5.9919 5.2374z"/><path fill="#3D1CB2" d="m83.2608 38.1766c2.3099-.2223 3.5505-1.3985 3.5505-3.1296v-1.3098c-.8849 1.0098-2.002 1.7967-3.2656 2.3026-1.2637.506-2.6345.7173-4.0054.6174-6.0362 0-10.1641-5.1043-10.1641-11.4065 0-6.3469 4.128-11.4511 10.1641-11.4511 1.3832-.0285 2.7563.2468 4.0213.8066 1.2651.5598 2.3932 1.3903 3.3017 2.4331v-2.7959h4.705v18.6188c0 5.3704-2.8849 7.9449-8.2998 7.9449-3.1508 0-5.6806-.8436-7.3224-2.0198l1.9529-3.6836c1.4448.8879 3.5505 1.7758 5.3616 1.7758zm-.3988-7.5094c3.462 0 6.0805-2.7959 6.0805-6.4799 0-3.6836-2.6629-6.3027-6.125-6.3027-3.5504 0-6.1691 2.6629-6.1691 6.4799 0 3.817 2.6629 6.3027 6.125 6.3027z"/><path fill="#3D1CB2" d="m106.79 22.5127c0-6.3468 4.128-11.4511 10.164-11.4511 1.383-.0285 2.756.2468 4.021.8066 1.266.5598 2.393 1.3903 3.302 2.4331v-2.7959h4.927v21.97h-4.927v-2.7517c-.912 1.0367-2.04 1.8603-3.306 2.4125-1.265.5522-2.637.8195-4.017.783-6.036 0-10.164-5.1043-10.164-11.4065zm17.487 0c0-3.8617-2.574-6.7022-6.08-6.7022-3.729 0-6.392 2.8405-6.392 6.7022 0 3.8613 2.663 6.6576 6.392 6.6576 3.462 0 6.08-2.7521 6.08-6.6576z"/><path fill="#3D1CB2" d="m133.063 11.5056h4.927v4.3497c.843-2.2195 3.24-4.7935 7.945-4.7935v5.3704c-4.838 0-7.945 2.3079-7.945 8.0779v8.9655h-4.927z"/><path fill="#3D1CB2" d="m147.176 22.5128c0-6.3469 4.128-11.4511 10.164-11.4511 1.383-.0285 2.756.2468 4.021.8066 1.265.5597 2.393 1.3903 3.302 2.4331v-10.0304h4.927v29.2045h-4.705v-2.7517c-.954 1.0439-2.122 1.8698-3.424 2.4213s-2.708.8155-4.121.7742c-6.036 0-10.164-5.1043-10.164-11.4065zm17.487 0c0-3.8617-2.574-6.7023-6.081-6.7023-3.728 0-6.391 2.8406-6.391 6.7023 0 3.8613 2.663 6.6575 6.391 6.6575 3.463 0 6.081-2.752 6.081-6.6575z"/><path fill="#3D1CB2" d="m18.9498 0c-4.8822 0-9.5646 1.9386-13.0157 5.3897-3.4511 3.4511-5.3897 8.1335-5.3897 13.0157 0 4.0285 1.3186 7.7527 3.5463 10.7598l14.4652-14.4652c.1093-.1093.2867-.1093.396 0l5.084 5.084c.1093.1093.1093.2867 0 .396l-14.3877 14.3878c2.9807 2.1725 6.6537 3.4516 10.6203 3.4328 10.1549-.0356 18.3739-8.3221 18.3406-18.4771-.0334-10.1552-8.3197-18.3743-18.4749-18.3406z"/><path fill="#3D1CB2" d="m18.7569 22.4064c-.6078.6079-1.5935.6079-2.2013 0l-3.0828-3.0828c-.6079-.6078-.6079-1.5934 0-2.2013.6078-.6079 1.5934-.6079 2.2013 0l3.0828 3.0828c.6079.6079.6079 1.5935 0 2.2013z"/></g></svg>
+        <span class="bg-label">White / Default</span>
+      </div>
+      <div class="logo-preview" style="background: #0E0629;">
+        <svg fill="none" viewBox="0 0 170 40" xmlns="http://www.w3.org/2000/svg"><clipPath id="rd"><path d="m0 0h169.59v40h-169.59z"/></clipPath><g clip-path="url(#rd)"><path fill="#FFFFFF" d="m43.1035 11.5056h4.9266v4.3497c.843-2.2195 3.2397-4.7935 7.9444-4.7935v5.3704c-4.8377 0-7.9444 2.3079-7.9444 8.0779v8.9655h-4.9266z"/><path fill="#FFFFFF" d="m57.2157 22.5129c-.0188-1.4977.2602-2.9843.8206-4.3734.5605-1.3891 1.3913-2.653 2.4442-3.7183s2.307-1.9109 3.6894-2.4876 2.8656-.8731 4.3635-.8718c5.8588 0 10.5635 5.1042 10.5635 11.2734-.007.6383-.0515 1.2756-.1331 1.9087h-16.6438c.7099 3.5063 3.5505 5.3258 6.8349 5.3258 2.2445.0089 4.4401-.6558 6.3027-1.9083l1.9529 3.6393c-2.4585 1.6847-5.3642 2.5965-8.3445 2.6187-6.258 0-11.8503-4.172-11.8503-11.4065zm17.0877-1.9087c-.193-1.4595-.9134-2.7979-2.0254-3.7628-1.112-.9648-2.5386-1.4893-4.0107-1.4746-2.8406 0-5.3262 2.086-5.9919 5.2374z"/><path fill="#FFFFFF" d="m83.2608 38.1766c2.3099-.2223 3.5505-1.3985 3.5505-3.1296v-1.3098c-.8849 1.0098-2.002 1.7967-3.2656 2.3026-1.2637.506-2.6345.7173-4.0054.6174-6.0362 0-10.1641-5.1043-10.1641-11.4065 0-6.3469 4.128-11.4511 10.1641-11.4511 1.3832-.0285 2.7563.2468 4.0213.8066 1.2651.5598 2.3932 1.3903 3.3017 2.4331v-2.7959h4.705v18.6188c0 5.3704-2.8849 7.9449-8.2998 7.9449-3.1508 0-5.6806-.8436-7.3224-2.0198l1.9529-3.6836c1.4448.8879 3.5505 1.7758 5.3616 1.7758zm-.3988-7.5094c3.462 0 6.0805-2.7959 6.0805-6.4799 0-3.6836-2.6629-6.3027-6.125-6.3027-3.5504 0-6.1691 2.6629-6.1691 6.4799 0 3.817 2.6629 6.3027 6.125 6.3027z"/><path fill="#FFFFFF" d="m106.79 22.5127c0-6.3468 4.128-11.4511 10.164-11.4511 1.383-.0285 2.756.2468 4.021.8066 1.266.5598 2.393 1.3903 3.302 2.4331v-2.7959h4.927v21.97h-4.927v-2.7517c-.912 1.0367-2.04 1.8603-3.306 2.4125-1.265.5522-2.637.8195-4.017.783-6.036 0-10.164-5.1043-10.164-11.4065zm17.487 0c0-3.8617-2.574-6.7022-6.08-6.7022-3.729 0-6.392 2.8405-6.392 6.7022 0 3.8613 2.663 6.6576 6.392 6.6576 3.462 0 6.08-2.7521 6.08-6.6576z"/><path fill="#FFFFFF" d="m133.063 11.5056h4.927v4.3497c.843-2.2195 3.24-4.7935 7.945-4.7935v5.3704c-4.838 0-7.945 2.3079-7.945 8.0779v8.9655h-4.927z"/><path fill="#FFFFFF" d="m147.176 22.5128c0-6.3469 4.128-11.4511 10.164-11.4511 1.383-.0285 2.756.2468 4.021.8066 1.265.5597 2.393 1.3903 3.302 2.4331v-10.0304h4.927v29.2045h-4.705v-2.7517c-.954 1.0439-2.122 1.8698-3.424 2.4213s-2.708.8155-4.121.7742c-6.036 0-10.164-5.1043-10.164-11.4065zm17.487 0c0-3.8617-2.574-6.7023-6.081-6.7023-3.728 0-6.391 2.8406-6.391 6.7023 0 3.8613 2.663 6.6575 6.391 6.6575 3.463 0 6.081-2.752 6.081-6.6575z"/><path fill="#FFFFFF" d="m18.9498 0c-4.8822 0-9.5646 1.9386-13.0157 5.3897-3.4511 3.4511-5.3897 8.1335-5.3897 13.0157 0 4.0285 1.3186 7.7527 3.5463 10.7598l14.4652-14.4652c.1093-.1093.2867-.1093.396 0l5.084 5.084c.1093.1093.1093.2867 0 .396l-14.3877 14.3878c2.9807 2.1725 6.6537 3.4516 10.6203 3.4328 10.1549-.0356 18.3739-8.3221 18.3406-18.4771-.0334-10.1552-8.3197-18.3743-18.4749-18.3406z"/><path fill="#FFFFFF" d="m18.7569 22.4064c-.6078.6079-1.5935.6079-2.2013 0l-3.0828-3.0828c-.6079-.6078-.6079-1.5934 0-2.2013.6078-.6079 1.5934-.6079 2.2013 0l3.0828 3.0828c.6079.6079.6079 1.5935 0 2.2013z"/></g></svg>
+        <span class="bg-label" style="color:rgba(255,255,255,0.4);">Hero / Dark</span>
+      </div>
+      <div class="logo-preview" style="background: #CFC6EC;">
+        <svg fill="none" viewBox="0 0 170 40" xmlns="http://www.w3.org/2000/svg"><clipPath id="rl"><path d="m0 0h169.59v40h-169.59z"/></clipPath><g clip-path="url(#rl)"><path fill="#3D1CB2" d="m43.1035 11.5056h4.9266v4.3497c.843-2.2195 3.2397-4.7935 7.9444-4.7935v5.3704c-4.8377 0-7.9444 2.3079-7.9444 8.0779v8.9655h-4.9266z"/><path fill="#3D1CB2" d="m57.2157 22.5129c-.0188-1.4977.2602-2.9843.8206-4.3734.5605-1.3891 1.3913-2.653 2.4442-3.7183s2.307-1.9109 3.6894-2.4876 2.8656-.8731 4.3635-.8718c5.8588 0 10.5635 5.1042 10.5635 11.2734-.007.6383-.0515 1.2756-.1331 1.9087h-16.6438c.7099 3.5063 3.5505 5.3258 6.8349 5.3258 2.2445.0089 4.4401-.6558 6.3027-1.9083l1.9529 3.6393c-2.4585 1.6847-5.3642 2.5965-8.3445 2.6187-6.258 0-11.8503-4.172-11.8503-11.4065zm17.0877-1.9087c-.193-1.4595-.9134-2.7979-2.0254-3.7628-1.112-.9648-2.5386-1.4893-4.0107-1.4746-2.8406 0-5.3262 2.086-5.9919 5.2374z"/><path fill="#3D1CB2" d="m83.2608 38.1766c2.3099-.2223 3.5505-1.3985 3.5505-3.1296v-1.3098c-.8849 1.0098-2.002 1.7967-3.2656 2.3026-1.2637.506-2.6345.7173-4.0054.6174-6.0362 0-10.1641-5.1043-10.1641-11.4065 0-6.3469 4.128-11.4511 10.1641-11.4511 1.3832-.0285 2.7563.2468 4.0213.8066 1.2651.5598 2.3932 1.3903 3.3017 2.4331v-2.7959h4.705v18.6188c0 5.3704-2.8849 7.9449-8.2998 7.9449-3.1508 0-5.6806-.8436-7.3224-2.0198l1.9529-3.6836c1.4448.8879 3.5505 1.7758 5.3616 1.7758zm-.3988-7.5094c3.462 0 6.0805-2.7959 6.0805-6.4799 0-3.6836-2.6629-6.3027-6.125-6.3027-3.5504 0-6.1691 2.6629-6.1691 6.4799 0 3.817 2.6629 6.3027 6.125 6.3027z"/><path fill="#3D1CB2" d="m106.79 22.5127c0-6.3468 4.128-11.4511 10.164-11.4511 1.383-.0285 2.756.2468 4.021.8066 1.266.5598 2.393 1.3903 3.302 2.4331v-2.7959h4.927v21.97h-4.927v-2.7517c-.912 1.0367-2.04 1.8603-3.306 2.4125-1.265.5522-2.637.8195-4.017.783-6.036 0-10.164-5.1043-10.164-11.4065zm17.487 0c0-3.8617-2.574-6.7022-6.08-6.7022-3.729 0-6.392 2.8405-6.392 6.7022 0 3.8613 2.663 6.6576 6.392 6.6576 3.462 0 6.08-2.7521 6.08-6.6576z"/><path fill="#3D1CB2" d="m133.063 11.5056h4.927v4.3497c.843-2.2195 3.24-4.7935 7.945-4.7935v5.3704c-4.838 0-7.945 2.3079-7.945 8.0779v8.9655h-4.927z"/><path fill="#3D1CB2" d="m147.176 22.5128c0-6.3469 4.128-11.4511 10.164-11.4511 1.383-.0285 2.756.2468 4.021.8066 1.265.5597 2.393 1.3903 3.302 2.4331v-10.0304h4.927v29.2045h-4.705v-2.7517c-.954 1.0439-2.122 1.8698-3.424 2.4213s-2.708.8155-4.121.7742c-6.036 0-10.164-5.1043-10.164-11.4065zm17.487 0c0-3.8617-2.574-6.7023-6.081-6.7023-3.728 0-6.391 2.8406-6.391 6.7023 0 3.8613 2.663 6.6575 6.391 6.6575 3.463 0 6.081-2.752 6.081-6.6575z"/><path fill="#3D1CB2" d="m18.9498 0c-4.8822 0-9.5646 1.9386-13.0157 5.3897-3.4511 3.4511-5.3897 8.1335-5.3897 13.0157 0 4.0285 1.3186 7.7527 3.5463 10.7598l14.4652-14.4652c.1093-.1093.2867-.1093.396 0l5.084 5.084c.1093.1093.1093.2867 0 .396l-14.3877 14.3878c2.9807 2.1725 6.6537 3.4516 10.6203 3.4328 10.1549-.0356 18.3739-8.3221 18.3406-18.4771-.0334-10.1552-8.3197-18.3743-18.4749-18.3406z"/><path fill="#3D1CB2" d="m18.7569 22.4064c-.6078.6079-1.5935.6079-2.2013 0l-3.0828-3.0828c-.6079-.6078-.6079-1.5934 0-2.2013.6078-.6079 1.5934-.6079 2.2013 0l3.0828 3.0828c.6079.6079.6079 1.5935 0 2.2013z"/></g></svg>
+        <span class="bg-label" style="color:#5B3FC0;">Lavender Accent</span>
+      </div>
+      <div class="logo-preview" style="background: #3D1CB2;">
+        <svg fill="none" viewBox="0 0 170 40" xmlns="http://www.w3.org/2000/svg"><clipPath id="rp"><path d="m0 0h169.59v40h-169.59z"/></clipPath><g clip-path="url(#rp)"><path fill="#FFFFFF" d="m43.1035 11.5056h4.9266v4.3497c.843-2.2195 3.2397-4.7935 7.9444-4.7935v5.3704c-4.8377 0-7.9444 2.3079-7.9444 8.0779v8.9655h-4.9266z"/><path fill="#FFFFFF" d="m57.2157 22.5129c-.0188-1.4977.2602-2.9843.8206-4.3734.5605-1.3891 1.3913-2.653 2.4442-3.7183s2.307-1.9109 3.6894-2.4876 2.8656-.8731 4.3635-.8718c5.8588 0 10.5635 5.1042 10.5635 11.2734-.007.6383-.0515 1.2756-.1331 1.9087h-16.6438c.7099 3.5063 3.5505 5.3258 6.8349 5.3258 2.2445.0089 4.4401-.6558 6.3027-1.9083l1.9529 3.6393c-2.4585 1.6847-5.3642 2.5965-8.3445 2.6187-6.258 0-11.8503-4.172-11.8503-11.4065zm17.0877-1.9087c-.193-1.4595-.9134-2.7979-2.0254-3.7628-1.112-.9648-2.5386-1.4893-4.0107-1.4746-2.8406 0-5.3262 2.086-5.9919 5.2374z"/><path fill="#FFFFFF" d="m83.2608 38.1766c2.3099-.2223 3.5505-1.3985 3.5505-3.1296v-1.3098c-.8849 1.0098-2.002 1.7967-3.2656 2.3026-1.2637.506-2.6345.7173-4.0054.6174-6.0362 0-10.1641-5.1043-10.1641-11.4065 0-6.3469 4.128-11.4511 10.1641-11.4511 1.3832-.0285 2.7563.2468 4.0213.8066 1.2651.5598 2.3932 1.3903 3.3017 2.4331v-2.7959h4.705v18.6188c0 5.3704-2.8849 7.9449-8.2998 7.9449-3.1508 0-5.6806-.8436-7.3224-2.0198l1.9529-3.6836c1.4448.8879 3.5505 1.7758 5.3616 1.7758zm-.3988-7.5094c3.462 0 6.0805-2.7959 6.0805-6.4799 0-3.6836-2.6629-6.3027-6.125-6.3027-3.5504 0-6.1691 2.6629-6.1691 6.4799 0 3.817 2.6629 6.3027 6.125 6.3027z"/><path fill="#FFFFFF" d="m106.79 22.5127c0-6.3468 4.128-11.4511 10.164-11.4511 1.383-.0285 2.756.2468 4.021.8066 1.266.5598 2.393 1.3903 3.302 2.4331v-2.7959h4.927v21.97h-4.927v-2.7517c-.912 1.0367-2.04 1.8603-3.306 2.4125-1.265.5522-2.637.8195-4.017.783-6.036 0-10.164-5.1043-10.164-11.4065zm17.487 0c0-3.8617-2.574-6.7022-6.08-6.7022-3.729 0-6.392 2.8405-6.392 6.7022 0 3.8613 2.663 6.6576 6.392 6.6576 3.462 0 6.08-2.7521 6.08-6.6576z"/><path fill="#FFFFFF" d="m133.063 11.5056h4.927v4.3497c.843-2.2195 3.24-4.7935 7.945-4.7935v5.3704c-4.838 0-7.945 2.3079-7.945 8.0779v8.9655h-4.927z"/><path fill="#FFFFFF" d="m147.176 22.5128c0-6.3469 4.128-11.4511 10.164-11.4511 1.383-.0285 2.756.2468 4.021.8066 1.265.5597 2.393 1.3903 3.302 2.4331v-10.0304h4.927v29.2045h-4.705v-2.7517c-.954 1.0439-2.122 1.8698-3.424 2.4213s-2.708.8155-4.121.7742c-6.036 0-10.164-5.1043-10.164-11.4065zm17.487 0c0-3.8617-2.574-6.7023-6.081-6.7023-3.728 0-6.391 2.8406-6.391 6.7023 0 3.8613 2.663 6.6575 6.391 6.6575 3.463 0 6.081-2.752 6.081-6.6575z"/><path fill="#FFFFFF" d="m18.9498 0c-4.8822 0-9.5646 1.9386-13.0157 5.3897-3.4511 3.4511-5.3897 8.1335-5.3897 13.0157 0 4.0285 1.3186 7.7527 3.5463 10.7598l14.4652-14.4652c.1093-.1093.2867-.1093.396 0l5.084 5.084c.1093.1093.1093.2867 0 .396l-14.3877 14.3878c2.9807 2.1725 6.6537 3.4516 10.6203 3.4328 10.1549-.0356 18.3739-8.3221 18.3406-18.4771-.0334-10.1552-8.3197-18.3743-18.4749-18.3406z"/><path fill="#FFFFFF" d="m18.7569 22.4064c-.6078.6079-1.5935.6079-2.2013 0l-3.0828-3.0828c-.6079-.6078-.6079-1.5934 0-2.2013.6078-.6079 1.5934-.6079 2.2013 0l3.0828 3.0828c.6079.6079.6079 1.5935 0 2.2013z"/></g></svg>
+        <span class="bg-label" style="color:rgba(255,255,255,0.4);">Primary Purple</span>
+      </div>
+    </div>
+    <div class="logo-description">
+      <h4>Logo Analysis</h4>
+      <p>
+        <strong>Type:</strong> Combination mark &mdash; a distinctive <strong>logomark + wordmark</strong>. The logomark is a circle with a diagonal checkmark/arrow cut through it, evoking both &ldquo;insight&rdquo; (looking into data) and &ldquo;verification&rdquo; (confirming diagnoses). The wordmark spells &ldquo;regard&rdquo; in a clean, lowercase sans-serif with generous letter-spacing.<br><br>
+        <strong>Characteristics:</strong> The circle-with-checkmark logomark is highly distinctive and works standalone as a favicon/app icon. The lowercase &ldquo;regard&rdquo; wordmark communicates approachability. The full SVG (viewBox 0 0 170 40) includes both mark and type as a single unit. Uses brand purple (#3D1CB2) on light backgrounds and white on dark.<br><br>
+        <strong>Design Agency:</strong> Not publicly attributed. The design system has strong consistency &mdash; likely built by an in-house team led by Head of Product Design Tiffany Estrella.
+      </p>
+      <span class="asset-tag">SVG: Actual vector paths extracted from live site &bull; viewBox: 0 0 170 40</span>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 2: Colors ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Brand Color Palette</div>
+      <span class="section-badge badge-verified">Extracted from Live CSS</span>
+    </div>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background: #3D1CB2;"><span class="hex-overlay on-dark">#3D1CB2</span></div>
+        <div class="color-info"><div class="name">Vivid Indigo</div><div class="role">Primary brand color — CTAs, logo, accent text, hero gradients</div><div class="values">rgb(61, 28, 178)<br>--comp-primary</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #0E0629;"><span class="hex-overlay on-dark">#0E0629</span></div>
+        <div class="color-info"><div class="name">Midnight Aubergine</div><div class="role">Hero BG, dark sections, careers page background</div><div class="values">rgb(14, 6, 41)<br>.home-hero</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #CFC6EC;"><span class="hex-overlay">#CFC6EC</span></div>
+        <div class="color-info"><div class="name">Soft Lavender</div><div class="role">Data viz, donut charts, case study section BGs</div><div class="values">rgb(207, 198, 236)<br>.featured-cs</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #342C4E;"><span class="hex-overlay on-dark">#342C4E</span></div>
+        <div class="color-info"><div class="name">Muted Plum</div><div class="role">Testimonial cards, dark UI accents</div><div class="values">rgb(52, 44, 78)<br>.large (testimonial)</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #024985;"><span class="hex-overlay on-dark">#024985</span></div>
+        <div class="color-info"><div class="name">Deep Blue</div><div class="role">Announcement banner, secondary accent</div><div class="values">rgb(2, 73, 133)<br>.simple-banner</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #000000;"><span class="hex-overlay on-dark">#000000</span></div>
+        <div class="color-info"><div class="name">Pure Black</div><div class="role">Body text</div><div class="values">rgb(0, 0, 0)<br>body { color }</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #E5E7EB;"><span class="hex-overlay">#FFFFFF</span></div>
+        <div class="color-info"><div class="name">White</div><div class="role">Primary background, hero text, nav text on dark</div><div class="values">rgb(255, 255, 255)</div></div>
+      </div>
+    </div>
+    <div class="note-box note-verified">
+      <strong>Extraction Note:</strong> All colors via <code>getComputedStyle()</code> from the live Regard homepage (April 2026). Regard&rsquo;s palette is a <strong>single-hue purple/indigo system</strong> with remarkable discipline. The primary vivid indigo (#3D1CB2) does nearly all the heavy lifting &mdash; logo, CTAs, accent text, gradient backgrounds. Lavender (#CFC6EC) provides the only softness. There are no greens, no teals, no secondary warm accents. This monochromatic commitment makes the brand instantly recognizable but also limits expressive range.
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 3: Typography ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">Typography System</div>
+      <span class="section-badge badge-verified">Verified from Live CSS</span>
+    </div>
+    <div class="type-callout">
+      <h4>Commercial Font Detected: Helvetica Neue LT Pro</h4>
+      <p>Regard uses <strong>Helvetica Neue LT Pro</strong> &mdash; the professional-grade version of the world&rsquo;s most ubiquitous sans-serif. This is a licensed commercial font (Linotype). While it signals corporate polish, it&rsquo;s also the &ldquo;safest possible choice&rdquo; in typography &mdash; the opposite of a distinctive type decision. Loaded in weights 300 (Light), 400 (Regular), and 700 (Bold).</p>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">Primary &amp; Only &mdash; Helvetica Neue LT Pro</div>
+      <div class="type-display" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: var(--comp-primary);">
+        Proactive Documentation to transform care
+      </div>
+      <div class="type-body" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+        Regard reviews all data in the chart to recommend diagnoses and generate complete documentation at the point of care. Helvetica Neue LT Pro is the sole typeface across all headings, body text, navigation, and UI.
+      </div>
+      <div class="type-alpha" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+        abcdefghijklmnopqrstuvwxyz<br>
+        0123456789 &amp; !@#$%
+      </div>
+      <div class="type-css">
+        <strong>H1:</strong> font-family: "Helvetica Neue LT Pro", sans-serif; font-weight: 700; font-size: 60px; line-height: 72px; color: rgb(255,255,255)<br>
+        <strong>H2:</strong> font-weight: 500; font-size: 48px; color: rgb(0,0,0)<br>
+        <strong>Body:</strong> font-weight: 400; font-size: 24px<br>
+        <strong>Nav:</strong> font-weight: 400; color: rgb(255,255,255)<br>
+        <strong>CTA:</strong> font-weight: 700; border-radius: 4px; bg: rgb(61,28,178)
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 4: Positioning ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">Brand Positioning &amp; Messaging</div>
+      <span class="section-badge badge-verified">Verified from Live Site</span>
+    </div>
+    <div class="positioning-grid">
+      <div class="pos-card">
+        <div class="pos-label">Hero Headline (Live H1)</div>
+        <div class="pos-value">&ldquo;Proactive Documentation to transform care&rdquo;</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Page Title / Category</div>
+        <div class="pos-value">&ldquo;Close the Clinical Insights Gap with the leading AI Clinical Insights Platform&rdquo;</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Supporting Value Prop</div>
+        <div class="pos-value">&ldquo;Regard reviews all data in the chart to recommend diagnoses and generate complete documentation at the point of care.&rdquo;</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Three Pillars</div>
+        <div class="pos-value">Improve care (patient safety) &bull; Lower clinician burden (documentation time) &bull; Unlock revenue (missed diagnoses, DRG upgrades, denial reduction)</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Key Trust Signals</div>
+        <div class="pos-value">13.5M+ recommended diagnoses accepted &bull; 80%+ acceptance rate &bull; $82M total funding (Series B led by Oak HC/FT, $350M valuation) &bull; Microsoft Dragon Copilot partnership &bull; ONC certified</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Founder / CEO</div>
+        <div class="pos-value">Eli Ben-Joseph, Co-Founder &amp; CEO. Nate Wilson, Co-Founder &amp; President/COO. Founded 2017 (as HealthTensor), rebranded to Regard. HQ: Los Angeles + NYC.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Design Agency</div>
+        <div class="pos-value not-found">Not publicly attributed &bull; In-house design team led by Head of Product Design Tiffany Estrella</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Key Customers</div>
+        <div class="pos-value">Sentara Health, Banner Health, Penn Highlands Healthcare, WMC Health, Eisenhower Health, Cedars-Sinai (investor), Torrance Memorial, Kettering Health</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 5: Design Language ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">Design Language &amp; Visual System</div>
+      <span class="section-badge badge-verified">Verified from Live Site</span>
+    </div>
+    <div class="design-grid">
+      <div class="design-card">
+        <div class="design-label">Primary Theme</div>
+        <div class="design-value">Dark-Purple Hero, White Body</div>
+        <div class="design-desc">Midnight aubergine (#0E0629) hero with vivid purple gradient shapes and white text. Page transitions to clean white with purple accent sections. A dramatic-to-clinical arc.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Palette Strategy</div>
+        <div class="design-value">Single-Hue Purple Monochrome</div>
+        <div class="design-desc">One color does everything: vivid indigo for CTAs, accent text, gradients, data viz. Lavender softens it. No secondary hue. Remarkably disciplined &mdash; almost austere.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Graphic System</div>
+        <div class="design-value">Organic Gradient Shapes</div>
+        <div class="design-desc">Large-scale organic/leaf-shaped gradient forms (dark purple to vivid indigo to blue) float over the dark hero. Creates depth and movement. Circular motifs echo the logomark.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Photography</div>
+        <div class="design-value">Cinematic Clinical Video</div>
+        <div class="design-desc">A full-bleed video section with real clinical scenarios (non-stock, dramatic lighting) sits below the hero. More cinematic than typical healthcare imagery. Customer headshots are professional but standard.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Data Visualization</div>
+        <div class="design-value">Lavender Donut Charts</div>
+        <div class="design-desc">The &ldquo;97% unseen data&rdquo; donut chart is a signature visual. Uses lavender (#CFC6EC) with a deep purple slice. Large counter animations (13.5M+) on purple backgrounds create drama.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">CTA System</div>
+        <div class="design-value">Purple Pill + White Outline</div>
+        <div class="design-desc">Primary CTA: solid purple (#3D1CB2) with white text, 4px radius. Secondary: white outline with white text on dark. Clean, conventional SaaS button system. Arrow icons on CTAs.</div>
+      </div>
+    </div>
+    <div class="strategy-box">
+      <h4>Strategic Analysis &mdash; Creative Director Assessment</h4>
+      <ul>
+        <li><strong>Regard occupies the &ldquo;clinical intelligence&rdquo; purple space, distinct from Qventus&rsquo;s aubergine purple.</strong> While both brands use purple, Regard&rsquo;s vivid indigo (#3D1CB2) is warmer and bluer than Qventus&rsquo;s teal-accented aubergine. In side-by-side comparison, Regard reads more &ldquo;corporate tech&rdquo; while Qventus reads more &ldquo;bold startup.&rdquo;</li>
+        <li><strong>Helvetica Neue is the safest possible type choice &mdash; a missed opportunity.</strong> In a category where Nabla uses Euclid Circular B and Qventus uses Sora, Regard&rsquo;s reliance on Helvetica Neue signals corporate reliability but zero typographic personality. This is the equivalent of wearing a navy suit to an interview &mdash; professional, forgettable.</li>
+        <li><strong>The logomark is the brand&rsquo;s strongest asset.</strong> The circle-with-checkmark/arrow is distinctive, memorable, and semantically rich (insight + verification). It works beautifully as a standalone icon. This is the one element competitors would struggle to replicate &mdash; it&rsquo;s genuinely ownable.</li>
+        <li><strong>The &ldquo;97% unseen data&rdquo; visualization is brilliant positioning.</strong> The lavender donut chart powerfully frames the problem Regard solves. It&rsquo;s the kind of visual that gets screenshotted and shared in executive presentations. Smart use of data design to drive narrative.</li>
+        <li><strong>The cinematic video approach is a differentiator.</strong> While most competitors use static photography, Regard leads with a dramatic, full-bleed clinical video. This signals production value and brand investment. The non-stock, dramatic lighting feels like a mini-documentary &mdash; unusual for healthcare SaaS.</li>
+        <li><strong>Vulnerability: monochromatic palette creates visual fatigue.</strong> With purple handling hero backgrounds, CTAs, accent text, data viz, gradient shapes, AND the logo, the site can feel one-note. There&rsquo;s no visual &ldquo;rest&rdquo; or surprise. Competitors with dual-accent systems (Qventus purple+teal, Nabla green+lavender) have more visual range.</li>
+        <li><strong>White space opportunity: warmth and approachability.</strong> Regard&rsquo;s dark hero + corporate font + monochrome purple = enterprise-serious. A competitor could differentiate by owning a warmer, more human-centered clinical insights brand. Regard&rsquo;s design speaks to CFOs and CMOs; it doesn&rsquo;t particularly speak to burned-out physicians scrolling on their phones.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 6: References ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Brand References &amp; Resources</div>
+      <span class="section-badge badge-research">Research-Based</span>
+    </div>
+    <div class="ref-grid">
+      <a class="ref-card" href="https://regard.com" target="_blank">
+        <div class="ref-icon">🌐</div>
+        <div><div class="ref-title">Company Website</div><div class="ref-desc">Main marketing site &mdash; WordPress-based, custom theme</div></div>
+      </a>
+      <a class="ref-card" href="https://regard.com/about-us/" target="_blank">
+        <div class="ref-icon">👥</div>
+        <div><div class="ref-title">About Us &amp; Team</div><div class="ref-desc">Mission, leadership bios, investor logos, founding story</div></div>
+      </a>
+      <a class="ref-card" href="https://regard.com/solutions/" target="_blank">
+        <div class="ref-icon">🤖</div>
+        <div><div class="ref-title">Solutions Overview</div><div class="ref-desc">Proactive Documentation product, 3-step process, use cases</div></div>
+      </a>
+      <a class="ref-card" href="https://regard.com/impact/" target="_blank">
+        <div class="ref-icon">📊</div>
+        <div><div class="ref-title">Impact &amp; ROI Calculator</div><div class="ref-desc">Interactive ROI tool, customer metrics, financial impact data</div></div>
+      </a>
+      <a class="ref-card" href="https://www.linkedin.com/company/regard-technologies" target="_blank">
+        <div class="ref-icon">💼</div>
+        <div><div class="ref-title">LinkedIn</div><div class="ref-desc">Company page, team size, job postings</div></div>
+      </a>
+      <a class="ref-card" href="https://techcrunch.com/2024/07/11/ai-powered-regard-nabs-61m-to-find-missed-illness-boost-hospital-revenue/" target="_blank">
+        <div class="ref-icon">📰</div>
+        <div><div class="ref-title">TechCrunch: Series B Coverage</div><div class="ref-desc">$61M raise led by Oak HC/FT (July 2024)</div></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="card-footer">
+    <p><strong>Regard Design Battle Card</strong> &bull; Prepared April 2026 &bull; Confidential &mdash; For Internal Rebrand Use Only</p>
+    <p class="footer-note">Colors, fonts, and logo verified from regard.com via Chrome DevTools live CSS extraction (getComputedStyle + document.fonts API)</p>
+  </div>
+
+</div>
+</body>
+</html>

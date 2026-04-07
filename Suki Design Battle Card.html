@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suki — Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ═══ VERIFIED Suki Brand Colors (from live CSS, March 2026) ═══ */
+  --comp-primary: #FFE148;          /* Primary accent — yellow/gold CTA, highlight sections */
+  --comp-primary-dark: #E5C930;     /* Darker yellow variant for hover states */
+  --comp-black: #1B1B1B;            /* Near-black — body text, dark backgrounds, footer */
+  --comp-dark: #212121;             /* Secondary dark — paragraph text */
+  --comp-body-text: #212121;        /* Body text color */
+  --comp-white: #FFFFFF;            /* Primary background */
+  --comp-light: #F9F9F9;            /* Off-white surface */
+  --comp-light-gray: #F4F4F4;       /* Light surface / card background */
+  --comp-mid-gray: #646464;         /* Mid-tone — nav text, secondary text */
+  --comp-blue: #1863DC;             /* Link blue — used for hyperlinks */
+  --comp-dark-blue: #0056A7;        /* Dark blue — cookie/accessibility widget */
+
+  /* Battle Card UI — NEVER CHANGE THESE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #1F2937;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── HEADER ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.card-header .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #EEF2FF;
+  color: #4338CA;
+  margin-bottom: 12px;
+}
+.card-header .date {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 24px;
+}
+.card-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.card-header .tagline {
+  font-size: 20px;
+  color: #6B7280;
+  margin-top: 12px;
+  font-weight: 400;
+}
+.card-header .url {
+  margin-top: 16px;
+}
+.card-header .url a {
+  color: #6366F1;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.card-header .url a:hover { text-decoration: underline; }
+
+/* ── SECTIONS ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.section-header .left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--comp-primary);
+  color: var(--comp-black);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+.badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-confirmed);
+  color: var(--badge-confirmed-text);
+}
+.badge-research {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-verify);
+  color: var(--badge-verify-text);
+}
+
+/* ── SECTION 1: LOGO ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.logo-preview {
+  border-radius: 12px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: transform 0.2s;
+}
+.logo-preview:hover { transform: translateY(-2px); }
+.logo-preview svg { height: 40px; width: auto; }
+.logo-preview .bg-label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: #9CA3AF;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.logo-preview.on-white { background: #FFFFFF; }
+.logo-preview.on-dark { background: var(--comp-black); }
+.logo-preview.on-light { background: var(--comp-light-gray); }
+.logo-preview.on-primary { background: var(--comp-primary); }
+
+.logo-description {
+  background: #F9FAFB;
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid #F3F4F6;
+}
+.logo-description h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+.logo-description p {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.7;
+}
+.logo-description .asset-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #F3F4F6;
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+}
+
+/* ── SECTION 2: COLORS ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.color-card {
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.color-card:hover { transform: translateY(-2px); }
+.color-swatch {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+}
+.color-swatch .hex-overlay {
+  font-family: 'DM Sans', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.color-swatch.light-swatch .hex-overlay {
+  color: #374151;
+  text-shadow: none;
+}
+.color-info {
+  padding: 14px;
+}
+.color-info .name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.color-info .role {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+}
+.color-info .detail {
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+  line-height: 1.8;
+}
+
+.note-box {
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.verified-note {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #166534;
+}
+.warning-note {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+}
+
+/* ── SECTION 3: TYPOGRAPHY ── */
+.type-callout {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 2px solid #F97316;
+  background: #FFF7ED;
+  margin-bottom: 24px;
+}
+.type-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #9A3412;
+  margin-bottom: 6px;
+}
+.type-callout p {
+  font-size: 13px;
+  color: #9A3412;
+  line-height: 1.6;
+}
+
+.type-specimen {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 16px;
+  transition: transform 0.2s;
+}
+.type-specimen:hover { transform: translateY(-2px); }
+.type-specimen .font-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.type-specimen .font-role {
+  font-size: 12px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+.type-specimen .display-sample {
+  font-size: 42px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.type-specimen .body-sample {
+  font-size: 16px;
+  color: #4B5563;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 640px;
+}
+.type-specimen .alphabet {
+  font-size: 14px;
+  color: #9CA3AF;
+  letter-spacing: 0.04em;
+  word-break: break-all;
+  margin-bottom: 16px;
+}
+.type-specimen .css-detail {
+  font-family: 'DM Sans', monospace;
+  font-size: 12px;
+  color: #6B7280;
+  background: #F9FAFB;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.8;
+}
+
+/* ── SECTION 4: POSITIONING ── */
+.position-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.position-card {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.position-card:hover { transform: translateY(-2px); }
+.position-card .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.position-card .value {
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.6;
+  font-weight: 500;
+}
+.position-card .value.italic { font-style: italic; color: #6B7280; font-weight: 400; }
+
+/* ── SECTION 5: DESIGN LANGUAGE ── */
+.design-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.design-attr {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.design-attr:hover { transform: translateY(-2px); }
+.design-attr .attr-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.design-attr .attr-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.strategy-callout {
+  padding: 28px 32px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #F5F3FF 0%, #EEF2FF 100%);
+  border: 1px solid #DDD6FE;
+}
+.strategy-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4338CA;
+  margin-bottom: 16px;
+}
+.strategy-callout ul {
+  list-style: none;
+  padding: 0;
+}
+.strategy-callout li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+}
+.strategy-callout li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #6366F1;
+  font-weight: 600;
+}
+
+/* ── SECTION 6: REFERENCES ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ref-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ref-card:hover {
+  border-color: #6366F1;
+  transform: translateY(-2px);
+}
+.ref-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #F3F4F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ref-card .ref-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.ref-card .ref-desc {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+/* ── FOOTER ── */
+.card-footer {
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 12px;
+  color: #9CA3AF;
+}
+.card-footer .main-line {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.card-footer .sub-line {
+  font-size: 11px;
+  color: #D1D5DB;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { padding: 0 16px 16px 16px; }
+  .card-header h1 { font-size: 36px; }
+  .color-grid { grid-template-columns: 1fr 1fr; }
+  .position-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr; }
+  .ref-grid { grid-template-columns: 1fr; }
+  .logo-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link comp-nav__link--active" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+
+<div class="battle-card">
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="card-header">
+    <div class="badge">Design Battle Card</div>
+    <div class="date">March 2026 · Confidential</div>
+    <h1>Suki</h1>
+    <div class="tagline">AI-Powered Ambient Clinical Intelligence — "Less Typing. More Caring."</div>
+    <div class="url"><a href="https://www.suki.ai/" target="_blank">www.suki.ai ↗</a></div>
+  </div>
+
+  <!-- ════════ SECTION 1: LOGO & LOGOMARK ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">1</span>
+        <span class="section-title">Logo &amp; Logomark</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="logo-grid">
+      <!-- White BG -->
+      <div class="logo-preview on-white">
+        <svg viewBox="0 0 73 35" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:40px;width:auto;">
+          <path d="M17.5655 16.8233C16.3418 15.9528 14.8908 15.134 13.2126 14.3683C11.8146 13.7063 10.7123 13.149 9.90897 12.6967C9.1399 12.209 8.59813 11.7047 8.28366 11.1817C7.96919 10.6245 7.8114 9.96244 7.8114 9.19669C7.8114 7.97744 8.10822 7.01969 8.70295 6.32345C9.33189 5.62721 10.2069 5.27854 11.3246 5.27854C12.6178 5.27854 13.5623 5.76624 14.1571 6.74053C14.7342 7.60339 15.0453 8.95173 15.0928 10.8694H21.3877C21.3347 8.33052 20.9011 6.31904 20.0835 4.75553C19.2096 3.04968 18.0201 1.83043 16.5173 1.09888C15.0133 0.367329 13.3008 0.00210571 11.3776 0.00210571C9.52499 0.00210571 7.8114 0.384984 6.23795 1.15074C4.6998 1.91649 3.45847 3.04857 2.51506 4.54588C1.57054 6.04319 1.09828 7.87151 1.09828 10.0309C1.09828 11.8415 1.41276 13.3565 2.04281 14.5757C2.67175 15.7597 3.5633 16.7693 4.71746 17.6056C5.87162 18.4067 7.26963 19.1559 8.9137 19.8522C9.99724 20.3399 10.976 20.8618 11.8499 21.419C12.7591 21.9409 13.4928 22.5687 14.0523 23.2992C14.647 23.9954 14.9438 24.8141 14.9438 25.7542C14.9438 27.0772 14.594 28.0702 13.8945 28.7323C13.2302 29.3943 12.3034 29.7242 11.115 29.7242C9.7865 29.7242 8.73715 29.2895 7.96808 28.4189C7.24756 27.5715 6.86578 26.1294 6.81944 24.0914H0.472656C0.520103 26.5111 0.972499 28.5105 1.83205 30.0905C2.74126 31.7622 3.96493 32.998 5.50308 33.7991C7.04123 34.6001 8.79012 35.0007 10.7476 35.0007C12.705 35.0007 14.4539 34.652 16.0969 33.9557C17.7751 33.2242 19.1036 32.1098 20.0824 30.6125C21.0964 29.1151 21.6029 27.182 21.6029 24.8141C21.6029 22.8291 21.2354 21.2104 20.5017 19.9559C19.8021 18.7024 18.8234 17.6575 17.5644 16.8211L17.5655 16.8233Z" fill="#1B1B1B"/>
+          <path d="M34.957 25.183C34.957 26.8193 34.7164 28.0871 34.2353 28.9853C33.7543 29.8835 33.1121 30.3325 32.3099 30.3325C31.6037 30.3325 31.0741 30.0015 30.7221 29.3439C30.369 28.6863 30.1925 27.8422 30.1925 26.816V10.8863H23.4551V27.3942C23.4551 28.8385 23.6636 30.1273 24.0807 31.2671C24.4978 32.4091 25.1234 33.3139 25.9576 33.9881L25.9609 33.9914C26.7951 34.6656 27.8544 35.0021 29.1376 35.0021C30.6107 35.0021 31.9193 34.4405 33.058 33.3172C33.8403 32.5437 34.5222 31.4117 35.1015 29.9221V34.4714H41.6469V10.8885H34.957V25.1819V25.183Z" fill="#1B1B1B"/>
+          <path d="M63.7295 10.8864H56.8056L50.5968 19.75V0.779297H43.8594V34.4681H50.5968V20.0688L56.9811 34.4681H64.1521L56.9116 19.8735L63.7295 10.8864Z" fill="#1B1B1B"/>
+          <path d="M72.2661 10.8863H65.5762V34.4692H72.2661V10.8863Z" fill="#1B1B1B"/>
+          <path d="M68.922 0.260437C66.7947 0.260437 65.0723 1.94861 65.0723 4.03069V4.19068C65.0723 6.27277 66.7947 7.96094 68.922 7.96094C71.0493 7.96094 72.7717 6.27277 72.7717 4.19068V4.03069C72.7717 1.94861 71.0482 0.260437 68.922 0.260437Z" fill="#1B1B1B"/>
+        </svg>
+        <span class="bg-label">White</span>
+      </div>
+      <!-- Dark BG -->
+      <div class="logo-preview on-dark">
+        <svg viewBox="0 0 73 35" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:40px;width:auto;">
+          <path d="M17.5655 16.8233C16.3418 15.9528 14.8908 15.134 13.2126 14.3683C11.8146 13.7063 10.7123 13.149 9.90897 12.6967C9.1399 12.209 8.59813 11.7047 8.28366 11.1817C7.96919 10.6245 7.8114 9.96244 7.8114 9.19669C7.8114 7.97744 8.10822 7.01969 8.70295 6.32345C9.33189 5.62721 10.2069 5.27854 11.3246 5.27854C12.6178 5.27854 13.5623 5.76624 14.1571 6.74053C14.7342 7.60339 15.0453 8.95173 15.0928 10.8694H21.3877C21.3347 8.33052 20.9011 6.31904 20.0835 4.75553C19.2096 3.04968 18.0201 1.83043 16.5173 1.09888C15.0133 0.367329 13.3008 0.00210571 11.3776 0.00210571C9.52499 0.00210571 7.8114 0.384984 6.23795 1.15074C4.6998 1.91649 3.45847 3.04857 2.51506 4.54588C1.57054 6.04319 1.09828 7.87151 1.09828 10.0309C1.09828 11.8415 1.41276 13.3565 2.04281 14.5757C2.67175 15.7597 3.5633 16.7693 4.71746 17.6056C5.87162 18.4067 7.26963 19.1559 8.9137 19.8522C9.99724 20.3399 10.976 20.8618 11.8499 21.419C12.7591 21.9409 13.4928 22.5687 14.0523 23.2992C14.647 23.9954 14.9438 24.8141 14.9438 25.7542C14.9438 27.0772 14.594 28.0702 13.8945 28.7323C13.2302 29.3943 12.3034 29.7242 11.115 29.7242C9.7865 29.7242 8.73715 29.2895 7.96808 28.4189C7.24756 27.5715 6.86578 26.1294 6.81944 24.0914H0.472656C0.520103 26.5111 0.972499 28.5105 1.83205 30.0905C2.74126 31.7622 3.96493 32.998 5.50308 33.7991C7.04123 34.6001 8.79012 35.0007 10.7476 35.0007C12.705 35.0007 14.4539 34.652 16.0969 33.9557C17.7751 33.2242 19.1036 32.1098 20.0824 30.6125C21.0964 29.1151 21.6029 27.182 21.6029 24.8141C21.6029 22.8291 21.2354 21.2104 20.5017 19.9559C19.8021 18.7024 18.8234 17.6575 17.5644 16.8211L17.5655 16.8233Z" fill="#FFFFFF"/>
+          <path d="M34.957 25.183C34.957 26.8193 34.7164 28.0871 34.2353 28.9853C33.7543 29.8835 33.1121 30.3325 32.3099 30.3325C31.6037 30.3325 31.0741 30.0015 30.7221 29.3439C30.369 28.6863 30.1925 27.8422 30.1925 26.816V10.8863H23.4551V27.3942C23.4551 28.8385 23.6636 30.1273 24.0807 31.2671C24.4978 32.4091 25.1234 33.3139 25.9576 33.9881L25.9609 33.9914C26.7951 34.6656 27.8544 35.0021 29.1376 35.0021C30.6107 35.0021 31.9193 34.4405 33.058 33.3172C33.8403 32.5437 34.5222 31.4117 35.1015 29.9221V34.4714H41.6469V10.8885H34.957V25.1819V25.183Z" fill="#FFFFFF"/>
+          <path d="M63.7295 10.8864H56.8056L50.5968 19.75V0.779297H43.8594V34.4681H50.5968V20.0688L56.9811 34.4681H64.1521L56.9116 19.8735L63.7295 10.8864Z" fill="#FFFFFF"/>
+          <path d="M72.2661 10.8863H65.5762V34.4692H72.2661V10.8863Z" fill="#FFFFFF"/>
+          <path d="M68.922 0.260437C66.7947 0.260437 65.0723 1.94861 65.0723 4.03069V4.19068C65.0723 6.27277 66.7947 7.96094 68.922 7.96094C71.0493 7.96094 72.7717 6.27277 72.7717 4.19068V4.03069C72.7717 1.94861 71.0482 0.260437 68.922 0.260437Z" fill="#FFFFFF"/>
+        </svg>
+        <span class="bg-label" style="color:#6B7280;">Dark (#1B1B1B)</span>
+      </div>
+      <!-- Light/Canvas BG -->
+      <div class="logo-preview on-light">
+        <svg viewBox="0 0 73 35" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:40px;width:auto;">
+          <path d="M17.5655 16.8233C16.3418 15.9528 14.8908 15.134 13.2126 14.3683C11.8146 13.7063 10.7123 13.149 9.90897 12.6967C9.1399 12.209 8.59813 11.7047 8.28366 11.1817C7.96919 10.6245 7.8114 9.96244 7.8114 9.19669C7.8114 7.97744 8.10822 7.01969 8.70295 6.32345C9.33189 5.62721 10.2069 5.27854 11.3246 5.27854C12.6178 5.27854 13.5623 5.76624 14.1571 6.74053C14.7342 7.60339 15.0453 8.95173 15.0928 10.8694H21.3877C21.3347 8.33052 20.9011 6.31904 20.0835 4.75553C19.2096 3.04968 18.0201 1.83043 16.5173 1.09888C15.0133 0.367329 13.3008 0.00210571 11.3776 0.00210571C9.52499 0.00210571 7.8114 0.384984 6.23795 1.15074C4.6998 1.91649 3.45847 3.04857 2.51506 4.54588C1.57054 6.04319 1.09828 7.87151 1.09828 10.0309C1.09828 11.8415 1.41276 13.3565 2.04281 14.5757C2.67175 15.7597 3.5633 16.7693 4.71746 17.6056C5.87162 18.4067 7.26963 19.1559 8.9137 19.8522C9.99724 20.3399 10.976 20.8618 11.8499 21.419C12.7591 21.9409 13.4928 22.5687 14.0523 23.2992C14.647 23.9954 14.9438 24.8141 14.9438 25.7542C14.9438 27.0772 14.594 28.0702 13.8945 28.7323C13.2302 29.3943 12.3034 29.7242 11.115 29.7242C9.7865 29.7242 8.73715 29.2895 7.96808 28.4189C7.24756 27.5715 6.86578 26.1294 6.81944 24.0914H0.472656C0.520103 26.5111 0.972499 28.5105 1.83205 30.0905C2.74126 31.7622 3.96493 32.998 5.50308 33.7991C7.04123 34.6001 8.79012 35.0007 10.7476 35.0007C12.705 35.0007 14.4539 34.652 16.0969 33.9557C17.7751 33.2242 19.1036 32.1098 20.0824 30.6125C21.0964 29.1151 21.6029 27.182 21.6029 24.8141C21.6029 22.8291 21.2354 21.2104 20.5017 19.9559C19.8021 18.7024 18.8234 17.6575 17.5644 16.8211L17.5655 16.8233Z" fill="#1B1B1B"/>
+          <path d="M34.957 25.183C34.957 26.8193 34.7164 28.0871 34.2353 28.9853C33.7543 29.8835 33.1121 30.3325 32.3099 30.3325C31.6037 30.3325 31.0741 30.0015 30.7221 29.3439C30.369 28.6863 30.1925 27.8422 30.1925 26.816V10.8863H23.4551V27.3942C23.4551 28.8385 23.6636 30.1273 24.0807 31.2671C24.4978 32.4091 25.1234 33.3139 25.9576 33.9881L25.9609 33.9914C26.7951 34.6656 27.8544 35.0021 29.1376 35.0021C30.6107 35.0021 31.9193 34.4405 33.058 33.3172C33.8403 32.5437 34.5222 31.4117 35.1015 29.9221V34.4714H41.6469V10.8885H34.957V25.1819V25.183Z" fill="#1B1B1B"/>
+          <path d="M63.7295 10.8864H56.8056L50.5968 19.75V0.779297H43.8594V34.4681H50.5968V20.0688L56.9811 34.4681H64.1521L56.9116 19.8735L63.7295 10.8864Z" fill="#1B1B1B"/>
+          <path d="M72.2661 10.8863H65.5762V34.4692H72.2661V10.8863Z" fill="#1B1B1B"/>
+          <path d="M68.922 0.260437C66.7947 0.260437 65.0723 1.94861 65.0723 4.03069V4.19068C65.0723 6.27277 66.7947 7.96094 68.922 7.96094C71.0493 7.96094 72.7717 6.27277 72.7717 4.19068V4.03069C72.7717 1.94861 71.0482 0.260437 68.922 0.260437Z" fill="#1B1B1B"/>
+        </svg>
+        <span class="bg-label">Light (#F4F4F4)</span>
+      </div>
+      <!-- Primary Accent BG -->
+      <div class="logo-preview on-primary">
+        <svg viewBox="0 0 73 35" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:40px;width:auto;">
+          <path d="M17.5655 16.8233C16.3418 15.9528 14.8908 15.134 13.2126 14.3683C11.8146 13.7063 10.7123 13.149 9.90897 12.6967C9.1399 12.209 8.59813 11.7047 8.28366 11.1817C7.96919 10.6245 7.8114 9.96244 7.8114 9.19669C7.8114 7.97744 8.10822 7.01969 8.70295 6.32345C9.33189 5.62721 10.2069 5.27854 11.3246 5.27854C12.6178 5.27854 13.5623 5.76624 14.1571 6.74053C14.7342 7.60339 15.0453 8.95173 15.0928 10.8694H21.3877C21.3347 8.33052 20.9011 6.31904 20.0835 4.75553C19.2096 3.04968 18.0201 1.83043 16.5173 1.09888C15.0133 0.367329 13.3008 0.00210571 11.3776 0.00210571C9.52499 0.00210571 7.8114 0.384984 6.23795 1.15074C4.6998 1.91649 3.45847 3.04857 2.51506 4.54588C1.57054 6.04319 1.09828 7.87151 1.09828 10.0309C1.09828 11.8415 1.41276 13.3565 2.04281 14.5757C2.67175 15.7597 3.5633 16.7693 4.71746 17.6056C5.87162 18.4067 7.26963 19.1559 8.9137 19.8522C9.99724 20.3399 10.976 20.8618 11.8499 21.419C12.7591 21.9409 13.4928 22.5687 14.0523 23.2992C14.647 23.9954 14.9438 24.8141 14.9438 25.7542C14.9438 27.0772 14.594 28.0702 13.8945 28.7323C13.2302 29.3943 12.3034 29.7242 11.115 29.7242C9.7865 29.7242 8.73715 29.2895 7.96808 28.4189C7.24756 27.5715 6.86578 26.1294 6.81944 24.0914H0.472656C0.520103 26.5111 0.972499 28.5105 1.83205 30.0905C2.74126 31.7622 3.96493 32.998 5.50308 33.7991C7.04123 34.6001 8.79012 35.0007 10.7476 35.0007C12.705 35.0007 14.4539 34.652 16.0969 33.9557C17.7751 33.2242 19.1036 32.1098 20.0824 30.6125C21.0964 29.1151 21.6029 27.182 21.6029 24.8141C21.6029 22.8291 21.2354 21.2104 20.5017 19.9559C19.8021 18.7024 18.8234 17.6575 17.5644 16.8211L17.5655 16.8233Z" fill="#1B1B1B"/>
+          <path d="M34.957 25.183C34.957 26.8193 34.7164 28.0871 34.2353 28.9853C33.7543 29.8835 33.1121 30.3325 32.3099 30.3325C31.6037 30.3325 31.0741 30.0015 30.7221 29.3439C30.369 28.6863 30.1925 27.8422 30.1925 26.816V10.8863H23.4551V27.3942C23.4551 28.8385 23.6636 30.1273 24.0807 31.2671C24.4978 32.4091 25.1234 33.3139 25.9576 33.9881L25.9609 33.9914C26.7951 34.6656 27.8544 35.0021 29.1376 35.0021C30.6107 35.0021 31.9193 34.4405 33.058 33.3172C33.8403 32.5437 34.5222 31.4117 35.1015 29.9221V34.4714H41.6469V10.8885H34.957V25.1819V25.183Z" fill="#1B1B1B"/>
+          <path d="M63.7295 10.8864H56.8056L50.5968 19.75V0.779297H43.8594V34.4681H50.5968V20.0688L56.9811 34.4681H64.1521L56.9116 19.8735L63.7295 10.8864Z" fill="#1B1B1B"/>
+          <path d="M72.2661 10.8863H65.5762V34.4692H72.2661V10.8863Z" fill="#1B1B1B"/>
+          <path d="M68.922 0.260437C66.7947 0.260437 65.0723 1.94861 65.0723 4.03069V4.19068C65.0723 6.27277 66.7947 7.96094 68.922 7.96094C71.0493 7.96094 72.7717 6.27277 72.7717 4.19068V4.03069C72.7717 1.94861 71.0482 0.260437 68.922 0.260437Z" fill="#1B1B1B"/>
+        </svg>
+        <span class="bg-label" style="color:#92400E;">Primary (#FFE148)</span>
+      </div>
+    </div>
+
+    <div class="logo-description">
+      <h4>Logo Analysis</h4>
+      <p>
+        <strong>Type:</strong> Custom wordmark (no separate logomark/icon). The Suki logotype is a bespoke sans-serif wordmark rendered as an inline SVG with <code>viewBox="0 0 73 35"</code>. The letterforms are bold, rounded-grotesque in character with distinctive details — the "S" has generous open counters, the "u" features a softened curve, the "k" uses angular diagonal strokes, and the "i" has a perfectly circular dot. The result is friendly and approachable without sacrificing professionalism. The word "Suki" was chosen after rebranding from "Robin AI" to work better as a voice assistant wake word — multi-syllabic and distinct.
+      </p>
+      <p style="margin-top:8px;">
+        <strong>Design Agency:</strong> Not publicly disclosed.
+      </p>
+      <span class="asset-tag">SVG inline · fills use currentColor · 73×35 viewBox</span>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 2: BRAND COLOR PALETTE ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">2</span>
+        <span class="section-title">Brand Color Palette</span>
+      </div>
+      <span class="badge-verified">✓ Extracted from Live CSS</span>
+    </div>
+
+    <div class="color-grid">
+      <!-- Primary Yellow -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFE148;">
+          <span class="hex-overlay" style="color:#1B1B1B;text-shadow:none;">#FFE148</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Suki Yellow</div>
+          <div class="role">Primary Accent — CTAs, highlight sections, dividers</div>
+          <div class="detail">
+            RGB: 255, 225, 72<br>
+            CSS: --comp-primary
+          </div>
+        </div>
+      </div>
+
+      <!-- Near Black -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#1B1B1B;">
+          <span class="hex-overlay">#1B1B1B</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Near Black</div>
+          <div class="role">Primary dark — text, dark hero backgrounds, footer</div>
+          <div class="detail">
+            RGB: 27, 27, 27<br>
+            CSS: body color / bg
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Text -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#212121;">
+          <span class="hex-overlay">#212121</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Charcoal</div>
+          <div class="role">Secondary dark — paragraph text</div>
+          <div class="detail">
+            RGB: 33, 33, 33<br>
+            CSS: p color
+          </div>
+        </div>
+      </div>
+
+      <!-- Mid Gray -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#646464;">
+          <span class="hex-overlay">#646464</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Mid Gray</div>
+          <div class="role">Secondary text — nav links, captions</div>
+          <div class="detail">
+            RGB: 100, 100, 100<br>
+            CSS: nav a color
+          </div>
+        </div>
+      </div>
+
+      <!-- Blue -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#1863DC;">
+          <span class="hex-overlay">#1863DC</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Link Blue</div>
+          <div class="role">Hyperlinks, interactive text</div>
+          <div class="detail">
+            RGB: 24, 99, 220<br>
+            CSS: a text color
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Blue -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#0056A7;">
+          <span class="hex-overlay">#0056A7</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Deep Blue</div>
+          <div class="role">Widget accent — accessibility/consent UI</div>
+          <div class="detail">
+            RGB: 0, 86, 167<br>
+            CSS: button bg
+          </div>
+        </div>
+      </div>
+
+      <!-- White -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background:#FFFFFF; border: 1px solid #E5E7EB;">
+          <span class="hex-overlay">#FFFFFF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">White</div>
+          <div class="role">Primary background — content sections</div>
+          <div class="detail">
+            RGB: 255, 255, 255<br>
+            CSS: body background
+          </div>
+        </div>
+      </div>
+
+      <!-- Light Gray -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background:#F4F4F4; border: 1px solid #E5E7EB;">
+          <span class="hex-overlay">#F4F4F4</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Cloud</div>
+          <div class="role">Light surface — secondary backgrounds</div>
+          <div class="detail">
+            RGB: 244, 244, 244<br>
+            CSS: section bg variant
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Extraction Note:</strong> Colors extracted via computed styles from live site (March 2026). Suki's palette is strikingly restrained — a bold <strong>black + yellow</strong> combination creates immediate visual authority. The yellow (#FFE148) is warm and saturated, sitting between gold and sunflower — distinct from the cooler, clinical blues typical of healthcare AI competitors. Blue appears only in utility roles (links, consent UI), not as a brand signature.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 3: TYPOGRAPHY SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">3</span>
+        <span class="section-title">Typography System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live CSS</span>
+    </div>
+
+    <div class="type-callout">
+      <h4>⚠ Proprietary / Licensed Typefaces Detected</h4>
+      <p>
+        Suki uses two custom/licensed typefaces not available from Google Fonts or standard web font CDNs. <strong>"General Grotesque"</strong> (display + body) is a commercial typeface from <em>General Type Studio</em>. <strong>"ABC Monument Grotesk"</strong> (navigation/UI) is a commercial typeface from <em>Dinamo Typefaces</em>. Both are loaded from suki.ai's own domain — these are licensed, not freely available.
+      </p>
+    </div>
+
+    <!-- General Grotesque -->
+    <div class="type-specimen">
+      <div class="font-name">General Grotesque</div>
+      <div class="font-role">Display Headlines — Body Copy — Primary Brand Typeface</div>
+      <div class="display-sample" style="font-family: 'DM Sans', sans-serif;">
+        The intelligence layer you need to practice medicine the way you want.
+      </div>
+      <div class="body-sample" style="font-family: 'DM Sans', sans-serif;">
+        Our Ambient Clinical Intelligence provides the essential AI infrastructure for healthcare that powers every workflow while making more focused patient care possible. Approximated here with DM Sans — actual General Grotesque has wider apertures and softer terminals.
+      </div>
+      <div class="alphabet" style="font-family: 'DM Sans', sans-serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%&amp;*()
+      </div>
+      <div class="css-detail">
+        font-family: "General Grotesque", ui-sans-serif, system-ui, sans-serif;<br>
+        H1: font-size: 80px · font-weight: 600 · text-transform: none · line-height: ~1.05<br>
+        Body: font-size: 18px · font-weight: 400 · color: #212121
+      </div>
+    </div>
+
+    <!-- ABC Monument Grotesk -->
+    <div class="type-specimen">
+      <div class="font-name">ABC Monument Grotesk</div>
+      <div class="font-role">Navigation — UI Elements — Secondary Typeface</div>
+      <div class="display-sample" style="font-family: 'Inter', sans-serif; font-size: 32px; font-weight: 500;">
+        Solutions   For Clinicians   For Partners   Integrations
+      </div>
+      <div class="body-sample" style="font-family: 'Inter', sans-serif;">
+        Used for the primary navigation, buttons, and secondary UI text. ABC Monument Grotesk is a neo-grotesque from Dinamo that pairs well with the rounder General Grotesque by providing geometric contrast. Approximated here with Inter.
+      </div>
+      <div class="alphabet" style="font-family: 'Inter', sans-serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%&amp;*()
+      </div>
+      <div class="css-detail">
+        font-family: "ABC Monument Grotesk", ui-sans-serif, system-ui, sans-serif;<br>
+        Nav: font-size: 16px · font-weight: 400 · color: #646464
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Typography Note:</strong> The dual-typeface system is a sophisticated choice. General Grotesque's wide, friendly letterforms carry the brand voice (warm, human-centered), while Monument Grotesk's tighter geometry provides UI precision. The investment in two premium commercial typefaces signals a high level of design intentionality — this is not a startup defaulting to Inter or Google Fonts.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 4: BRAND POSITIONING & MESSAGING ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">4</span>
+        <span class="section-title">Brand Positioning &amp; Messaging</span>
+      </div>
+      <span class="badge-research">◐ Research-Based</span>
+    </div>
+
+    <div class="position-grid">
+      <div class="position-card">
+        <div class="label">Hero Headline (Live Site)</div>
+        <div class="value">"The intelligence layer you need to practice medicine the way you want."</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Brand Tagline</div>
+        <div class="value">"Less Typing. More Caring."</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Mission</div>
+        <div class="value">"Bring Joy Back to Medicine" — reimagine the healthcare tech stack, making it invisible and assistive to lift the administrative burden from clinicians.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Vision</div>
+        <div class="value">Ambient Clinical Intelligence that spans the entire clinician workflow — from pre-charting to documentation to clinical reasoning.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Category Descriptor</div>
+        <div class="value">AI Assistant for Clinical Documentation &amp; Coding / Ambient Clinical Intelligence Platform</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Key Trust Signal</div>
+        <div class="value">"400+ leading healthcare systems and partners choose Suki" — KLAS validated, HIPAA compliant, SOC 2 certified. Partnerships with Zoom, Meditech, Epic.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Design Agency</div>
+        <div class="value italic">Not publicly disclosed</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Company History</div>
+        <div class="value">Founded 2017 as "Robin AI" in Redwood City, CA. Rebranded to "Suki" — chosen for superior voice-wake-word performance (multi-syllabic, distinct).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 5: DESIGN LANGUAGE & VISUAL SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">5</span>
+        <span class="section-title">Design Language &amp; Visual System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="design-grid">
+      <div class="design-attr">
+        <div class="attr-label">Primary Theme</div>
+        <div class="attr-value">Mixed — Dark hero + white content + yellow accent sections</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Palette Strategy</div>
+        <div class="attr-value">Monochrome (black/white) + single bold accent (yellow #FFE148)</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Accent Color Approach</div>
+        <div class="attr-value">Yellow as energy — CTAs, section dividers, full-bleed panels, dot indicators</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Photography Style</div>
+        <div class="attr-value">Warm, candid clinical scenes — doctors with patients, real-world healthcare moments. Diverse subjects.</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Graphic System</div>
+        <div class="attr-value">Vertical rule dividers, abstract barcode/waveform illustrations, minimal iconography</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Identity Type</div>
+        <div class="attr-value">Static wordmark system — consistent application, no generative or modular variation</div>
+      </div>
+    </div>
+
+    <div class="strategy-callout">
+      <h4>Strategic Analysis — Competitive Implications</h4>
+      <ul>
+        <li><strong>Suki owns the "warm authority" territory</strong> in healthcare AI. The black + yellow palette is boldly un-clinical — it reads more like a premium consumer tech brand (think Bumble, National Geographic, or Hertz) than a healthcare SaaS product. This is a deliberate departure from the sea of blues and teals that dominate the space (Abridge, Nuance, Nabla).</li>
+        <li><strong>The photography strategy is emotionally sophisticated.</strong> Rather than showing screens, dashboards, or tech interfaces, Suki foregrounds human connection — a baby being examined, a doctor listening. This positions the product as "invisible infrastructure" and reinforces their mission that technology should disappear.</li>
+        <li><strong>Typography investment signals design maturity.</strong> Licensing both General Grotesque and ABC Monument Grotesk (together likely $2K-5K+/yr) demonstrates serious brand commitment. Most healthcare AI competitors use free fonts. The wide, friendly letter shapes of General Grotesque specifically support the "joy" and "care" messaging pillars.</li>
+        <li><strong>The vertical rule motif is a distinctive signature.</strong> Thin vertical lines appear throughout the site as section dividers and alongside headlines, creating a subtle visual rhythm. This is a unique graphic device not shared by competitors — it evokes a clinical chart or timeline in an abstract way.</li>
+        <li><strong>Vulnerability: The dark/moody aesthetic may feel heavy to some healthcare buyers.</strong> Conservative health system CIOs may find the near-black hero sections less "safe" than the clean, bright layouts of competitors. This could be a differentiation opportunity — a brand that's warm AND light-first could thread the needle between Suki's boldness and the traditional blue-white clinical look.</li>
+        <li><strong>White space opportunity: No competitor currently owns "vibrant + light."</strong> Suki has claimed "warm + dark + bold." Others are in "cool + clinical + blue." A brand that's bright, colorful, and human but still professional could stand alone in this competitive set.</li>
+        <li><strong>The "intelligence layer" framing is strategic positioning.</strong> Rather than competing as a "documentation tool" or "ambient scribe," Suki frames itself as foundational infrastructure — an "intelligence layer" — which implies platform dominance and extensibility beyond any single feature.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 6: BRAND REFERENCES & RESOURCES ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">6</span>
+        <span class="section-title">Brand References &amp; Resources</span>
+      </div>
+    </div>
+
+    <div class="ref-grid">
+      <a href="https://www.suki.ai/" target="_blank" class="ref-card">
+        <div class="ref-icon">🌐</div>
+        <div>
+          <div class="ref-title">Suki Website</div>
+          <div class="ref-desc">Primary company website — suki.ai</div>
+        </div>
+      </a>
+      <a href="https://www.suki.ai/about/" target="_blank" class="ref-card">
+        <div class="ref-icon">ℹ️</div>
+        <div>
+          <div class="ref-title">About Suki</div>
+          <div class="ref-desc">Mission, team, vision, and company background</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/company/sukihq" target="_blank" class="ref-card">
+        <div class="ref-icon">💼</div>
+        <div>
+          <div class="ref-title">LinkedIn</div>
+          <div class="ref-desc">Company profile — 23,600+ followers</div>
+        </div>
+      </a>
+      <a href="https://www.suki.ai/blog/sukis-mission/" target="_blank" class="ref-card">
+        <div class="ref-icon">📝</div>
+        <div>
+          <div class="ref-title">Suki's Mission (Blog)</div>
+          <div class="ref-desc">Founding story and mission statement deep-dive</div>
+        </div>
+      </a>
+      <a href="https://www.chiefhealthcareexecutive.com/view/why-robin-ai-changed-its-name-to-suki-ai" target="_blank" class="ref-card">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">Rebrand Coverage</div>
+          <div class="ref-desc">Chief Healthcare Executive — Why Robin AI became Suki</div>
+        </div>
+      </a>
+      <a href="https://www.newsweek.com/nw-ai/suki-ai-ceo-punit-soni-health-care-technology-interview-2044504" target="_blank" class="ref-card">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">Newsweek Profile</div>
+          <div class="ref-desc">"Suki AI Is Everywhere — and Aims to Be Invisible"</div>
+        </div>
+      </a>
+      <a href="https://www.fiercehealthcare.com/ai-and-machine-learning/suki-banks-70m-build-out-ai-assistants-doctors-it-inks-more-health-system" target="_blank" class="ref-card">
+        <div class="ref-icon">💰</div>
+        <div>
+          <div class="ref-title">Funding Coverage</div>
+          <div class="ref-desc">Fierce Healthcare — $70M raise, health system partnerships</div>
+        </div>
+      </a>
+      <a href="https://www.crunchbase.com/organization/sukihq" target="_blank" class="ref-card">
+        <div class="ref-icon">📊</div>
+        <div>
+          <div class="ref-title">Crunchbase Profile</div>
+          <div class="ref-desc">Financials, funding history, investors, and competitors</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ════════ FOOTER ════════ -->
+  <div class="card-footer">
+    <div class="main-line">Suki Design Battle Card · Prepared March 2026 · Confidential — For Internal Rebrand Use Only</div>
+    <div class="sub-line">Colors, fonts, and logo verified from suki.ai live site via Chrome DevTools computed styles extraction + web research</div>
+  </div>
+
+</div>
+
+</body>
+</html>

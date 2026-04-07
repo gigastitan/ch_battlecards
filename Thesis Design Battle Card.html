@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thesis — Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&family=Plus+Jakarta+Sans:wght@400;500;560;600;700&display=swap');
+
+:root {
+  /* ═══ Thesis Brand Colors (verified from thesis.care, March 2026) ═══ */
+  --comp-primary: #0F2B4E;          /* Dark Navy — primary brand color, CTAs, logo, dark sections */
+  --comp-primary-dark: #0A1E38;     /* Deeper navy for hover states */
+  --comp-text: #0F172A;             /* Near-black — heading text, rgb(15, 23, 42) */
+  --comp-text-muted: rgba(15, 23, 42, 0.6);  /* Muted navy — body text, nav links */
+  --comp-bg: #FCFCFD;               /* Near-white — body background, rgb(252, 252, 253) */
+  --comp-light-blue: #F0F5FB;       /* Light blue surface — section backgrounds, rgb(240, 245, 251) */
+  --comp-white: #FFFFFF;            /* Primary background */
+
+  /* Battle Card UI — NEVER CHANGE THESE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #1F2937;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── HEADER ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.card-header .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #EEF2FF;
+  color: #4338CA;
+  margin-bottom: 12px;
+}
+.card-header .date {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 24px;
+}
+.card-header h1 {
+  font-family: 'Newsreader', serif;
+  font-size: 67.2px;
+  font-weight: 400;
+  color: var(--comp-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.card-header .tagline {
+  font-size: 20px;
+  color: #6B7280;
+  margin-top: 12px;
+  font-weight: 400;
+}
+.card-header .url {
+  margin-top: 16px;
+}
+.card-header .url a {
+  color: #6366F1;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.card-header .url a:hover { text-decoration: underline; }
+
+/* ── SECTIONS ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.section-header .left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--comp-primary);
+  color: var(--comp-white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.section-title {
+  font-family: 'Newsreader', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--comp-text);
+}
+.badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-confirmed);
+  color: var(--badge-confirmed-text);
+}
+.badge-research {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-verify);
+  color: var(--badge-verify-text);
+}
+
+/* ── SECTION 1: LOGO ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.logo-preview {
+  border-radius: 12px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: transform 0.2s;
+}
+.logo-preview:hover { transform: translateY(-2px); }
+.logo-preview svg { height: 32px; width: auto; margin-right: 12px; }
+.logo-preview .logo-text {
+  font-family: 'Newsreader', serif;
+  font-weight: 300;
+  font-size: 27px;
+  letter-spacing: -0.3px;
+}
+.logo-preview .bg-label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: #9CA3AF;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.logo-preview.on-white { background: #FFFFFF; }
+.logo-preview.on-white svg { color: var(--comp-primary); }
+.logo-preview.on-white .logo-text { color: var(--comp-primary); }
+
+.logo-preview.on-dark { background: var(--comp-primary); }
+.logo-preview.on-dark svg { color: var(--comp-white); }
+.logo-preview.on-dark .logo-text { color: var(--comp-white); }
+
+.logo-preview.on-light { background: var(--comp-light-blue); }
+.logo-preview.on-light svg { color: var(--comp-primary); }
+.logo-preview.on-light .logo-text { color: var(--comp-primary); }
+
+.logo-preview.on-primary { background: var(--comp-primary); }
+.logo-preview.on-primary svg { color: var(--comp-white); }
+.logo-preview.on-primary .logo-text { color: var(--comp-white); }
+
+.logo-description {
+  background: #F9FAFB;
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid #F3F4F6;
+}
+.logo-description h4 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+.logo-description p {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.7;
+}
+.logo-description .asset-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #F3F4F6;
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+}
+
+/* ── SECTION 2: COLORS ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.color-card {
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.color-card:hover { transform: translateY(-2px); }
+.color-swatch {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+}
+.color-swatch .hex-overlay {
+  font-family: 'DM Sans', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.color-swatch.light-swatch .hex-overlay {
+  color: #374151;
+  text-shadow: none;
+}
+.color-info {
+  padding: 14px;
+}
+.color-info .name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.color-info .role {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+}
+.color-info .detail {
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+  line-height: 1.8;
+}
+
+.note-box {
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.verified-note {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #166534;
+}
+.warning-note {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+}
+
+/* ── SECTION 3: TYPOGRAPHY ── */
+.type-callout {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 2px solid var(--comp-primary);
+  background: #F0F5FB;
+  margin-bottom: 24px;
+}
+.type-callout h4 {
+  font-family: 'Newsreader', serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--comp-primary);
+  margin-bottom: 6px;
+}
+.type-callout p {
+  font-size: 13px;
+  color: var(--comp-text);
+  line-height: 1.6;
+}
+
+.type-specimen {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 16px;
+  transition: transform 0.2s;
+}
+.type-specimen:hover { transform: translateY(-2px); }
+.type-specimen .font-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.type-specimen .font-role {
+  font-size: 12px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+.type-specimen .display-sample {
+  font-size: 42px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.type-specimen .display-sample.serif {
+  font-family: 'Newsreader', serif;
+  font-weight: 400;
+}
+.type-specimen .body-sample {
+  font-size: 16px;
+  color: #4B5563;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 640px;
+}
+.type-specimen .alphabet {
+  font-size: 14px;
+  color: #9CA3AF;
+  letter-spacing: 0.04em;
+  word-break: break-all;
+  margin-bottom: 16px;
+}
+.type-specimen .css-detail {
+  font-family: 'DM Sans', monospace;
+  font-size: 12px;
+  color: #6B7280;
+  background: #F9FAFB;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.8;
+}
+
+/* ── SECTION 4: POSITIONING ── */
+.position-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.position-card {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.position-card:hover { transform: translateY(-2px); }
+.position-card .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.position-card .value {
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.6;
+  font-weight: 500;
+}
+.position-card .value.italic { font-style: italic; color: #6B7280; font-weight: 400; }
+
+/* ── SECTION 5: DESIGN LANGUAGE ── */
+.design-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.design-attr {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.design-attr:hover { transform: translateY(-2px); }
+.design-attr .attr-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.design-attr .attr-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.strategy-callout {
+  padding: 28px 32px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #F0F5FB 0%, #E8EEF8 100%);
+  border: 1px solid #D1DCE9;
+}
+.strategy-callout h4 {
+  font-family: 'Newsreader', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--comp-primary);
+  margin-bottom: 16px;
+}
+.strategy-callout ul {
+  list-style: none;
+  padding: 0;
+}
+.strategy-callout li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+}
+.strategy-callout li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--comp-primary);
+  font-weight: 600;
+}
+
+/* ── SECTION 6: REFERENCES ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ref-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ref-card:hover {
+  border-color: var(--comp-primary);
+  transform: translateY(-2px);
+}
+.ref-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #F3F4F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ref-card .ref-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.ref-card .ref-desc {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+/* ── FOOTER ── */
+.card-footer {
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 12px;
+  color: #9CA3AF;
+}
+.card-footer .main-line {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.card-footer .sub-line {
+  font-size: 11px;
+  color: #D1D5DB;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { padding: 0 16px 16px 16px; }
+  .card-header h1 { font-size: 36px; }
+  .color-grid { grid-template-columns: 1fr 1fr; }
+  .position-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr; }
+  .ref-grid { grid-template-columns: 1fr; }
+  .logo-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link comp-nav__link--active" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+
+<div class="battle-card">
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="card-header">
+    <div class="badge">Design Battle Card</div>
+    <div class="date">March 2026 · Confidential</div>
+    <h1>Thesis</h1>
+    <div class="tagline">AI-Powered Care Team Platform — "Add clinical capacity at scale."</div>
+    <div class="url"><a href="https://thesis.care/" target="_blank">thesis.care ↗</a></div>
+  </div>
+
+  <!-- ════════ SECTION 1: LOGO & LOGOMARK ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">1</span>
+        <span class="section-title">Logo &amp; Logomark</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="logo-grid">
+      <!-- White BG -->
+      <div class="logo-preview on-white">
+        <svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="16.75" y="16.75" width="66.5" height="66.5" rx="16" transform="rotate(45 50 50)" fill="currentColor"></rect>
+          <rect x="35" y="35" width="30" height="30" rx="8" fill="#FFFFFF"></rect>
+        </svg>
+        <span class="logo-text">thesis</span>
+        <div class="bg-label">White</div>
+      </div>
+
+      <!-- Dark BG -->
+      <div class="logo-preview on-dark">
+        <svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="16.75" y="16.75" width="66.5" height="66.5" rx="16" transform="rotate(45 50 50)" fill="currentColor"></rect>
+          <rect x="35" y="35" width="30" height="30" rx="8" fill="#0F2B4E"></rect>
+        </svg>
+        <span class="logo-text">thesis</span>
+        <div class="bg-label">Primary Navy</div>
+      </div>
+
+      <!-- Light Blue BG -->
+      <div class="logo-preview on-light">
+        <svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="16.75" y="16.75" width="66.5" height="66.5" rx="16" transform="rotate(45 50 50)" fill="currentColor"></rect>
+          <rect x="35" y="35" width="30" height="30" rx="8" fill="#F0F5FB"></rect>
+        </svg>
+        <span class="logo-text">thesis</span>
+        <div class="bg-label">Light Blue</div>
+      </div>
+
+      <!-- Primary BG -->
+      <div class="logo-preview on-primary">
+        <svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="16.75" y="16.75" width="66.5" height="66.5" rx="16" transform="rotate(45 50 50)" fill="currentColor"></rect>
+          <rect x="35" y="35" width="30" height="30" rx="8" fill="#0F2B4E"></rect>
+        </svg>
+        <span class="logo-text">thesis</span>
+        <div class="bg-label">Navy</div>
+      </div>
+    </div>
+
+    <div class="logo-description">
+      <h4>Logomark Structure</h4>
+      <p>The diamond/gem shape is created by a 45° rotated square (66.5px at rx:16) with a rounded square cutout (30px at rx:8). The 32px SVG scales fluidly. Wordmark uses Newsreader serif, weight 300, size 27px with -0.3px letter-spacing. The geometric simplicity signals premium advisory; the rounded corners preserve warmth.</p>
+      <span class="asset-tag">SVG Inline, 2 Rects</span>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 2: COLOR PALETTE ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">2</span>
+        <span class="section-title">Color Palette</span>
+      </div>
+      <span class="badge-verified">✓ Verified from CSS</span>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Light-First Brand:</strong> Thesis inverts the competitive pattern. While Suki, Ambience, and SmarterDx all default to dark backgrounds, Thesis builds on near-white (#FCFCFD) with dark navy accents. The warm peach/amber gradients in the hero are decorative, not named color tokens.
+    </div>
+
+    <div class="color-grid" style="margin-top: 20px;">
+      <!-- Primary Navy -->
+      <div class="color-card">
+        <div class="color-swatch" style="background-color: #0F2B4E;">
+          <span class="hex-overlay">#0F2B4E</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Primary Navy</div>
+          <div class="role">CTAs, Logo, Dark Sections</div>
+          <div class="detail">rgb(15, 43, 78)<br>Primary brand accent</div>
+        </div>
+      </div>
+
+      <!-- Primary Dark -->
+      <div class="color-card">
+        <div class="color-swatch" style="background-color: #0A1E38;">
+          <span class="hex-overlay">#0A1E38</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Navy Dark</div>
+          <div class="role">Hover States</div>
+          <div class="detail">rgb(10, 30, 56)<br>Darker variant for interaction</div>
+        </div>
+      </div>
+
+      <!-- Text Color -->
+      <div class="color-card">
+        <div class="color-swatch" style="background-color: #0F172A;">
+          <span class="hex-overlay">#0F172A</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Text Near-Black</div>
+          <div class="role">Headings, Body Text</div>
+          <div class="detail">rgb(15, 23, 42)<br>Primary text color</div>
+        </div>
+      </div>
+
+      <!-- Text Muted -->
+      <div class="color-card">
+        <div class="color-swatch" style="background-color: rgba(15, 23, 42, 0.6);">
+          <span class="hex-overlay">rgba(0,0,0,0.6)</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Text Muted</div>
+          <div class="role">Secondary Text, Nav</div>
+          <div class="detail">Navy at 60% opacity<br>Body text and navigation</div>
+        </div>
+      </div>
+
+      <!-- Background -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background-color: #FCFCFD;">
+          <span class="hex-overlay">#FCFCFD</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Body Background</div>
+          <div class="role">Page Background</div>
+          <div class="detail">rgb(252, 252, 253)<br>Warmer near-white</div>
+        </div>
+      </div>
+
+      <!-- Light Blue -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background-color: #F0F5FB;">
+          <span class="hex-overlay">#F0F5FB</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Light Blue</div>
+          <div class="role">Section Backgrounds</div>
+          <div class="detail">rgb(240, 245, 251)<br>Subtle contrast layer</div>
+        </div>
+      </div>
+
+      <!-- White -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background-color: #FFFFFF; border: 1px solid var(--card-border);">
+          <span class="hex-overlay">#FFF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">White</div>
+          <div class="role">Primary Surface</div>
+          <div class="detail">rgb(255, 255, 255)<br>Card and container fill</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box warning-note" style="margin-top: 20px;">
+      <strong>Design Note:</strong> The warm peach/amber gradient visible in the Thesis hero (decorative, not a named color) softens the cool blue palette. No other competitor uses this warm gradient technique — it signals care and comfort rather than technical precision.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 3: TYPOGRAPHY ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">3</span>
+        <span class="section-title">Typography</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="type-callout">
+      <h4>Typography as Brand Strategy</h4>
+      <p>Newsreader (serif, weight 400) is the boldest typographic move in the competitive set. The regular weight at display size creates an editorial, academic quality that reinforces "Thesis" as a research-backed argument. Plus Jakarta Sans (sans-serif) provides clean, accessible body and UI typography. Both are Google Fonts — no proprietary licensing required.</p>
+    </div>
+
+    <!-- Newsreader Serif Specimen -->
+    <div class="type-specimen">
+      <div class="font-name">Newsreader</div>
+      <div class="font-role">Display — Headlines, Wordmark, Editorial</div>
+      <div class="display-sample serif">Add clinical capacity at scale.</div>
+      <div class="body-sample">Serif display font family. Weight 400 (regular, not bold) creates unhurried, literary quality. Perfect for hero headlines and institutional credibility.</div>
+      <div class="alphabet">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+      <div class="css-detail">
+font-family: 'Newsreader', serif;<br>
+font-size: 67.2px (H1), 48px (H2)<br>
+font-weight: 400 (regular)<br>
+letter-spacing: -0.03em
+      </div>
+    </div>
+
+    <!-- Plus Jakarta Sans Specimen -->
+    <div class="type-specimen">
+      <div class="font-name">Plus Jakarta Sans</div>
+      <div class="font-role">Body, UI, Navigation, Buttons</div>
+      <div class="display-sample">Clinical capacity at scale</div>
+      <div class="body-sample">Clean, modern sans-serif for body text and UI elements. At 16.8px, it maintains excellent readability. Buttons use weight 560 for firm visual presence without aggression. Navigation and secondary text use 400–500 weights.</div>
+      <div class="alphabet">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+      <div class="css-detail">
+font-family: 'Plus Jakarta Sans', sans-serif;<br>
+font-size: 16.8px (body), 18.4px (h3)<br>
+font-weight: 400 (body), 560 (buttons), 700 (nav)<br>
+Fallbacks: Outfit, Avenir Next, Segoe UI
+      </div>
+    </div>
+
+    <div class="note-box verified-note" style="margin-top: 16px;">
+      <strong>Wordmark Styling:</strong> The "thesis" text in the logo uses Newsreader weight 300 (light), 27.2px size, with -0.272px letter-spacing. This creates a refined, premium feel distinct from the body typography.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 4: POSITIONING & MESSAGING ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">4</span>
+        <span class="section-title">Positioning &amp; Messaging</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site & Press</span>
+    </div>
+
+    <div class="position-grid">
+      <div class="position-card">
+        <div class="label">Hero Headline</div>
+        <div class="value">Add clinical capacity <span style="font-style: italic;">at scale.</span></div>
+      </div>
+
+      <div class="position-card">
+        <div class="label">Hero Subheadline</div>
+        <div class="value">Thesis Care Agents combine AI with expert clinicians to perform clinical support tasks at a scale impossible to reach with human teams alone.</div>
+      </div>
+
+      <div class="position-card">
+        <div class="label">Category</div>
+        <div class="value">AI-Powered Care Team Platform / Clinical Capacity at Scale</div>
+      </div>
+
+      <div class="position-card">
+        <div class="label">Core Tagline</div>
+        <div class="value">Not a tool. A care team.</div>
+      </div>
+
+      <div class="position-card">
+        <div class="label">Key Differentiators</div>
+        <div class="value">Expert-in-the-loop · HIPAA & SOC 2 · Audit Trails · Role-Based Access</div>
+      </div>
+
+      <div class="position-card">
+        <div class="label">Target Customers</div>
+        <div class="value">Physician Groups, Health Systems, Health Plan Care Teams</div>
+      </div>
+
+      <div class="position-card">
+        <div class="label">Founded</div>
+        <div class="value">2024 (Rebranded from Trovo Health, March 2026)</div>
+      </div>
+
+      <div class="position-card">
+        <div class="label">Founders</div>
+        <div class="value">Niren Gandra, MD (ex-Cedar, ex-McKinsey, BU Med); Aditya Pandyaram</div>
+      </div>
+
+      <div class="position-card">
+        <div class="label">Headquarters</div>
+        <div class="value">New York, NY</div>
+      </div>
+
+      <div class="position-card">
+        <div class="label">Total Funding</div>
+        <div class="value">$60M ($45M Series A led by Oak HC/FT + CRV + Black Opal; $15M seed)</div>
+      </div>
+
+      <div class="position-card">
+        <div class="label">Technical Stack</div>
+        <div class="value">Next.js (site); Design agency not publicly disclosed</div>
+      </div>
+
+      <div class="position-card">
+        <div class="label">Company History</div>
+        <div class="value">Originally founded as Trovo Health; rebranded to Thesis Care in March 2026 following $45M Series A funding announcement.</div>
+      </div>
+    </div>
+
+    <div class="note-box warning-note" style="margin-top: 20px;">
+      <strong>Positioning Insight:</strong> "Not a tool. A care team." is the strongest positioning in the competitive set. It directly challenges competitors' "AI tool" framing and positions Thesis as a hybrid human+AI service, not software. This messaging aligns with the warm, editorial brand aesthetic.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 5: DESIGN LANGUAGE ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">5</span>
+        <span class="section-title">Design Language</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="design-grid">
+      <div class="design-attr">
+        <div class="attr-label">Color Palette</div>
+        <div class="attr-value">Light-First</div>
+      </div>
+
+      <div class="design-attr">
+        <div class="attr-label">Primary Accent</div>
+        <div class="attr-value">Dark Navy #0F2B4E</div>
+      </div>
+
+      <div class="design-attr">
+        <div class="attr-label">Typography Hierarchy</div>
+        <div class="attr-value">Serif Display + Sans Body</div>
+      </div>
+
+      <div class="design-attr">
+        <div class="attr-label">CTA Style</div>
+        <div class="attr-value">Pill Buttons (border-radius: 999px)</div>
+      </div>
+
+      <div class="design-attr">
+        <div class="attr-label">Tone</div>
+        <div class="attr-value">Editorial, Institutional</div>
+      </div>
+
+      <div class="design-attr">
+        <div class="attr-label">Background Treatment</div>
+        <div class="attr-value">Near-white with warm gradients (hero)</div>
+      </div>
+
+      <div class="design-attr">
+        <div class="attr-label">Navigation Depth</div>
+        <div class="attr-value">Minimal (3 items: Home, About, Careers)</div>
+      </div>
+
+      <div class="design-attr">
+        <div class="attr-label">Logomark Shape</div>
+        <div class="attr-value">Diamond / Gem (rotated square)</div>
+      </div>
+
+      <div class="design-attr">
+        <div class="attr-label">Trust Signals</div>
+        <div class="attr-value">HIPAA, SOC 2 Type II, Compliance Badges</div>
+      </div>
+    </div>
+
+    <div class="strategy-callout" style="margin-top: 28px;">
+      <h4>Strategic Design Analysis</h4>
+      <ul>
+        <li><strong>Only light-first brand in the competitive set.</strong> While Suki, Ambience, and SmarterDx all default to dark-mode aesthetics, Thesis goes bright, warm, and editorial. This reads "healthcare institution" rather than "tech startup" — a powerful differentiator.</li>
+        <li><strong>Serif typography as brand strategy.</strong> Newsreader at weight 400 (regular, not bold) is the boldest typographic move in the competitive set. The regular weight creates an editorial, academic quality that reinforces "Thesis" as a research-backed argument.</li>
+        <li><strong>"Not a tool. A care team" positioning.</strong> This directly challenges the "AI tool" framing of competitors and positions Thesis as hybrid human+AI service, not software. The design language (warm, light, editorial) amplifies this positioning.</li>
+        <li><strong>Warm peach/amber gradients create emotional softness.</strong> Where competitors use cool blues, violets, or teals, Thesis uses warm tones that connote care and human touch — perfectly aligned with expert-in-the-loop messaging.</li>
+        <li><strong>Early-stage intentionality.</strong> Minimal nav (3 items), early page depth, and the fresh rebrand from Trovo Health (March 2026) signal both opportunity and restraint. This reads as purposeful rather than incomplete.</li>
+        <li><strong>Diamond logomark positioning.</strong> Clean and distinctive, but doesn't explicitly signal healthcare or clinical ops. This ambiguity may be intentional — positioning Thesis as a care team partner rather than a tech vendor.</li>
+      </ul>
+    </div>
+
+    <div class="note-box verified-note" style="margin-top: 20px;">
+      <strong>Unclaimed Territory:</strong> The remaining white space in the competitive set would be a brand combining Thesis's light-first warmth with SmarterDx's data-forward confidence — bright, colorful, metric-driven, yet deeply human.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 6: REFERENCES & SOURCES ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">6</span>
+        <span class="section-title">References &amp; Sources</span>
+      </div>
+      <span class="badge-research">Research-Backed</span>
+    </div>
+
+    <div class="ref-grid">
+      <!-- Primary Website -->
+      <a href="https://thesis.care/" target="_blank" class="ref-card">
+        <div class="ref-icon">🌐</div>
+        <div>
+          <div class="ref-title">Thesis Care — Official Website</div>
+          <div class="ref-desc">Primary brand identity, messaging, typography, and color verification (Live CSS, March 2026)</div>
+        </div>
+      </a>
+
+      <!-- Series A Announcement -->
+      <a href="https://thesis.care/news" target="_blank" class="ref-card">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">Series A Announcement</div>
+          <div class="ref-desc">Thesis Care Series A funding news and company positioning (thesis.care/news)</div>
+        </div>
+      </a>
+
+      <!-- MobiHealthNews -->
+      <a href="https://www.mobihealthnews.com/news/trovo-health-rebrands-thesis-care-scores-45m-and-more-funding-news" target="_blank" class="ref-card">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">MobiHealthNews — Rebrand & Funding Coverage</div>
+          <div class="ref-desc">Trovo Health rebrand to Thesis Care, $45M Series A, and company context (March 2026)</div>
+        </div>
+      </a>
+
+      <!-- BusinessWire Series A -->
+      <a href="https://www.businesswire.com/news/home/20260325810378/en/Thesis-Care-Announces-$45-Million-Series-A-to-Scale-AI-Powered-Clinical-Teams-Across-Healthcare" target="_blank" class="ref-card">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">BusinessWire — Series A Press Release</div>
+          <div class="ref-desc">Official Series A announcement with funding details and clinical mission positioning</div>
+        </div>
+      </a>
+
+      <!-- HIT Consultant -->
+      <a href="https://hitconsultant.net/2026/03/25/thesis-care-trovo-health-45m-series-a-ai-clinical-capacity/" target="_blank" class="ref-card">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">HIT Consultant — Rebrand & Funding Analysis</div>
+          <div class="ref-desc">In-depth coverage of Thesis Care rebrand, funding context, and clinical positioning</div>
+        </div>
+      </a>
+
+      <!-- Oak HC/FT Investor News -->
+      <a href="https://www.oakhcft.com/news/thesis-care-announces-45-million-series-a-to-scale-ai-powered-clinical-teams-across-healthcare" target="_blank" class="ref-card">
+        <div class="ref-icon">🏢</div>
+        <div>
+          <div class="ref-title">Oak HC/FT — Lead Investor Announcement</div>
+          <div class="ref-desc">Series A announcement from lead investor Oak Healthcare Fund, clinical capacity positioning</div>
+        </div>
+      </a>
+
+      <!-- CEO LinkedIn -->
+      <a href="https://www.linkedin.com/in/niren-gandra-723507103" target="_blank" class="ref-card">
+        <div class="ref-icon">💼</div>
+        <div>
+          <div class="ref-title">Niren Gandra, MD — Founder/CEO LinkedIn</div>
+          <div class="ref-desc">Founder background: ex-Cedar CCO, ex-McKinsey, Boston University School of Medicine</div>
+        </div>
+      </a>
+
+      <!-- Crunchbase -->
+      <a href="https://www.crunchbase.com/organization/trovo-health" target="_blank" class="ref-card">
+        <div class="ref-icon">📊</div>
+        <div>
+          <div class="ref-title">Crunchbase — Company Profile</div>
+          <div class="ref-desc">Funding history, investor details, and company metadata (listed under Trovo Health)</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ════════ FOOTER ════════ -->
+  <div class="card-footer">
+    <div class="main-line">Thesis Design Battle Card · Prepared March 2026 · Confidential — For Internal Rebrand Use Only</div>
+    <div class="sub-line">Design analysis prepared for internal strategic planning. All brand data verified from live sources as of March 5, 2026.</div>
+  </div>
+
+</div>
+
+</body>
+</html>

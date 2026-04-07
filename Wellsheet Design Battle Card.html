@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellsheet — Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ═══ VERIFIED Wellsheet Brand Colors (from live CSS, April 2026) ═══ */
+  --comp-primary: #3B27E0;          /* Vibrant indigo — CTA gradient endpoint, primary brand purple */
+  --comp-primary-dark: #20157A;     /* Deep indigo — CTA gradient start, dark accents */
+  --comp-black: #181818;            /* Near-black — body text base, footer background */
+  --comp-dark: #333333;             /* Dark gray — heading text on light backgrounds */
+  --comp-body-text: #333333;        /* Body text color */
+  --comp-white: #FFFFFF;            /* Primary background, hero text */
+  --comp-light: #D4ECF3;            /* Alice blue — light surface backgrounds */
+  --comp-light-gray: #E6F2FF;       /* Lighter blue surface — secondary backgrounds */
+  --comp-steel-blue: #007AFF;       /* Steel blue — links, interactive accents */
+  --comp-green: #1FDB6A;            /* Lime green — success states, secondary accent */
+  --comp-teal: #19C185;             /* Medium sea green — green accent variant */
+  --comp-royal-blue: #4775C6;       /* Royal blue — secondary gradient, tag bg */
+  --comp-orchid: #B75DDA;           /* Medium orchid — purple accent */
+
+  /* Battle Card UI — NEVER CHANGE THESE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #1F2937;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── HEADER ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.card-header .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #EEF2FF;
+  color: #4338CA;
+  margin-bottom: 12px;
+}
+.card-header .date {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 24px;
+}
+.card-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.card-header .tagline {
+  font-size: 20px;
+  color: #6B7280;
+  margin-top: 12px;
+  font-weight: 400;
+}
+.card-header .url {
+  margin-top: 16px;
+}
+.card-header .url a {
+  color: #6366F1;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.card-header .url a:hover { text-decoration: underline; }
+
+/* ── SECTIONS ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.section-header .left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--comp-primary);
+  color: #FFFFFF;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+.badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-confirmed);
+  color: var(--badge-confirmed-text);
+}
+.badge-research {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-verify);
+  color: var(--badge-verify-text);
+}
+
+/* ── SECTION 1: LOGO ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.logo-preview {
+  border-radius: 12px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: transform 0.2s;
+}
+.logo-preview:hover { transform: translateY(-2px); }
+.logo-preview img { height: 40px; width: auto; }
+.logo-preview .bg-label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: #9CA3AF;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.logo-preview.on-white { background: #FFFFFF; }
+.logo-preview.on-dark { background: var(--comp-black); }
+.logo-preview.on-light { background: var(--comp-light); }
+.logo-preview.on-primary { background: var(--comp-primary); }
+
+.logo-description {
+  background: #F9FAFB;
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid #F3F4F6;
+}
+.logo-description h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+.logo-description p {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.7;
+}
+.logo-description .asset-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #F3F4F6;
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+}
+
+/* ── SECTION 2: COLORS ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.color-card {
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.color-card:hover { transform: translateY(-2px); }
+.color-swatch {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+}
+.color-swatch .hex-overlay {
+  font-family: 'DM Sans', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.color-swatch.light-swatch .hex-overlay {
+  color: #374151;
+  text-shadow: none;
+}
+.color-info {
+  padding: 14px;
+}
+.color-info .name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.color-info .role {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+}
+.color-info .detail {
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+  line-height: 1.8;
+}
+
+.note-box {
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.verified-note {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #166534;
+}
+.warning-note {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+}
+
+/* ── SECTION 3: TYPOGRAPHY ── */
+.type-callout {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 2px solid #F97316;
+  background: #FFF7ED;
+  margin-bottom: 24px;
+}
+.type-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #9A3412;
+  margin-bottom: 6px;
+}
+.type-callout p {
+  font-size: 13px;
+  color: #9A3412;
+  line-height: 1.6;
+}
+
+.type-specimen {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 16px;
+  transition: transform 0.2s;
+}
+.type-specimen:hover { transform: translateY(-2px); }
+.type-specimen .font-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.type-specimen .font-role {
+  font-size: 12px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+.type-specimen .display-sample {
+  font-size: 42px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.03em;
+}
+.type-specimen .body-sample {
+  font-size: 16px;
+  color: #4B5563;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 640px;
+}
+.type-specimen .alphabet {
+  font-size: 14px;
+  color: #9CA3AF;
+  letter-spacing: 0.04em;
+  word-break: break-all;
+  margin-bottom: 16px;
+}
+.type-specimen .css-detail {
+  font-family: 'DM Sans', monospace;
+  font-size: 12px;
+  color: #6B7280;
+  background: #F9FAFB;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.8;
+}
+
+/* ── SECTION 4: POSITIONING ── */
+.position-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.position-card {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.position-card:hover { transform: translateY(-2px); }
+.position-card .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.position-card .value {
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.6;
+  font-weight: 500;
+}
+.position-card .value.italic { font-style: italic; color: #6B7280; font-weight: 400; }
+
+/* ── SECTION 5: DESIGN LANGUAGE ── */
+.design-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.design-attr {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.design-attr:hover { transform: translateY(-2px); }
+.design-attr .attr-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.design-attr .attr-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.strategy-callout {
+  padding: 28px 32px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #F5F3FF 0%, #EEF2FF 100%);
+  border: 1px solid #DDD6FE;
+}
+.strategy-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4338CA;
+  margin-bottom: 16px;
+}
+.strategy-callout ul {
+  list-style: none;
+  padding: 0;
+}
+.strategy-callout li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+}
+.strategy-callout li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #6366F1;
+  font-weight: 600;
+}
+
+/* ── SECTION 6: REFERENCES ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ref-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ref-card:hover {
+  border-color: #6366F1;
+  transform: translateY(-2px);
+}
+.ref-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #F3F4F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ref-card .ref-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.ref-card .ref-desc {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+/* ── FOOTER ── */
+.card-footer {
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 12px;
+  color: #9CA3AF;
+}
+.card-footer .main-line {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.card-footer .sub-line {
+  font-size: 11px;
+  color: #D1D5DB;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { padding: 0 16px 16px 16px; }
+  .card-header h1 { font-size: 36px; }
+  .color-grid { grid-template-columns: 1fr 1fr; }
+  .position-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr; }
+  .ref-grid { grid-template-columns: 1fr; }
+  .logo-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link comp-nav__link--active" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+
+<div class="battle-card">
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="card-header">
+    <div class="badge">Design Battle Card</div>
+    <div class="date">April 2026 · Confidential</div>
+    <h1>Wellsheet</h1>
+    <div class="tagline">Care Team Copilot — "Half The Charting Time. Twice The Clinical Clarity."</div>
+    <div class="url"><a href="https://www.wellsheet.com/" target="_blank">wellsheet.com ↗</a></div>
+  </div>
+
+  <!-- ════════ SECTION 1: LOGO & LOGOMARK ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">1</span>
+        <span class="section-title">Logo &amp; Logomark</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="logo-grid">
+      <!-- White BG — dark silhouette -->
+      <div class="logo-preview on-white">
+        <img src="https://cdn.prod.website-files.com/5e4c157b0df7eb8c3b29330a/68bf9af412d25a63d42305e4_Wellsheet-Logo.svg" alt="Wellsheet logo" style="height:40px;width:auto;filter:brightness(0);">
+        <span class="bg-label">White</span>
+      </div>
+      <!-- Dark BG — white silhouette -->
+      <div class="logo-preview on-dark">
+        <img src="https://cdn.prod.website-files.com/5e4c157b0df7eb8c3b29330a/68bf9af412d25a63d42305e4_Wellsheet-Logo.svg" alt="Wellsheet logo on dark" style="height:40px;width:auto;filter:brightness(0) invert(1);">
+        <span class="bg-label" style="color:#6B7280;">Dark (#181818)</span>
+      </div>
+      <!-- Light BG — dark silhouette -->
+      <div class="logo-preview on-light">
+        <img src="https://cdn.prod.website-files.com/5e4c157b0df7eb8c3b29330a/68bf9af412d25a63d42305e4_Wellsheet-Logo.svg" alt="Wellsheet logo on light" style="height:40px;width:auto;filter:brightness(0);">
+        <span class="bg-label">Light (#D4ECF3)</span>
+      </div>
+      <!-- Primary BG — white silhouette -->
+      <div class="logo-preview on-primary">
+        <img src="https://cdn.prod.website-files.com/5e4c157b0df7eb8c3b29330a/68bf9af412d25a63d42305e4_Wellsheet-Logo.svg" alt="Wellsheet logo on primary" style="height:40px;width:auto;filter:brightness(0) invert(1);">
+        <span class="bg-label" style="color:rgba(255,255,255,0.7);">Primary (#3B27E0)</span>
+      </div>
+    </div>
+
+    <div class="logo-description">
+      <h4>Logo Analysis</h4>
+      <p>
+        <strong>Type:</strong> Combination mark — a rounded checkmark icon enclosed in a soft shield/badge shape, paired with the "Wellsheet" wordmark in Inter (weight 700). The checkmark icon is the primary visual metaphor — it communicates completion, verification, and clinical accuracy. The icon appears in white on dark/colored backgrounds across the site. The shield shape subtly evokes trust and protection, appropriate for a healthcare data platform. The wordmark uses a clean, lowercase-initial style ("Wellsheet" not "WellSheet") suggesting approachability. The logo SVG is hosted on Webflow CDN (13,325 characters — too large to embed inline multiple times).
+      </p>
+      <p style="margin-top:8px;">
+        <strong>Design Agency:</strong> Not publicly disclosed. Site built on Webflow.
+      </p>
+      <span class="asset-tag">SVG hosted · Webflow CDN · 251×51 viewBox</span>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 2: BRAND COLOR PALETTE ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">2</span>
+        <span class="section-title">Brand Color Palette</span>
+      </div>
+      <span class="badge-verified">✓ Extracted from Live CSS</span>
+    </div>
+
+    <div class="color-grid">
+      <!-- Vibrant Indigo -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#3B27E0;">
+          <span class="hex-overlay">#3B27E0</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Wellsheet Indigo</div>
+          <div class="role">Primary brand — CTA gradient end, buttons, accent</div>
+          <div class="detail">
+            RGB: 59, 39, 224<br>
+            CSS: gradient endpoint
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep Indigo -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#20157A;">
+          <span class="hex-overlay">#20157A</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Deep Indigo</div>
+          <div class="role">CTA gradient start — dark accent, hover state</div>
+          <div class="detail">
+            RGB: 32, 21, 122<br>
+            CSS: gradient start
+          </div>
+        </div>
+      </div>
+
+      <!-- Steel Blue -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#007AFF;">
+          <span class="hex-overlay">#007AFF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Steel Blue</div>
+          <div class="role">Links, interactive accents, progress indicators</div>
+          <div class="detail">
+            RGB: 0, 122, 255<br>
+            CSS: --steel-blue
+          </div>
+        </div>
+      </div>
+
+      <!-- Lime Green -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#1FDB6A;">
+          <span class="hex-overlay" style="color:#181818;text-shadow:none;">#1FDB6A</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Lime Green</div>
+          <div class="role">Success states, secondary accent, data highlights</div>
+          <div class="detail">
+            RGB: 31, 219, 106<br>
+            CSS: --lime-green
+          </div>
+        </div>
+      </div>
+
+      <!-- Near Black -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#181818;">
+          <span class="hex-overlay">#181818</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Charcoal</div>
+          <div class="role">Dark backgrounds — hero, footer, dark sections</div>
+          <div class="detail">
+            RGB: 24, 24, 24<br>
+            CSS: --black
+          </div>
+        </div>
+      </div>
+
+      <!-- Medium Orchid -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#B75DDA;">
+          <span class="hex-overlay">#B75DDA</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Orchid</div>
+          <div class="role">Purple accent — gradient elements, decorative</div>
+          <div class="detail">
+            RGB: 183, 93, 218<br>
+            CSS: --medium-orchid
+          </div>
+        </div>
+      </div>
+
+      <!-- Alice Blue -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background:#D4ECF3; border: 1px solid #B8D9E6;">
+          <span class="hex-overlay">#D4ECF3</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Alice Blue</div>
+          <div class="role">Light surface — content section backgrounds, grid bg</div>
+          <div class="detail">
+            RGB: 212, 236, 243<br>
+            CSS: --alice-blue
+          </div>
+        </div>
+      </div>
+
+      <!-- White -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background:#FFFFFF; border: 1px solid #E5E7EB;">
+          <span class="hex-overlay">#FFFFFF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">White</div>
+          <div class="role">Content cards, hero text, product UI</div>
+          <div class="detail">
+            RGB: 255, 255, 255<br>
+            CSS: --white
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Extraction Note:</strong> Colors extracted from live Webflow site CSS variables (April 2026). Wellsheet's palette is <strong>unusually rich and expressive</strong> for healthcare AI. The brand defines 12+ CSS custom properties including gradients, greens, blues, and purples — far more chromatic range than typical clinical tools. The primary CTA uses a dramatic <strong>indigo gradient</strong> (linear-gradient from #20157A → #3B27E0), while the hero section layers deep blues, purples, and teals over a dark grid pattern. The green accent (#1FDB6A) is neon-bright and tech-forward. Overall, this reads more like a <strong>developer tool or fintech brand</strong> than traditional healthcare software.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 3: TYPOGRAPHY SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">3</span>
+        <span class="section-title">Typography System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live CSS</span>
+    </div>
+
+    <div class="note-box verified-note" style="margin-bottom:24px;">
+      <strong>✓ Free / Open-Source Typeface</strong> — Inter is an open-source typeface designed by Rasmus Andersson, freely available via Google Fonts. Despite loading multiple Webflow font families (Karla, Merriweather, Montserrat, Inconsolata, etc.), the live site renders everything in Inter. No licensing costs needed.
+    </div>
+
+    <!-- Inter -->
+    <div class="type-specimen">
+      <div class="font-name">Inter</div>
+      <div class="font-role">Display · Headings · Body · UI — Sole Brand Typeface</div>
+      <div class="display-sample" style="font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.03em;">
+        Half The Charting Time. Twice The Clinical Clarity.
+      </div>
+      <div class="body-sample" style="font-family: 'Inter', sans-serif;">
+        Inter is a variable sans-serif typeface designed specifically for computer screens. Originally developed by Rasmus Andersson, it features a tall x-height to aid readability of mixed-case and lowercase text in small sizes. Inter has become one of the most widely used typefaces in tech, SaaS, and startup branding — versatile and highly legible but not distinctive.
+      </div>
+      <div class="alphabet" style="font-family: 'Inter', sans-serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%&amp;*()
+      </div>
+      <div class="css-detail">
+        font-family: "Inter", sans-serif;<br>
+        H1 (Hero): font-size: 91.2px · font-weight: 700 · color: #FFFFFF · letter-spacing: -3px<br>
+        H1 (Content): font-size: 38.4px · font-weight: 700 · color: #333333<br>
+        Body: font-size: 16px · font-weight: 400 · color: #333333 · line-height: 1.6<br>
+        Nav: font-size: 16px · font-weight: 500 · color: #FFFFFF (on dark header)
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Typography Note:</strong> Wellsheet is a <strong>single-typeface brand</strong> using Inter for everything — the same choice as hundreds of SaaS startups. The Webflow project loads 8+ font families (Karla, Merriweather, Montserrat, Inconsolata, Open Sans, Roboto, Varela Round), but only Inter is actually rendered — suggesting leftover Webflow template defaults or legacy design iterations that were never cleaned up. The <strong>91.2px hero headline</strong> at weight 700 with tight -3px letter-spacing creates a bold, impactful above-the-fold statement. Heading text uses #333333 on light sections and #FFFFFF on dark backgrounds — no distinct heading color.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 4: BRAND POSITIONING & MESSAGING ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">4</span>
+        <span class="section-title">Brand Positioning &amp; Messaging</span>
+      </div>
+      <span class="badge-research">◐ Research-Based</span>
+    </div>
+
+    <div class="position-grid">
+      <div class="position-card">
+        <div class="label">Hero Headline (Live Site)</div>
+        <div class="value">"Half The Charting Time. Twice The Clinical Clarity."</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Brand Descriptor</div>
+        <div class="value">"Care Team Copilot" — positioned as a copilot, not a replacement. The "Care Team" framing emphasizes collaborative, multi-role clinical support.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Sub-Headline</div>
+        <div class="value">"The only AI platform that unites chart summarization, documentation and clinical pathways."</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Value Proposition</div>
+        <div class="value">Three-pillar product: Chart Summarization (contextual clinical views), Documentation (AI-assisted charting), and Clinical Pathways (evidence-based decision support via UpToDate integration).</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Category Descriptor</div>
+        <div class="value">AI Care Team Copilot / Clinical Intelligence Platform</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Key Trust Signals</div>
+        <div class="value">10K+ clinician users. 2 hours saved per clinician daily. Featured clients: Baptist Health, Indiana University Health, RWJBarnabas Health, Concord Hospital. Press: Becker's Healthcare, KLAS Research, Newsweek, Observer.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Mission Statement</div>
+        <div class="value">"Our Purpose is Simple — Care for our healthcare providers as well as they care for us." Goal: ensure no diagnosis is missed or discharge is delayed.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Company History / Platform</div>
+        <div class="value">Founded in Boston, MA. Originally focused on EHR data visualization and chart summarization, now expanded to documentation and clinical pathways. Site built on Webflow. Copyright 2025.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 5: DESIGN LANGUAGE & VISUAL SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">5</span>
+        <span class="section-title">Design Language &amp; Visual System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="design-grid">
+      <div class="design-attr">
+        <div class="attr-label">Primary Theme</div>
+        <div class="attr-value">Dark hero + light content — cinematic dark gradient header transitioning to soft light-blue grid sections</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Palette Strategy</div>
+        <div class="attr-value">Multi-chromatic — indigo, blue, green, orchid, teal across gradients and accents</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Accent Color Approach</div>
+        <div class="attr-value">Purple gradient as action (CTAs), green as data/success, blue as informational</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Photography Style</div>
+        <div class="attr-value">Product-centric — clinical UI mockups, patient summary screens, EHR data visualizations. One real patient photo in product demo.</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Graphic System</div>
+        <div class="attr-value">Crosshair/grid pattern background (light blue lines on white), rounded dark icon badges, glass-morphism cards, 3D heart icon with ECG wave</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Identity Type</div>
+        <div class="attr-value">Static combination mark — checkmark shield icon + wordmark. Consistent application.</div>
+      </div>
+    </div>
+
+    <div class="strategy-callout">
+      <h4>Strategic Analysis — Competitive Implications</h4>
+      <ul>
+        <li><strong>Wellsheet's "Care Team Copilot" positioning is distinct and well-articulated.</strong> While Suki is an "intelligence layer" and Ambience is "ambient AI," Wellsheet explicitly uses the "copilot" metaphor (popularized by Microsoft/GitHub). The "Care Team" qualifier expands the audience beyond physicians to nurses, pharmacists, and other clinical staff — a broader addressable market.</li>
+        <li><strong>The three-pillar product structure is the clearest in the competitive set.</strong> Chart Summarization + Documentation + Clinical Pathways gives prospects an immediate understanding of scope. Competitors often bury product capabilities in marketing copy — Wellsheet puts them front and center with dedicated sections.</li>
+        <li><strong>The visual identity skews "tech startup" rather than "healthcare enterprise."</strong> The dark cinematic hero with blue/purple/teal light effects, neon green accents, and crosshair grid background reads more like a developer tool (Vercel, Linear) or fintech product (Stripe, Plaid) than clinical software. This is a risky but potentially differentiating choice — it signals innovation and modernity, but may feel unfamiliar to conservative health system buyers.</li>
+        <li><strong>The indigo gradient CTA (#20157A → #3B27E0) is the most visually distinctive button in the competitive set.</strong> No other competitor uses a gradient CTA. The pill-shaped purple button with checkmark icon creates strong visual identity and recall.</li>
+        <li><strong>The crosshair/grid pattern on light sections is a unique graphic signature.</strong> The subtle "+" marks on a light blue grid create a clinical-meets-technical aesthetic. This is a distinctive visual device not shared by competitors — it evokes precision, measurement, and systematic care.</li>
+        <li><strong>Vulnerability: Inter as the sole typeface provides zero typographic distinction.</strong> Inter is the default font for modern web design — used by thousands of SaaS companies. Unlike Suki (General Grotesque), Thesis (Newsreader), or even SmarterDx (Archivo), there is nothing in Wellsheet's typography that creates brand recall.</li>
+        <li><strong>Vulnerability: The dark hero may clash with conservative healthcare buyers.</strong> Similar to Suki's dark aesthetic, the cinematic dark gradient with neon accents may feel "too tech" for traditional health system decision-makers who expect clinical software to look clean, bright, and trustworthy.</li>
+        <li><strong>White space opportunity:</strong> Wellsheet's "copilot" positioning and multi-pillar product clarity is strong, but the visual execution doesn't match the warmth implied by "care team." A brand that paired Wellsheet's clear product messaging with a warmer, more human-centered visual identity could own the "approachable AI copilot" territory.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 6: BRAND REFERENCES & RESOURCES ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">6</span>
+        <span class="section-title">Brand References &amp; Resources</span>
+      </div>
+    </div>
+
+    <div class="ref-grid">
+      <a href="https://www.wellsheet.com/" target="_blank" class="ref-card">
+        <div class="ref-icon">🌐</div>
+        <div>
+          <div class="ref-title">Wellsheet Website</div>
+          <div class="ref-desc">Primary company website — wellsheet.com</div>
+        </div>
+      </a>
+      <a href="https://www.wellsheet.com/about" target="_blank" class="ref-card">
+        <div class="ref-icon">ℹ️</div>
+        <div>
+          <div class="ref-title">About Wellsheet</div>
+          <div class="ref-desc">Mission, purpose, and company overview</div>
+        </div>
+      </a>
+      <a href="https://www.wellsheet.com/resources" target="_blank" class="ref-card">
+        <div class="ref-icon">📚</div>
+        <div>
+          <div class="ref-title">Resources</div>
+          <div class="ref-desc">Case studies, articles, and product updates</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/company/wellsheet/" target="_blank" class="ref-card">
+        <div class="ref-icon">💼</div>
+        <div>
+          <div class="ref-title">LinkedIn</div>
+          <div class="ref-desc">Company profile and employee network</div>
+        </div>
+      </a>
+      <a href="https://www.crunchbase.com/organization/wellsheet" target="_blank" class="ref-card">
+        <div class="ref-icon">📊</div>
+        <div>
+          <div class="ref-title">Crunchbase Profile</div>
+          <div class="ref-desc">Funding history, investors, and financials</div>
+        </div>
+      </a>
+      <a href="https://www.beckershospitalreview.com/" target="_blank" class="ref-card">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">Becker's Healthcare</div>
+          <div class="ref-desc">Featured press coverage of Wellsheet</div>
+        </div>
+      </a>
+      <a href="https://klasresearch.com/" target="_blank" class="ref-card">
+        <div class="ref-icon">🏆</div>
+        <div>
+          <div class="ref-title">KLAS Research</div>
+          <div class="ref-desc">Industry recognition and analyst coverage</div>
+        </div>
+      </a>
+      <a href="https://www.newsweek.com/" target="_blank" class="ref-card">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">Newsweek</div>
+          <div class="ref-desc">National press feature on Wellsheet</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ════════ FOOTER ════════ -->
+  <div class="card-footer">
+    <div class="main-line">Wellsheet Design Battle Card · Prepared April 2026 · Confidential — For Internal Rebrand Use Only</div>
+    <div class="sub-line">Colors, fonts, and logo verified from wellsheet.com live site via Chrome DevTools computed styles extraction + web research</div>
+  </div>
+
+</div>
+
+</body>
+</html>

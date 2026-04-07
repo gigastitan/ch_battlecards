@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qventus — Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* ═══ VERIFIED Qventus Brand Colors (from live CSS, March 2026) ═══ */
+  --comp-primary: #6700E5;          /* Primary accent — vivid purple, used on CTAs, hero backgrounds, section headers */
+  --comp-primary-dark: #340073;     /* Deep aubergine purple — used for hero bg, H2 headings, dark sections */
+  --comp-accent: #3DEAC9;           /* Teal/mint accent — used on secondary CTAs ("Meet Qventus"), highlights */
+  --comp-accent-light: #F5FEFC;     /* Very light teal tint — used for subtle teal section backgrounds */
+  --comp-black: #000000;            /* Pure black */
+  --comp-dark-text: #353535;        /* Dark gray body text */
+  --comp-body-text: #333333;        /* Standard body text */
+  --comp-white: #FFFFFF;            /* Primary background */
+  --comp-light: #F7F5F2;           /* Warm off-white/cream — section backgrounds */
+  --comp-light-gray: #F5F5F5;      /* Light surface */
+  --comp-mid-gray: #ABB8C3;        /* Mid-tone gray */
+
+  /* Battle Card UI — NEVER CHANGE THESE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #374151;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── Header ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.card-header .badge {
+  display: inline-block;
+  background: var(--comp-primary-dark);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.card-header .date {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 20px;
+}
+
+.card-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.card-header .tagline {
+  font-size: 18px;
+  color: #6B7280;
+  margin-bottom: 16px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-header .url {
+  font-size: 14px;
+  color: var(--comp-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+.card-header .url:hover { text-decoration: underline; }
+
+/* ── Section Container ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-bottom: 24px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.section-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--comp-primary);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.section-badge {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.badge-verified {
+  background: var(--badge-confirmed);
+  color: var(--badge-confirmed-text);
+}
+
+.badge-research {
+  background: var(--badge-verify);
+  color: var(--badge-verify-text);
+}
+
+/* ── Section 1: Logo ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.logo-preview {
+  border-radius: 12px;
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border: 1px solid var(--card-border);
+  position: relative;
+}
+
+.logo-preview img {
+  max-width: 200px;
+  max-height: 60px;
+  object-fit: contain;
+}
+
+.logo-preview .bg-label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.logo-description {
+  background: #F9FAFB;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.logo-description h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.logo-description p {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.7;
+}
+
+.logo-description .asset-tag {
+  display: inline-block;
+  background: #EEF2FF;
+  color: #4338CA;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-family: 'DM Sans', monospace;
+  word-break: break-all;
+}
+
+/* ── Section 2: Colors ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.color-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.15s ease;
+}
+
+.color-card:hover { transform: translateY(-2px); }
+
+.color-swatch {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+}
+
+.color-swatch .hex-overlay {
+  font-family: 'DM Sans', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.9);
+  color: #111;
+}
+
+.color-swatch.dark-text .hex-overlay {
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+}
+
+.color-info {
+  padding: 14px;
+}
+
+.color-info .name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+
+.color-info .role {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+}
+
+.color-info .values {
+  font-size: 11px;
+  color: #6B7280;
+  font-family: 'DM Sans', monospace;
+  line-height: 1.8;
+}
+
+.note-box {
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.note-verified {
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+}
+
+.note-warning {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+}
+
+/* ── Section 3: Typography ── */
+.type-callout {
+  border-left: 4px solid #F97316;
+  background: #FFF7ED;
+  border-radius: 0 12px 12px 0;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.type-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #9A3412;
+  margin-bottom: 4px;
+}
+
+.type-callout p {
+  font-size: 13px;
+  color: #78350F;
+  line-height: 1.6;
+}
+
+.type-specimen {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 16px;
+}
+
+.type-specimen .type-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.type-specimen .type-display {
+  font-size: 42px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+
+.type-specimen .type-body {
+  font-size: 16px;
+  color: #6B7280;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.type-specimen .type-alpha {
+  font-size: 14px;
+  color: #9CA3AF;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+.type-specimen .type-css {
+  font-family: 'DM Sans', monospace;
+  font-size: 12px;
+  color: #6B7280;
+  background: #F9FAFB;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.8;
+}
+
+/* ── Section 4: Positioning ── */
+.positioning-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pos-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.pos-card .pos-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.pos-card .pos-value {
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.6;
+}
+
+.pos-card .pos-value.not-found {
+  color: #D1D5DB;
+  font-style: italic;
+}
+
+/* ── Section 5: Design Language ── */
+.design-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.design-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.design-card .design-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.design-card .design-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.design-card .design-desc {
+  font-size: 12px;
+  color: #6B7280;
+  line-height: 1.5;
+}
+
+.strategy-box {
+  background: linear-gradient(135deg, #F5F3FF 0%, #EEF2FF 100%);
+  border: 2px solid #C7D2FE;
+  border-radius: 14px;
+  padding: 28px 32px;
+}
+
+.strategy-box h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #312E81;
+  margin-bottom: 16px;
+}
+
+.strategy-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.strategy-box li {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+  padding: 6px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.strategy-box li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 10px;
+  height: 10px;
+  background: var(--comp-primary);
+  border-radius: 3px;
+}
+
+/* ── Section 6: References ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.ref-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.ref-card:hover {
+  border-color: var(--comp-primary);
+  transform: translateY(-2px);
+}
+
+.ref-icon {
+  width: 36px;
+  height: 36px;
+  background: #F3F4F6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.ref-card .ref-title {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+
+.ref-card .ref-desc {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+/* ── Footer ── */
+.card-footer {
+  text-align: center;
+  padding: 28px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+}
+
+.card-footer p {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 4px;
+}
+
+.card-footer .footer-note {
+  font-size: 11px;
+  color: #D1D5DB;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .logo-grid, .positioning-grid, .ref-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr 1fr; }
+  .card-header h1 { font-size: 36px; }
+  .section { padding: 24px 20px; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link comp-nav__link--active" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+<div class="battle-card">
+
+  <!-- ═════════════════════ HEADER ═════════════════════ -->
+  <div class="card-header">
+    <div class="badge">Design Battle Card</div>
+    <div class="date">March 2026 &bull; Confidential</div>
+    <h1>Qventus</h1>
+    <p class="tagline">AI-powered operational automation platform for hospital systems &mdash; "AI teammates" for surgical, perioperative, and inpatient care</p>
+    <a class="url" href="https://www.qventus.com" target="_blank">qventus.com &nearr;</a>
+  </div>
+
+  <!-- ═════════════════════ SECTION 1: Logo ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Logo &amp; Logomark</div>
+      <span class="section-badge badge-verified">Verified from Live Site</span>
+    </div>
+
+    <div class="logo-grid">
+      <div class="logo-preview" style="background: #FFFFFF;">
+        <img src="https://www.qventus.com/wp-content/uploads/2024/10/Qventus-logo-aubergine.svg" alt="Qventus logo on white">
+        <span class="bg-label">White</span>
+      </div>
+      <div class="logo-preview" style="background: #340073;">
+        <img src="https://www.qventus.com/wp-content/uploads/2025/03/Qventus-Logo-Light.svg" alt="Qventus logo on dark">
+        <span class="bg-label" style="color:#7c6a94;">Dark / Hero</span>
+      </div>
+      <div class="logo-preview" style="background: #F7F5F2;">
+        <img src="https://www.qventus.com/wp-content/uploads/2024/10/Qventus-logo-aubergine.svg" alt="Qventus logo on cream">
+        <span class="bg-label">Canvas / Cream</span>
+      </div>
+      <div class="logo-preview" style="background: #6700E5;">
+        <img src="https://www.qventus.com/wp-content/uploads/2025/03/Qventus-Logo-Light.svg" alt="Qventus logo on primary">
+        <span class="bg-label" style="color:rgba(255,255,255,0.5);">Primary Accent</span>
+      </div>
+    </div>
+
+    <div class="logo-description">
+      <h4>Logo Analysis</h4>
+      <p>
+        <strong>Type:</strong> Custom wordmark with integrated logomark. The &ldquo;Q&rdquo; features a distinctive stylized treatment &mdash; a bold, geometric &ldquo;Q&rdquo; with a forward-leaning dynamic posture that doubles as a standalone icon. The full wordmark reads &ldquo;Qventus&rdquo; in a clean, confident sans-serif with generous letter-spacing.<br><br>
+        <strong>Characteristics:</strong> The wordmark uses a deep aubergine purple (#340073) on light backgrounds and a white/light version on dark backgrounds. The logo has excellent contrast ratios and scales cleanly at small sizes. The stylized &ldquo;Q&rdquo; serves as a recognizable favicon and social icon.<br><br>
+        <strong>Design Agency:</strong> Not publicly attributed.
+      </p>
+      <span class="asset-tag">Primary: /wp-content/uploads/2024/10/Qventus-logo-aubergine.svg</span><br>
+      <span class="asset-tag">Light: /wp-content/uploads/2025/03/Qventus-Logo-Light.svg</span>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ SECTION 2: Colors ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Brand Color Palette</div>
+      <span class="section-badge badge-verified">Extracted from Live CSS</span>
+    </div>
+
+    <div class="color-grid">
+      <!-- Primary Purple -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #6700E5;">
+          <span class="hex-overlay">#6700E5</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Vivid Purple</div>
+          <div class="role">Primary CTA &amp; accent</div>
+          <div class="values">
+            rgb(103, 0, 229)<br>
+            --comp-primary
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep Aubergine -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #340073;">
+          <span class="hex-overlay dark-text" style="background:rgba(0,0,0,0.4);color:#fff;">#340073</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Deep Aubergine</div>
+          <div class="role">Hero BG, H2 headings, dark sections</div>
+          <div class="values">
+            rgb(52, 0, 115)<br>
+            --comp-primary-dark
+          </div>
+        </div>
+      </div>
+
+      <!-- Teal Accent -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #3DEAC9;">
+          <span class="hex-overlay">#3DEAC9</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Teal / Mint</div>
+          <div class="role">Secondary CTAs, highlights, metric badges</div>
+          <div class="values">
+            rgb(61, 234, 201)<br>
+            --comp-accent
+          </div>
+        </div>
+      </div>
+
+      <!-- Teal Tint -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #F5FEFC; border: 1px solid #E0F2EE;">
+          <span class="hex-overlay">#F5FEFC</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Teal Tint</div>
+          <div class="role">Light teal section backgrounds</div>
+          <div class="values">
+            rgb(245, 254, 252)<br>
+            --comp-accent-light
+          </div>
+        </div>
+      </div>
+
+      <!-- Warm Cream -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #F7F5F2; border: 1px solid #EBE8E4;">
+          <span class="hex-overlay">#F7F5F2</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Warm Cream</div>
+          <div class="role">Section backgrounds, canvas</div>
+          <div class="values">
+            rgb(247, 245, 242)<br>
+            --comp-light
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Text -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #353535;">
+          <span class="hex-overlay dark-text" style="background:rgba(0,0,0,0.4);color:#fff;">#353535</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Dark Gray</div>
+          <div class="role">Body text</div>
+          <div class="values">
+            rgb(53, 53, 53)<br>
+            --comp-dark-text
+          </div>
+        </div>
+      </div>
+
+      <!-- White -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #E5E7EB;">
+          <span class="hex-overlay">#FFFFFF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">White</div>
+          <div class="role">Primary background, card surfaces</div>
+          <div class="values">
+            rgb(255, 255, 255)<br>
+            --comp-white
+          </div>
+        </div>
+      </div>
+
+      <!-- Mid Gray -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #ABB8C3;">
+          <span class="hex-overlay">#ABB8C3</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Cool Mid-Gray</div>
+          <div class="role">Borders, secondary text, dividers</div>
+          <div class="values">
+            rgb(171, 184, 195)<br>
+            --comp-mid-gray
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box note-verified">
+      <strong>Extraction Note:</strong> All colors extracted via <code>getComputedStyle()</code> from the live Qventus homepage (March 2026). Qventus runs on WordPress with custom CSS. Their palette is a striking <strong>purple-dominant</strong> system with a <strong>teal/mint secondary</strong> &mdash; a bold departure from the typical blues and greens seen in healthcare SaaS. The deep aubergine-to-vivid-purple gradient creates strong visual hierarchy, while the teal accent provides high-contrast energy for CTAs and data callouts.
+    </div>
+  </div>
+
+  <!-- ═════════════════════ SECTION 3: Typography ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">Typography System</div>
+      <span class="section-badge badge-verified">Verified from Live CSS</span>
+    </div>
+
+    <div class="type-callout">
+      <h4>Google Font Detected: Sora</h4>
+      <p>Qventus uses <strong>Sora</strong>, a geometric sans-serif from Google Fonts designed by Jonathan Barnbrook. Sora was purpose-built for UI and digital display &mdash; its geometric construction and open counters give Qventus a modern, tech-forward feel uncommon in healthcare. Roboto is also loaded as a fallback/utility font.</p>
+    </div>
+
+    <!-- Sora Specimen -->
+    <div class="type-specimen">
+      <div class="type-label">Display &amp; Headline &mdash; Sora</div>
+      <div class="type-display" style="font-family: 'Sora', sans-serif; color: var(--comp-primary-dark);">
+        Automate hospital operations with AI teammates
+      </div>
+      <div class="type-body" style="font-family: 'Sora', sans-serif;">
+        Secure the margins to achieve your mission of delivering quality care to patients &mdash; with the power of AI. Qventus uses Sora for all headings, navigation labels, buttons, and UI elements across their site.
+      </div>
+      <div class="type-alpha" style="font-family: 'Sora', sans-serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+        abcdefghijklmnopqrstuvwxyz<br>
+        0123456789 &amp; !@#$%
+      </div>
+      <div class="type-css">
+        <strong>H1:</strong> font-family: Sora, sans-serif; font-weight: 700; font-size: 52px; color: rgb(255,255,255); line-height: 1.15<br>
+        <strong>H2:</strong> font-family: Sora, sans-serif; font-weight: 600; font-size: 19px; color: rgb(52,0,115)<br>
+        <strong>H3:</strong> font-family: Sora, sans-serif; font-weight: 600; font-size: 18px; color: rgb(103,0,229)<br>
+        <strong>Nav:</strong> font-family: Sora, sans-serif; font-weight: 500; color: rgb(255,255,255)<br>
+        <strong>CTA:</strong> font-family: Sora, sans-serif; font-weight: 600; border-radius: 7px
+      </div>
+    </div>
+
+    <!-- Roboto Specimen -->
+    <div class="type-specimen">
+      <div class="type-label">Body / Utility &mdash; Roboto (Fallback)</div>
+      <div class="type-display" style="font-family: 'Roboto', 'Inter', sans-serif; font-size: 32px; font-weight: 400; color: #353535;">
+        Roboto serves as utility and body fallback
+      </div>
+      <div class="type-body" style="font-family: 'Roboto', 'Inter', sans-serif;">
+        Roboto is loaded across multiple weights (100&ndash;900) as a secondary font stack. On the live site, Sora handles the vast majority of rendered text, with Roboto available for longer-form content and system fallback scenarios.
+      </div>
+      <div class="type-css">
+        <strong>Body:</strong> font-family: Sora, sans-serif (primary); Roboto loaded as secondary<br>
+        <strong>Paragraph:</strong> font-size: 16px; font-weight: 400; color: rgb(53,53,53); line-height: 1.6
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ SECTION 4: Positioning ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">Brand Positioning &amp; Messaging</div>
+      <span class="section-badge badge-verified">Verified from Live Site</span>
+    </div>
+
+    <div class="positioning-grid">
+      <div class="pos-card">
+        <div class="pos-label">Hero Headline (Live H1)</div>
+        <div class="pos-value">&ldquo;Automate hospital operations with AI teammates&rdquo;</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Supporting Value Prop</div>
+        <div class="pos-value">&ldquo;Secure the margins to achieve your mission of delivering quality care to patients &mdash; with the power of AI.&rdquo;</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Mission</div>
+        <div class="pos-value">Drive growth by automating care operations. Founded in 2012 by two McKinsey veterans + Stanford graduates who saw a crisis in healthcare operations.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Category Descriptor</div>
+        <div class="pos-value">AI-powered hospital operations automation platform &mdash; AI, ML &amp; behavioral science for surgical, perioperative, and inpatient care coordination.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Design Agency</div>
+        <div class="pos-value not-found">Not publicly attributed</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Key Trust Signal</div>
+        <div class="pos-value">KLAS Rating: 92.5 &bull; $201M+ total funding (Series D led by KKR at $400M+ valuation) &bull; Customers include HonorHealth, Allina Health, Boston Medical Center, Northwestern Medicine</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ SECTION 5: Design Language ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">Design Language &amp; Visual System</div>
+      <span class="section-badge badge-verified">Verified from Live Site</span>
+    </div>
+
+    <div class="design-grid">
+      <div class="design-card">
+        <div class="design-label">Primary Theme</div>
+        <div class="design-value">Dark-First Hero</div>
+        <div class="design-desc">Deep aubergine purple hero with white text. Remaining page alternates between white, warm cream (#F7F5F2), and light teal (#F5FEFC) sections.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Palette Strategy</div>
+        <div class="design-value">Purple + Teal Dual Accent</div>
+        <div class="design-desc">Dominant purple spectrum (dark-to-vivid) paired with high-energy teal/mint as contrasting accent. No blue. No green. No red. Very disciplined.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Accent Approach</div>
+        <div class="design-value">Teal for Action</div>
+        <div class="design-desc">Teal (#3DEAC9) reserved exclusively for interactive elements: secondary CTAs, metric callout badges, and hover states. Creates a clear visual affordance system.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Photography</div>
+        <div class="design-value">Warm Clinical Portraits</div>
+        <div class="design-desc">Real healthcare workers in clinical settings. Diverse representation. Soft natural lighting. Images are framed in organic circular/arc crops, not hard rectangles.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Graphic System</div>
+        <div class="design-value">Geometric Arcs + Stripe Patterns</div>
+        <div class="design-desc">Large-scale circular arcs (purple-to-teal gradients) frame hero imagery. Diagonal stripe patterns add texture. Floating metric badges create a dashboard-like feel.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Identity Type</div>
+        <div class="design-value">Modular &amp; Systematic</div>
+        <div class="design-desc">Consistent component-based design: arc frames, stripe textures, metric badges, and rounded cards recombine across pages. Feels ownable and systematic.</div>
+      </div>
+    </div>
+
+    <div class="strategy-box">
+      <h4>Strategic Analysis &mdash; Creative Director Assessment</h4>
+      <ul>
+        <li><strong>Qventus owns the "deep purple" territory in healthcare AI.</strong> While most competitors default to blues, teals, and greens, Qventus has planted its flag in an aubergine-to-vivid-purple spectrum that is immediately distinctive. This is a confident, high-conviction color choice.</li>
+        <li><strong>The Sora typeface is a differentiator.</strong> Most healthcare SaaS brands use Inter, Poppins, or Manrope. Sora's geometric construction gives Qventus a more technical, engineered feel &mdash; aligning with their "AI + behavioral science" positioning.</li>
+        <li><strong>Their teal accent creates visual tension by design.</strong> The purple-teal combination is complementary and high-contrast &mdash; it grabs attention without feeling clinical or sterile. This makes their CTAs pop dramatically against the dark hero sections.</li>
+        <li><strong>The "dark hero" approach signals enterprise seriousness.</strong> Unlike lighter, more approachable competitors (Abridge, Regard), Qventus leads with darkness and drama. This positions them as a heavyweight, enterprise-grade platform &mdash; appropriate for their C-suite buyer persona.</li>
+        <li><strong>Arc/circle graphic system is distinctive but risks feeling decorative.</strong> The large geometric arcs framing photos are visually ownable, but they do heavy visual lifting &mdash; without them, the underlying layout is fairly conventional WordPress. The system depends on these hero compositions.</li>
+        <li><strong>White space opportunity: warm, human, accessible.</strong> Qventus leans so hard into "enterprise tech" that there's an opening for competitors to own a warmer, more human, more clinician-centric brand position in the same AI operations space. Their dark, dramatic palette could feel intimidating to frontline staff personas.</li>
+        <li><strong>Vulnerability: WordPress underneath.</strong> Despite strong visual design, the site runs on WordPress (visible in URL structures, CSS variable naming, and asset paths). A bespoke web experience would better match their premium positioning. This is a gap competitors with custom-built sites can exploit in perceived sophistication.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ SECTION 6: References ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Brand References &amp; Resources</div>
+      <span class="section-badge badge-research">Research-Based</span>
+    </div>
+
+    <div class="ref-grid">
+      <a class="ref-card" href="https://www.qventus.com" target="_blank">
+        <div class="ref-icon">🌐</div>
+        <div>
+          <div class="ref-title">Company Website</div>
+          <div class="ref-desc">Main marketing site &mdash; WordPress-based, custom theme</div>
+        </div>
+      </a>
+      <a class="ref-card" href="https://www.qventus.com/company/story-team/" target="_blank">
+        <div class="ref-icon">👥</div>
+        <div>
+          <div class="ref-title">Our Story &amp; Team</div>
+          <div class="ref-desc">Company narrative, timeline, leadership bios</div>
+        </div>
+      </a>
+      <a class="ref-card" href="https://www.linkedin.com/company/qventus/" target="_blank">
+        <div class="ref-icon">💼</div>
+        <div>
+          <div class="ref-title">LinkedIn</div>
+          <div class="ref-desc">Company page, employee count, job postings</div>
+        </div>
+      </a>
+      <a class="ref-card" href="https://www.qventus.com/resources/" target="_blank">
+        <div class="ref-icon">📄</div>
+        <div>
+          <div class="ref-title">Resources Library</div>
+          <div class="ref-desc">Case studies, webinars, white papers, solution briefs</div>
+        </div>
+      </a>
+      <a class="ref-card" href="https://techcrunch.com/2025/01/13/more-money-comes-to-ai-healthcare-qventus-nabs-105m-at-a-400m-valuation/" target="_blank">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">TechCrunch: Series D Coverage</div>
+          <div class="ref-desc">$105M raise led by KKR at $400M+ valuation (Jan 2025)</div>
+        </div>
+      </a>
+      <a class="ref-card" href="https://www.qventus.com/company/our-team/" target="_blank">
+        <div class="ref-icon">🧑‍💼</div>
+        <div>
+          <div class="ref-title">Leadership &amp; Advisory Board</div>
+          <div class="ref-desc">Executive team bios, board of advisors including KKR, Bessemer</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ FOOTER ═════════════════════ -->
+  <div class="card-footer">
+    <p><strong>Qventus Design Battle Card</strong> &bull; Prepared March 2026 &bull; Confidential &mdash; For Internal Rebrand Use Only</p>
+    <p class="footer-note">Colors, fonts, and logo verified from qventus.com via Chrome DevTools live CSS extraction (getComputedStyle + document.fonts API)</p>
+  </div>
+
+</div>
+</body>
+</html>

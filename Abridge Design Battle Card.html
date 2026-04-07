@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abridge — Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ═══ VERIFIED Abridge Brand Colors (from live CSS, March 2026) ═══ */
+  --comp-primary: #EA2C00;            /* Primary accent — CTA, SVG fills, bridge graphics (Enduring Orange) */
+  --comp-primary-alt: #FC5D2B;        /* CSS var --enduring-orange — lighter variant */
+  --comp-black: #000000;              /* Pure black — headings */
+  --comp-carbon: #1C1C1C;             /* Near-black — secondary dark */
+  --comp-ink: #22253F;                /* Dark navy — tertiary dark */
+  --comp-body-text: #141312;          /* Body text color rgb(20,19,18) */
+  --comp-white: #FFFFFF;              /* Primary background */
+  --comp-canvas: #F5F3EB;             /* Warm off-white/cream */
+  --comp-light-gray: #F6F6F6;         /* Light surface */
+  --comp-mid-gray: #6D645A;           /* Mid-tone border/text */
+
+  /* Battle Card UI — NEVER CHANGE THESE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #1F2937;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── HEADER ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.card-header::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -5%;
+  width: 500px;
+  height: 500px;
+  opacity: 0.07;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 80%, var(--comp-primary) 0%, transparent 60%);
+}
+.card-header .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(234,44,0,0.08);
+  border: 1px solid rgba(234,44,0,0.25);
+  color: var(--comp-primary);
+  margin-bottom: 12px;
+}
+.card-header .date {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 24px;
+}
+.card-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.card-header .tagline {
+  font-size: 20px;
+  color: #6B7280;
+  margin-top: 12px;
+  font-weight: 400;
+}
+.card-header .url {
+  margin-top: 16px;
+}
+.card-header .url a {
+  color: var(--comp-primary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border: 1px solid var(--comp-primary);
+  border-radius: 8px;
+  transition: all 0.2s;
+  display: inline-block;
+}
+.card-header .url a:hover { background: rgba(234,44,0,0.05); }
+
+/* ── SECTIONS ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.section-header .left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--comp-primary);
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+.badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-confirmed);
+  color: var(--badge-confirmed-text);
+}
+.badge-research {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-verify);
+  color: var(--badge-verify-text);
+}
+
+/* ── SECTION 1: LOGO ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.logo-preview {
+  border-radius: 12px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: transform 0.2s;
+}
+.logo-preview:hover { transform: translateY(-2px); }
+.logo-preview img {
+  max-width: 200px; height: auto;
+}
+.logo-preview .bg-label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: #9CA3AF;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.logo-preview.on-white { background: var(--comp-white); }
+.logo-preview.on-dark { background: var(--comp-carbon); }
+.logo-preview.on-canvas { background: var(--comp-canvas); }
+.logo-preview.on-primary { background: var(--comp-primary); }
+
+.logo-description {
+  background: #F9FAFB;
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid #F3F4F6;
+}
+.logo-description h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+.logo-description p, .logo-description {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.7;
+}
+.logo-description strong { color: #1F2937; }
+.logo-description .asset-tag,
+.source-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #EEF2FF;
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #4338CA;
+  font-weight: 500;
+}
+
+/* ── SECTION 2: COLORS ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.color-card {
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.color-card:hover { transform: translateY(-2px); }
+.color-swatch {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+  position: relative;
+}
+.color-swatch .hex-overlay {
+  position: absolute; bottom: 8px; right: 12px;
+  font-family: 'DM Sans', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.3);
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.color-info {
+  padding: 14px 16px;
+}
+.color-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.color-role {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+.color-codes {
+  margin-top: 8px;
+  font-family: 'DM Sans', monospace;
+  font-size: 11px;
+  color: #6B7280;
+  line-height: 1.8;
+}
+
+.verified-note {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #065F46;
+  line-height: 1.6;
+}
+.warning-note {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: #FEF9EE;
+  border: 1px solid #FDE68A;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #92400E;
+  line-height: 1.6;
+}
+
+/* ── SECTION 3: TYPOGRAPHY ── */
+.type-specimen {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.type-specimen-header {
+  padding: 16px 24px;
+  background: #F9FAFB;
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.type-specimen-header .font-name {
+  font-weight: 700;
+  font-size: 16px;
+  color: #111827;
+}
+.type-specimen-header .font-role {
+  font-size: 12px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.type-specimen-body { padding: 32px 24px; }
+.type-sample-display {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  line-height: 1.15;
+  color: #111827;
+}
+.type-sample-body {
+  font-size: 16px;
+  color: #6B7280;
+  max-width: 600px;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.type-custom-note {
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 2px solid var(--comp-primary);
+  background: linear-gradient(135deg, #FFF5F2 0%, #FFFFFF 100%);
+}
+.type-custom-note h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--comp-primary);
+}
+.type-custom-note p { font-size: 14px; line-height: 1.7; color: #555; }
+
+/* ── SECTION 4: POSITIONING ── */
+.position-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.position-card {
+  padding: 24px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+}
+.position-card .label {
+  font-size: 11px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.position-card .value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.4;
+}
+
+/* ── SECTION 5: DESIGN LANGUAGE ── */
+.design-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.design-card {
+  padding: 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  text-align: center;
+}
+.design-card .attr-label {
+  font-size: 11px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.design-card .attr-value {
+  font-weight: 700;
+  font-size: 15px;
+  color: #111827;
+}
+.design-card .attr-note {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-top: 4px;
+}
+
+.strategic-callout {
+  padding: 28px 32px;
+  border-radius: 12px;
+  background: var(--comp-canvas);
+  border: 1px solid #E8E4DA;
+  margin-top: 24px;
+}
+.strategic-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--comp-primary);
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.strategic-callout ul { list-style: none; padding: 0; }
+.strategic-callout li {
+  padding: 8px 0 8px 20px;
+  position: relative;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+}
+.strategic-callout li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--comp-primary);
+  position: absolute;
+  left: 0;
+  top: 15px;
+}
+
+/* ── SECTION 6: REFERENCES ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ref-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+}
+.ref-card:hover {
+  border-color: var(--comp-primary);
+  background: #FFF5F2;
+}
+.ref-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ref-icon.pentagram { background: #F3E8FF; }
+.ref-icon.website { background: #FFF1EE; }
+.ref-icon.linkedin { background: #DBEAFE; }
+.ref-icon.apple { background: #F3F4F6; }
+.ref-title { font-weight: 600; font-size: 14px; color: #111827; }
+.ref-desc { font-size: 12px; color: #9CA3AF; }
+
+/* ── FOOTER ── */
+.card-footer {
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 12px;
+  color: #9CA3AF;
+}
+.card-footer .main-line {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.card-footer .sub-line {
+  font-size: 11px;
+  color: #D1D5DB;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { padding: 0 16px 16px 16px; }
+  .card-header h1 { font-size: 36px; }
+  .color-grid { grid-template-columns: 1fr 1fr; }
+  .position-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr 1fr; }
+  .ref-grid { grid-template-columns: 1fr; }
+  .logo-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link comp-nav__link--active" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+<div class="battle-card">
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="card-header">
+    <div class="badge">Design Battle Card</div>
+    <div class="date">March 2026 &bull; Confidential</div>
+    <h1>Abridge</h1>
+    <div class="tagline">Enterprise-Grade AI for Clinical Conversations &mdash; Ambient Documentation Platform</div>
+    <div class="url"><a href="https://www.abridge.com" target="_blank">abridge.com &rarr;</a></div>
+  </div>
+
+  <!-- ════════ SECTION 1: LOGO & LOGOMARK ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">1</span>
+        <span class="section-title">Logo &amp; Logomark</span>
+      </div>
+      <span class="badge-verified">&#10003; Verified from Live Site</span>
+    </div>
+
+    <div class="logo-grid">
+      <!-- White BG -->
+      <div class="logo-preview on-white">
+        <img src="https://cdn.prod.website-files.com/6279c9d10eb860662e5ec006/664287c9ef936d8ce43517f8_abridge-logo-wordmark-black.webp"
+             alt="Abridge Logo Wordmark - Black on White" />
+        <span class="bg-label">White</span>
+      </div>
+      <!-- Dark BG -->
+      <div class="logo-preview on-dark">
+        <img src="https://cdn.prod.website-files.com/6279c9d10eb860662e5ec006/664287c9ef936d8ce43517f8_abridge-logo-wordmark-black.webp"
+             alt="Abridge Logo Wordmark - Inverted on Dark"
+             style="filter: invert(1);" />
+        <span class="bg-label" style="color:#6B7280;">Dark</span>
+      </div>
+      <!-- Canvas BG -->
+      <div class="logo-preview on-canvas">
+        <img src="https://cdn.prod.website-files.com/6279c9d10eb860662e5ec006/664287c9ef936d8ce43517f8_abridge-logo-wordmark-black.webp"
+             alt="Abridge Logo Wordmark on Canvas" />
+        <span class="bg-label">Canvas</span>
+      </div>
+      <!-- Orange BG -->
+      <div class="logo-preview on-primary">
+        <img src="https://cdn.prod.website-files.com/6279c9d10eb860662e5ec006/664287c9ef936d8ce43517f8_abridge-logo-wordmark-black.webp"
+             alt="Abridge Logo Wordmark on Orange"
+             style="filter: invert(1);" />
+        <span class="bg-label" style="color:rgba(255,255,255,0.6);">Enduring Orange</span>
+      </div>
+    </div>
+
+    <div class="logo-description">
+      <strong>Logo Type:</strong> Custom wordmark rendered in the proprietary "Abridge Font" typeface. The letterforms have distinct architectural character &mdash; note the flat-topped "A" (evoking a bridge arch), the open counters, and the mix of geometric and humanist proportions.<br><br>
+      <strong>Decorative System:</strong> Large-scale bridge "A" shapes appear throughout the site as graphic elements in <span style="color:#EA2C00; font-weight:700;">Enduring Orange (#EA2C00)</span>. These deconstructed letterforms function as framing devices around photography and content, reinforcing the bridge metaphor at every touchpoint.<br><br>
+      <strong>Design Agency:</strong> <a href="https://www.pentagram.com/work/abridge" target="_blank" style="color:#EA2C00;">Pentagram</a><br>
+      <strong>Logo Asset URL:</strong> <code style="font-size:11px; background:#F3F4F6; padding:2px 6px; border-radius:3px;">cdn.prod.website-files.com/.../abridge-logo-wordmark-black.webp</code>
+      <br><span class="source-tag">Source: abridge.com live site, inspected March 2026</span>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 2: BRAND COLORS ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">2</span>
+        <span class="section-title">Brand Color Palette</span>
+      </div>
+      <span class="badge-verified">&#10003; Extracted from Live CSS</span>
+    </div>
+
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#EA2C00;">
+          <span class="hex-overlay">#EA2C00</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Enduring Orange</div>
+          <div class="color-role">Primary Accent / CTA / Brand Mark</div>
+          <div class="color-codes">RGB: 234, 44, 0<br>CSS var: --enduring-orange</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FC5D2B;">
+          <span class="hex-overlay">#FC5D2B</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Enduring Orange (Light)</div>
+          <div class="color-role">CSS Variable Variant</div>
+          <div class="color-codes">RGB: 252, 93, 43<br>CSS var: --enduring-orange (alt)</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#000000;">
+          <span class="hex-overlay">#000000</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Black</div>
+          <div class="color-role">Headings / Logo / Primary Text</div>
+          <div class="color-codes">RGB: 0, 0, 0<br>CSS var: --a-colors--black</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#1C1C1C;">
+          <span class="hex-overlay">#1C1C1C</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Carbon</div>
+          <div class="color-role">Secondary Dark / Footers</div>
+          <div class="color-codes">RGB: 28, 28, 28<br>CSS var: --carbon</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#22253F;">
+          <span class="hex-overlay">#22253F</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Ink</div>
+          <div class="color-role">Dark Navy / Tertiary</div>
+          <div class="color-codes">RGB: 34, 37, 63<br>CSS var: --ink</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#141312;">
+          <span class="hex-overlay">#141312</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Body Text</div>
+          <div class="color-role">Computed body color</div>
+          <div class="color-codes">RGB: 20, 19, 18<br>Computed from body element</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFFFFF; border-bottom:1px solid #E5E7EB;">
+          <span class="hex-overlay" style="background:rgba(0,0,0,0.08); color:#333;">#FFFFFF</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">White</div>
+          <div class="color-role">Primary Background</div>
+          <div class="color-codes">RGB: 255, 255, 255<br>CSS var: --chalk, --a-colors--white</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F5F3EB; border-bottom:1px solid #E5E7EB;">
+          <span class="hex-overlay" style="background:rgba(0,0,0,0.08); color:#333;">#F5F3EB</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Canvas</div>
+          <div class="color-role">Warm Off-White / Section Bg</div>
+          <div class="color-codes">RGB: 245, 243, 235<br>CSS var: --canvas</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#6D645A;">
+          <span class="hex-overlay">#6D645A</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Mid Gray (Warm)</div>
+          <div class="color-role">Borders / Secondary Text</div>
+          <div class="color-codes">RGB: 109, 100, 90<br>Computed from borders</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F6F6F6; border-bottom:1px solid #E5E7EB;">
+          <span class="hex-overlay" style="background:rgba(0,0,0,0.08); color:#333;">#F6F6F6</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Light Gray</div>
+          <div class="color-role">Light Surface / Cards</div>
+          <div class="color-codes">RGB: 246, 246, 246<br>Computed background</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="verified-note">
+      <strong>&#10003; Verified from live CSS.</strong> All colors extracted from abridge.com CSS custom properties and computed element styles on March 26, 2026. The palette is <strong>white-first, not dark-first</strong> &mdash; correcting earlier assumptions. The only non-neutral color in the entire system is <strong>Enduring Orange</strong>, which does all the heavy lifting as the sole accent.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 3: TYPOGRAPHY ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">3</span>
+        <span class="section-title">Typography System</span>
+      </div>
+      <span class="badge-verified">&#10003; Verified from Live CSS</span>
+    </div>
+
+    <div class="type-custom-note">
+      <h4>"Abridge Font" &mdash; Custom Proprietary Typeface</h4>
+      <p>
+        The H1 <code>font-family</code> declaration is <strong>"Abridge Font", sans-serif</strong>. This is the custom typeface developed by Pentagram (referred to in their case study as "Abridge Display"). It renders at <strong>400 weight</strong>, <strong>uppercase</strong>, with <strong>68px</strong> default size on desktop. The letterforms are architecturally inspired &mdash; the "A" has a flat top like a bridge arch, with open counters and a mix of geometric and humanist proportions. Each letter can split and recombine as part of a generative identity system. <strong>This typeface is proprietary and not publicly available.</strong>
+      </p>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-specimen-header">
+        <span class="font-name">"Abridge Font" (Custom Proprietary)</span>
+        <span class="font-role">H1 Headlines &mdash; Display</span>
+      </div>
+      <div class="type-specimen-body">
+        <div class="type-sample-display" style="font-family:'Space Grotesk',sans-serif; text-transform:uppercase; font-weight:400; letter-spacing:0.5px;">
+          INTELLIGENCE AT THE POINT OF CONVERSATION
+        </div>
+        <div style="font-size:13px; color:#999; margin-top:8px;">
+          <strong>CSS:</strong> <code>font-family: "Abridge Font", sans-serif</code> &bull;
+          <code>font-weight: 400</code> &bull;
+          <code>text-transform: uppercase</code> &bull;
+          <code>font-size: 68px</code> (desktop)
+        </div>
+        <div style="font-size:12px; color:#bbb; margin-top:8px;">
+          Note: Rendered above in Space Grotesk as a structural approximation. The actual Abridge Font has more distinctive letterforms (flat-topped A, unique R construction).
+        </div>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-specimen-header">
+        <span class="font-name">Avantt</span>
+        <span class="font-role">Body Copy &mdash; Navigation &mdash; UI</span>
+      </div>
+      <div class="type-specimen-body">
+        <div class="type-sample-display" style="font-family:Arial,sans-serif; font-size:28px;">
+          Enterprise-grade AI for clinical conversations
+        </div>
+        <div class="type-sample-body" style="font-family:Arial,sans-serif;">
+          Abridge is trusted by the largest healthcare systems. Measurably improving outcomes for clinicians, nurses, and revenue cycle teams at scale. Purpose-built for healthcare.
+        </div>
+        <div style="font-family:Arial,sans-serif; font-size:14px; color:#bbb; margin-top:8px;">
+          Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+        </div>
+        <div style="font-family:Arial,sans-serif; font-size:14px; color:#bbb;">
+          0 1 2 3 4 5 6 7 8 9 &bull; ! @ # $ % &amp; * ( )
+        </div>
+        <div style="font-size:13px; color:#999; margin-top:12px;">
+          <strong>CSS:</strong> <code>font-family: Avantt, Arial, sans-serif</code><br>
+          <strong>Type:</strong> Geometric sans-serif by FOMO Fonts &bull; Used for body, nav, buttons, and UI text
+        </div>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-specimen-header">
+        <span class="font-name">Helvetica (International Stack)</span>
+        <span class="font-role">Paragraph Text &mdash; Fallback</span>
+      </div>
+      <div class="type-specimen-body">
+        <div class="type-sample-body" style="font-family:Helvetica,Arial,sans-serif; font-size: 16px;">
+          Some paragraph elements fall back to a broad international font stack: Helvetica, Arial, Hiragino Sans GB, STXihei, Microsoft YaHei, WenQuanYi Micro Hei, Hind, MS Gothic, Apple SD Gothic Neo, NanumBarunGothic, sans-serif.
+        </div>
+        <div style="font-size:13px; color:#999; margin-top:12px;">
+          <strong>CSS:</strong> <code>font-family: Helvetica, Arial, "Hiragino Sans GB", ...</code><br>
+          <strong>Note:</strong> This multilingual stack ensures consistent rendering across East Asian, South Asian, and Latin character sets &mdash; reflects Abridge's global healthcare positioning.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 4: BRAND POSITIONING ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">4</span>
+        <span class="section-title">Brand Positioning &amp; Messaging</span>
+      </div>
+    </div>
+
+    <div class="position-grid">
+      <div class="position-card">
+        <div class="label">Hero Headline (Live)</div>
+        <div class="value">"Intelligence at the Point of Conversation"</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Mission (Pentagram)</div>
+        <div class="value">"Power Deeper Understanding"</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Vision (Pentagram)</div>
+        <div class="value">"Heal Healthcare Together"</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Category Descriptor</div>
+        <div class="value">Enterprise-grade AI for clinical conversations</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Design Agency</div>
+        <div class="value">Pentagram</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Trust Signal</div>
+        <div class="value">Best in KLAS 2025 &amp; 2026, 250+ health systems</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 5: DESIGN LANGUAGE ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">5</span>
+        <span class="section-title">Design Language &amp; Visual System</span>
+      </div>
+    </div>
+
+    <div class="design-grid">
+      <div class="design-card">
+        <div class="attr-label">Primary Theme</div>
+        <div class="attr-value">White-First</div>
+        <div class="attr-note">Clean white backgrounds dominate</div>
+      </div>
+      <div class="design-card">
+        <div class="attr-label">Palette Strategy</div>
+        <div class="attr-value">Monochrome + Single Accent</div>
+        <div class="attr-note">Black/white + Enduring Orange only</div>
+      </div>
+      <div class="design-card">
+        <div class="attr-label">Accent Color</div>
+        <div class="attr-value" style="color:var(--comp-primary);">Enduring Orange</div>
+        <div class="attr-note">Warm red-orange #EA2C00</div>
+      </div>
+      <div class="design-card">
+        <div class="attr-label">Photography</div>
+        <div class="attr-value">Real Clinicians</div>
+        <div class="attr-note">Candid, diverse, in clinical settings</div>
+      </div>
+      <div class="design-card">
+        <div class="attr-label">Graphic System</div>
+        <div class="attr-value">Bridge "A" Supergraphics</div>
+        <div class="attr-note">Deconstructed letterforms as frames</div>
+      </div>
+      <div class="design-card">
+        <div class="attr-label">Identity Type</div>
+        <div class="attr-value">Generative</div>
+        <div class="attr-note">Letterforms transform contextually</div>
+      </div>
+    </div>
+
+    <div class="strategic-callout">
+      <h4>Strategic Read for Your Rebrand</h4>
+      <ul>
+        <li><strong>Single-accent discipline:</strong> Abridge uses exactly ONE non-neutral color across their entire brand. Enduring Orange does all the work &mdash; CTA buttons, decorative bridge graphics, link hover states. This extreme restraint makes the brand instantly recognizable. It's a bold choice that most competitors haven't matched.</li>
+        <li><strong>Not actually dark-themed:</strong> Despite the Pentagram case study suggesting dark applications, the live site is white-first. The warmth comes from the Canvas (#F5F3EB) off-white and the orange accent, not from dark backgrounds. This is more approachable than a dark-first aesthetic.</li>
+        <li><strong>Anti-healthcare palette:</strong> No blue, no green, no teal, no pastels. They've completely abandoned the conventional healthcare color language. This is rare in B2B healthcare AI and leaves traditional territory wide open.</li>
+        <li><strong>Custom type as moat:</strong> "Abridge Font" is proprietary and cannot be replicated. The generative letterform system (where characters split into bridge shapes) creates a visual language that's uniquely theirs. Any competitor using a similar architectural type approach will look derivative.</li>
+        <li><strong>Avantt as body font:</strong> Using a premium geometric sans (Avantt by FOMO Fonts) rather than a free Google Font signals investment in craft and premium positioning.</li>
+        <li><strong>The bridge metaphor is fully owned:</strong> Name, logo, typeface, graphic system, and narrative are all built on the bridge concept. This territory is closed.</li>
+        <li><strong>Potential vulnerability:</strong> The minimalist monochrome palette could feel cold or corporate. There may be space for a competitor that brings more warmth, color range, or visual energy while still feeling modern and trustworthy.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 6: BRAND REFERENCES ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">6</span>
+        <span class="section-title">Brand References &amp; Resources</span>
+      </div>
+    </div>
+
+    <div class="ref-grid">
+      <a href="https://www.pentagram.com/work/abridge" target="_blank" class="ref-card">
+        <div class="ref-icon pentagram">&#9733;</div>
+        <div>
+          <div class="ref-title">Pentagram Case Study</div>
+          <div class="ref-desc">Full brand identity breakdown &amp; design rationale</div>
+        </div>
+      </a>
+      <a href="https://www.pentagram.com/work/abridge/story" target="_blank" class="ref-card">
+        <div class="ref-icon pentagram">&#128214;</div>
+        <div>
+          <div class="ref-title">Pentagram &mdash; The Story</div>
+          <div class="ref-desc">Deep dive into design process &amp; Pont du Gard inspiration</div>
+        </div>
+      </a>
+      <a href="https://www.abridge.com" target="_blank" class="ref-card">
+        <div class="ref-icon website">&#127760;</div>
+        <div>
+          <div class="ref-title">Abridge.com</div>
+          <div class="ref-desc">Live site &mdash; primary source for all CSS extractions</div>
+        </div>
+      </a>
+      <a href="https://www.abridge.com/about" target="_blank" class="ref-card">
+        <div class="ref-icon website">&#128100;</div>
+        <div>
+          <div class="ref-title">Abridge About Page</div>
+          <div class="ref-desc">Company story, leadership, mission</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/company/abridgehq" target="_blank" class="ref-card">
+        <div class="ref-icon linkedin">&#128101;</div>
+        <div>
+          <div class="ref-title">Abridge LinkedIn</div>
+          <div class="ref-desc">Latest brand content &amp; messaging samples</div>
+        </div>
+      </a>
+      <a href="https://apps.apple.com/us/app/abridge-for-clinicians/id1580370720" target="_blank" class="ref-card">
+        <div class="ref-icon apple">&#128241;</div>
+        <div>
+          <div class="ref-title">Abridge iOS App</div>
+          <div class="ref-desc">App icon, screenshots, interface design</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ════════ FOOTER ════════ -->
+  <div class="card-footer">
+    <div class="main-line">Abridge Design Battle Card &bull; Prepared March 26, 2026 &bull; Confidential &mdash; For Internal Rebrand Use Only</div>
+    <div class="sub-line">Colors, fonts, and logo verified from abridge.com live CSS via Chrome DevTools extraction</div>
+  </div>
+
+</div>
+
+</body>
+</html>

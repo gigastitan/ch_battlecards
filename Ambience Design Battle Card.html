@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ambience Healthcare — Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap');
+
+:root {
+  /* ═══ VERIFIED Ambience Healthcare Brand Colors (from live CSS, March 2026) ═══ */
+  --comp-primary: #6363F1;          /* Primary accent — violet, CTAs, data highlights, gradient glows */
+  --comp-primary-dark: #4F4FD9;     /* Darker violet variant for hover states */
+  --comp-black: #000112;            /* Deep navy/black — primary background */
+  --comp-dark: #000112;             /* Site-wide dark background */
+  --comp-body-text: #C5CAE8;        /* Lavender — body text on dark backgrounds */
+  --comp-white: #FFFFFF;            /* White — headlines, key text */
+  --comp-deep-purple: #1A0459;      /* Deep purple — gradient endpoints, card backgrounds */
+  --comp-border: rgba(99, 99, 241, 0.2); /* Purple-tinted border */
+
+  /* Battle Card UI — NEVER CHANGE THESE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #1F2937;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── HEADER ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.card-header .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #EEF2FF;
+  color: #4338CA;
+  margin-bottom: 12px;
+}
+.card-header .date {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 24px;
+}
+.card-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.card-header .tagline {
+  font-size: 20px;
+  color: #6B7280;
+  margin-top: 12px;
+  font-weight: 400;
+}
+.card-header .url {
+  margin-top: 16px;
+}
+.card-header .url a {
+  color: #6366F1;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.card-header .url a:hover { text-decoration: underline; }
+
+/* ── SECTIONS ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.section-header .left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--comp-primary);
+  color: #FFFFFF;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+.badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-confirmed);
+  color: var(--badge-confirmed-text);
+}
+.badge-research {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-verify);
+  color: var(--badge-verify-text);
+}
+
+/* ── SECTION 1: LOGO ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.logo-preview {
+  border-radius: 12px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: transform 0.2s;
+}
+.logo-preview:hover { transform: translateY(-2px); }
+.logo-preview .bg-label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: #9CA3AF;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.logo-preview.on-white { background: #FFFFFF; }
+.logo-preview.on-dark { background: #000112; }
+.logo-preview.on-light { background: #F4F4F4; }
+.logo-preview.on-primary { background: #6363F1; }
+
+.logo-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.logo-description {
+  background: #F9FAFB;
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid #F3F4F6;
+}
+.logo-description h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+.logo-description p {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.7;
+}
+.logo-description .asset-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #F3F4F6;
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+}
+
+/* ── SECTION 2: COLORS ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.color-card {
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.color-card:hover { transform: translateY(-2px); }
+.color-swatch {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+}
+.color-swatch .hex-overlay {
+  font-family: 'DM Sans', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.color-swatch.light-swatch .hex-overlay {
+  color: #374151;
+  text-shadow: none;
+}
+.color-info {
+  padding: 14px;
+}
+.color-info .name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.color-info .role {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+}
+.color-info .detail {
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+  line-height: 1.8;
+}
+
+.note-box {
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.verified-note {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #166534;
+}
+.warning-note {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+}
+
+/* ── SECTION 3: TYPOGRAPHY ── */
+.type-specimen {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 16px;
+  transition: transform 0.2s;
+}
+.type-specimen:hover { transform: translateY(-2px); }
+.type-specimen .font-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.type-specimen .font-role {
+  font-size: 12px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+.type-specimen .display-sample {
+  font-size: 42px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.type-specimen .body-sample {
+  font-size: 16px;
+  color: #4B5563;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 640px;
+}
+.type-specimen .alphabet {
+  font-size: 14px;
+  color: #9CA3AF;
+  letter-spacing: 0.04em;
+  word-break: break-all;
+  margin-bottom: 16px;
+}
+.type-specimen .css-detail {
+  font-family: 'DM Sans', monospace;
+  font-size: 12px;
+  color: #6B7280;
+  background: #F9FAFB;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.8;
+}
+
+/* ── SECTION 4: POSITIONING ── */
+.position-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.position-card {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.position-card:hover { transform: translateY(-2px); }
+.position-card .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.position-card .value {
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.6;
+  font-weight: 500;
+}
+.position-card .value.italic { font-style: italic; color: #6B7280; font-weight: 400; }
+
+/* ── SECTION 5: DESIGN LANGUAGE ── */
+.design-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.design-attr {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.design-attr:hover { transform: translateY(-2px); }
+.design-attr .attr-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.design-attr .attr-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.strategy-callout {
+  padding: 28px 32px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #F5F3FF 0%, #EEF2FF 100%);
+  border: 1px solid #DDD6FE;
+}
+.strategy-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4338CA;
+  margin-bottom: 16px;
+}
+.strategy-callout ul {
+  list-style: none;
+  padding: 0;
+}
+.strategy-callout li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+}
+.strategy-callout li::before {
+  content: '\2192';
+  position: absolute;
+  left: 0;
+  color: #6366F1;
+  font-weight: 600;
+}
+
+/* ── SECTION 6: REFERENCES ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ref-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ref-card:hover {
+  border-color: #6366F1;
+  transform: translateY(-2px);
+}
+.ref-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #F3F4F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ref-card .ref-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.ref-card .ref-desc {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+/* ── FOOTER ── */
+.card-footer {
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 12px;
+  color: #9CA3AF;
+}
+.card-footer .main-line {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.card-footer .sub-line {
+  font-size: 11px;
+  color: #D1D5DB;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { padding: 0 16px 16px 16px; }
+  .card-header h1 { font-size: 36px; }
+  .color-grid { grid-template-columns: 1fr 1fr; }
+  .position-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr; }
+  .ref-grid { grid-template-columns: 1fr; }
+  .logo-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link comp-nav__link--active" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+
+<div class="battle-card">
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="card-header">
+    <div class="badge">Design Battle Card</div>
+    <div class="date">March 2026 · Confidential</div>
+    <h1>Ambience Healthcare</h1>
+    <div class="tagline">AI Operating System for Healthcare — "Build AI That Restores Humanity to Healthcare"</div>
+    <div class="url"><a href="https://www.ambiencehealthcare.com/" target="_blank">www.ambiencehealthcare.com ↗</a></div>
+  </div>
+
+  <!-- ════════ SECTION 1: LOGO & LOGOMARK ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">1</span>
+        <span class="section-title">Logo &amp; Logomark</span>
+      </div>
+      <span class="badge-research">◐ Visual Description</span>
+    </div>
+
+    <div class="logo-grid">
+      <!-- White BG -->
+      <div class="logo-preview on-white">
+        <span class="logo-text" style="color:#000112;">&#8767; ambience</span>
+        <span class="bg-label">White</span>
+      </div>
+      <!-- Dark BG -->
+      <div class="logo-preview on-dark">
+        <span class="logo-text" style="color:#FFFFFF;">&#8767; ambience</span>
+        <span class="bg-label" style="color:#6B7280;">Dark (#000112)</span>
+      </div>
+      <!-- Light/Canvas BG -->
+      <div class="logo-preview on-light">
+        <span class="logo-text" style="color:#000112;">&#8767; ambience</span>
+        <span class="bg-label">Light (#F4F4F4)</span>
+      </div>
+      <!-- Primary Accent BG -->
+      <div class="logo-preview on-primary">
+        <span class="logo-text" style="color:#FFFFFF;">&#8767; ambience</span>
+        <span class="bg-label" style="color:rgba(255,255,255,0.7);">Primary (#6363F1)</span>
+      </div>
+    </div>
+
+    <div class="logo-description">
+      <h4>Logo Analysis</h4>
+      <p>
+        <strong>Type:</strong> Abstract logomark + wordmark system. The Ambience logo consists of three nested arch/wave strokes forming an abstract "A" mountain shape (the logomark) paired with "Ambience" set in bold Inter Display. The wave-mark evokes ambient sound waves and clinical intelligence flowing through healthcare systems. The three arcs stack concentrically — a visual metaphor for layers of AI operating infrastructure. On the dark-first site, the logo appears white on #000112 navy-black.
+      </p>
+      <p style="margin-top:8px;">
+        <strong>Design Agency:</strong> Not publicly disclosed. Site built on Framer platform.
+      </p>
+      <span class="asset-tag">Framer-rendered component · Not extractable as SVG · Visual representation above</span>
+    </div>
+
+    <div class="note-box warning-note" style="margin-top:16px;">
+      <strong>⚠ Logo Extraction Note:</strong> The Ambience logo is rendered as a Framer component with non-standard DOM structure. Standard SVG/image extraction methods returned empty results. The text representation above is a visual approximation — the actual logomark uses three nested concentric arcs forming an abstract "A" shape alongside the "Ambience" wordmark.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 2: BRAND COLOR PALETTE ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">2</span>
+        <span class="section-title">Brand Color Palette</span>
+      </div>
+      <span class="badge-verified">✓ Extracted from Live CSS</span>
+    </div>
+
+    <div class="color-grid">
+      <!-- Deep Navy/Black -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#000112;">
+          <span class="hex-overlay">#000112</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Deep Navy/Black</div>
+          <div class="role">Primary background — entire site dark canvas</div>
+          <div class="detail">
+            RGB: 0, 1, 18<br>
+            CSS: body background
+          </div>
+        </div>
+      </div>
+
+      <!-- Violet Accent -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#6363F1;">
+          <span class="hex-overlay">#6363F1</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Violet Accent</div>
+          <div class="role">Primary accent — CTAs, data highlights, gradient glows</div>
+          <div class="detail">
+            RGB: 99, 99, 241<br>
+            CSS: --comp-primary
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep Purple -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#1A0459;">
+          <span class="hex-overlay">#1A0459</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Deep Purple</div>
+          <div class="role">Gradient endpoint — card backgrounds, section depth</div>
+          <div class="detail">
+            RGB: 26, 4, 89<br>
+            CSS: gradient stops
+          </div>
+        </div>
+      </div>
+
+      <!-- Lavender -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C5CAE8;">
+          <span class="hex-overlay" style="color:#1A0459; text-shadow:none;">#C5CAE8</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Lavender Text</div>
+          <div class="role">Body text — paragraphs, descriptions on dark bg</div>
+          <div class="detail">
+            RGB: 197, 202, 232<br>
+            CSS: p color
+          </div>
+        </div>
+      </div>
+
+      <!-- White -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background:#FFFFFF; border: 1px solid #E5E7EB;">
+          <span class="hex-overlay">#FFFFFF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">White</div>
+          <div class="role">Headlines — key display text on dark backgrounds</div>
+          <div class="detail">
+            RGB: 255, 255, 255<br>
+            CSS: h1, h2 color
+          </div>
+        </div>
+      </div>
+
+      <!-- Purple Border -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: linear-gradient(135deg, rgba(99, 99, 241, 0.3), rgba(99, 99, 241, 0.1));">
+          <span class="hex-overlay">rgba(99,99,241,0.2)</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Purple Border</div>
+          <div class="role">Card borders — subtle purple-tinted separators</div>
+          <div class="detail">
+            Alpha: 20% of #6363F1<br>
+            CSS: border-color
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Extraction Note:</strong> Colors extracted via computed styles from live site (March 2026). Ambience's palette is aggressively monochrome — a single <strong>#6363F1 violet accent</strong> on near-black #000112 backgrounds. This is the most "tech startup" identity in the healthcare AI ambient documentation space. Violet is underused in healthcare branding (most competitors use blues, greens, or warm tones), giving Ambience high visual distinctiveness. The dark-first approach reads Silicon Valley AI-first, healthcare-second.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 3: TYPOGRAPHY SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">3</span>
+        <span class="section-title">Typography System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live CSS</span>
+    </div>
+
+    <!-- Inter Display -->
+    <div class="type-specimen">
+      <div class="font-name">Inter Display</div>
+      <div class="font-role">Display Headlines — Body Copy — Primary Brand Typeface</div>
+      <div class="display-sample" style="font-family: 'Inter', sans-serif;">
+        The AI Platform Clinicians Choose for Documentation and Coding
+      </div>
+      <div class="body-sample" style="font-family: 'Inter', sans-serif;">
+        Ambience helps your health system reduce burden, strengthen revenue integrity and ensure compliance so clinicians across every specialty can focus on delivering their best care. Inter Display is the optical-size variant of the free Inter family, loaded from Framer's CDN.
+      </div>
+      <div class="alphabet" style="font-family: 'Inter', sans-serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%&amp;*()
+      </div>
+      <div class="css-detail">
+        font-family: "Inter Display", "Inter", ui-sans-serif, system-ui, sans-serif;<br>
+        H1: font-size: 52px · font-weight: 600 · color: #FFFFFF · line-height: ~1.1<br>
+        Body: font-size: 16px · font-weight: 400 · color: #C5CAE8<br>
+        Source: Framer CDN (framerusercontent.com) · Free — no license required
+      </div>
+    </div>
+
+    <!-- Fragment Mono -->
+    <div class="type-specimen">
+      <div class="font-name">Fragment Mono</div>
+      <div class="font-role">Data Callouts — Stats — Code/Technical Accent</div>
+      <div class="display-sample" style="font-family: 'Fragment Mono', monospace; font-size: 32px;">
+        80% Avg Utilization · 45% Less Charting
+      </div>
+      <div class="body-sample" style="font-family: 'Fragment Mono', monospace;">
+        Used for statistics, performance metrics, and data-forward callouts. Fragment Mono reinforces the developer/platform personality — positioning Ambience as AI infrastructure, not just a clinical tool.
+      </div>
+      <div class="alphabet" style="font-family: 'Fragment Mono', monospace;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%&amp;*()
+      </div>
+      <div class="css-detail">
+        font-family: "Fragment Mono", monospace;<br>
+        Stats: font-size: 14–16px · font-weight: 400 · color: #6363F1<br>
+        Source: Google Fonts (fonts.gstatic.com) · Free — no license required
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Typography Note:</strong> Both fonts are freely available — Inter via Framer CDN (part of the open-source Inter family) and Fragment Mono via Google Fonts. No proprietary typefaces detected, no approximation required. The Inter + Fragment Mono pairing is pragmatic and scalable — practical for the Framer platform, but lacks the personality investment of competitors who license premium commercial typefaces (e.g., Suki's General Grotesque + ABC Monument Grotesk). This signals engineering-culture pragmatism over design expressiveness.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 4: BRAND POSITIONING & MESSAGING ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">4</span>
+        <span class="section-title">Brand Positioning &amp; Messaging</span>
+      </div>
+      <span class="badge-research">◐ Research-Based</span>
+    </div>
+
+    <div class="position-grid">
+      <div class="position-card">
+        <div class="label">Hero Headline (Live Site)</div>
+        <div class="value">"The AI Platform Clinicians Choose for Documentation and Coding"</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Brand Tagline / Subhead</div>
+        <div class="value">"Reduce burden, strengthen revenue integrity and ensure compliance so clinicians can focus on delivering their best care."</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Mission</div>
+        <div class="value">"Build AI that restores humanity to healthcare" — "Supercharging clinicians with AI superpowers"</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Category Descriptor</div>
+        <div class="value">AI Operating System for Healthcare / AI Medical Scribe &amp; Coding Platform</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Key Trust Signals</div>
+        <div class="value">KLAS/CHIME 2026 Trailblazer Award Winner · Cleveland Clinic, John Muir Health, Ardent Health partnerships · 80% avg utilization · 45% less charting time · #1 in bake-offs</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Company History</div>
+        <div class="value">Founded 2020 by Mike Ng &amp; Nikhil Buduma (MIT) in San Francisco. $313M+ total funding at $1B valuation. Investors: a16z, Oak HC/FT, OpenAI Startup Fund, Kleiner Perkins, Optum Ventures.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Design Agency</div>
+        <div class="value italic">Not publicly disclosed — site built on Framer</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Platform Architecture</div>
+        <div class="value">"AI Operating System" framing — positions as infrastructure-layer intelligence across documentation, coding, CDI, referral management. Not just a single-feature scribe.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 5: DESIGN LANGUAGE & VISUAL SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">5</span>
+        <span class="section-title">Design Language &amp; Visual System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="design-grid">
+      <div class="design-attr">
+        <div class="attr-label">Primary Theme</div>
+        <div class="attr-value">Dark-first — #000112 near-black canvas, no light mode variant observed</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Palette Strategy</div>
+        <div class="attr-value">Monochrome (navy-black/white) + single violet accent (#6363F1)</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Accent Color Approach</div>
+        <div class="attr-value">Violet as energy — CTAs, data highlights, gradient glows, card borders</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Photography Style</div>
+        <div class="attr-value">Product-led — data screenshots, UI mockups over clinical photography. Performance metrics front-and-center.</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Graphic System</div>
+        <div class="attr-value">Gradient glows, dotted/grid chart patterns, purple highlight bars, subtle purple-bordered cards</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">CTA Style</div>
+        <div class="attr-value">Purple pill buttons (border-radius ~999px) on dark bg. Ghost/outlined secondary CTAs with purple borders.</div>
+      </div>
+    </div>
+
+    <div class="strategy-callout">
+      <h4>Strategic Analysis — Competitive Implications</h4>
+      <ul>
+        <li><strong>Ambience owns the "tech-forward dark mode" territory.</strong> The #000112 + violet combo reads Silicon Valley AI-first, healthcare-second. This is the most aggressively distinct visual identity in the ambient documentation space — but may polarize traditional enterprise buyers who expect clean, bright, clinical aesthetics.</li>
+        <li><strong>Color psychology: violet is underused in healthcare.</strong> Unlike competitors (Suki warm yellows, Nuance clinical blues, Abridge teal/green), a single purple accent connotes innovation &amp; premium tech. High distinctiveness, but reads colder and less approachable than warm-palette competitors.</li>
+        <li><strong>Typography pragmatism signals engineering culture.</strong> Inter Display is safe, scalable, free. Practical for the Framer platform but lacks personality investment vs. competitors who license premium commercial typefaces (Suki's $2K-5K+/yr type system). Fragment Mono adds developer credibility but reinforces "platform" over "care."</li>
+        <li><strong>Dark mode is both moat and limitation.</strong> Dark-only design makes Ambience unmistakable in a sea of light healthcare sites. Strong differentiator in digital, but challenging for print collateral, co-marketing with enterprise health systems, and conservative procurement contexts. No light-variant was observed on the live site.</li>
+        <li><strong>"AI Operating System" framing is ambitious.</strong> Fragment Mono for stats reinforces developer/data-platform personality. Positions as infrastructure-layer intelligence, not just a clinical decision-support tool. This is the most aggressive positioning in the competitive set.</li>
+        <li><strong>White space opportunity: "bright, human-centered, warm."</strong> Ambience has claimed "dark + purple + data." Suki has claimed "warm + dark + bold." The unclaimed territory is a brand that's bright, colorful, emotionally warm AND professionally credible — combining accessibility + clinical humanity + modern aesthetics in a light-first design system.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 6: BRAND REFERENCES & RESOURCES ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">6</span>
+        <span class="section-title">Brand References &amp; Resources</span>
+      </div>
+    </div>
+
+    <div class="ref-grid">
+      <a href="https://www.ambiencehealthcare.com/" target="_blank" class="ref-card">
+        <div class="ref-icon">🌐</div>
+        <div>
+          <div class="ref-title">Ambience Website</div>
+          <div class="ref-desc">Primary company website — ambiencehealthcare.com</div>
+        </div>
+      </a>
+      <a href="https://www.ambiencehealthcare.com/careers" target="_blank" class="ref-card">
+        <div class="ref-icon">ℹ️</div>
+        <div>
+          <div class="ref-title">Careers &amp; Mission</div>
+          <div class="ref-desc">Company mission, culture, and team positioning</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/company/ambiencehealthcare" target="_blank" class="ref-card">
+        <div class="ref-icon">💼</div>
+        <div>
+          <div class="ref-title">LinkedIn</div>
+          <div class="ref-desc">Company profile — partnerships and updates</div>
+        </div>
+      </a>
+      <a href="https://www.ambiencehealthcare.com/blog/ambience-healthcare-announces-243-million-series-c-to-scale-its-ai-platform-for-health-systems" target="_blank" class="ref-card">
+        <div class="ref-icon">💰</div>
+        <div>
+          <div class="ref-title">Series C Announcement</div>
+          <div class="ref-desc">$243M raise — investor and valuation details</div>
+        </div>
+      </a>
+      <a href="https://news.mit.edu/2024/ambience-equips-doctors-with-ai-co-pilots-1016" target="_blank" class="ref-card">
+        <div class="ref-icon">🎓</div>
+        <div>
+          <div class="ref-title">MIT News Profile</div>
+          <div class="ref-desc">Founders Mike Ng &amp; Nikhil Buduma — origin story</div>
+        </div>
+      </a>
+      <a href="https://www.fiercehealthcare.com/health-tech/ambience-banks-243m-series-c-investors-continue-bet-big-ambient-ai" target="_blank" class="ref-card">
+        <div class="ref-icon">📰</div>
+        <div>
+          <div class="ref-title">Fierce Healthcare</div>
+          <div class="ref-desc">Series C coverage — market analysis &amp; competitive landscape</div>
+        </div>
+      </a>
+      <a href="https://www.crunchbase.com/organization/ambience-healthcare" target="_blank" class="ref-card">
+        <div class="ref-icon">📊</div>
+        <div>
+          <div class="ref-title">Crunchbase Profile</div>
+          <div class="ref-desc">Full funding history, investors, and company data</div>
+        </div>
+      </a>
+      <a href="https://x.com/AmbienceAI" target="_blank" class="ref-card">
+        <div class="ref-icon">🐦</div>
+        <div>
+          <div class="ref-title">Twitter/X</div>
+          <div class="ref-desc">Social media — company updates and announcements</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ════════ FOOTER ════════ -->
+  <div class="card-footer">
+    <div class="main-line">Ambience Healthcare Design Battle Card · Prepared March 2026 · Confidential — For Internal Rebrand Use Only</div>
+    <div class="sub-line">Colors and fonts verified from ambiencehealthcare.com live site via Chrome computed styles extraction + web research · Logo is Framer-rendered (visual description provided) · All fonts freely available — no proprietary typefaces</div>
+  </div>
+
+</div>
+
+</body>
+</html>

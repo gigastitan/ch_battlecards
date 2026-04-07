@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ellipsis Health — Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ═══ VERIFIED Ellipsis Health Brand Colors (from live CSS, April 2026) ═══ */
+  --comp-primary: #13AF8A;          /* Teal/green — CTA buttons, accent dots, quotes, active states */
+  --comp-primary-dark: #0E8D6F;     /* Darker teal for hover states */
+  --comp-black: #001C19;            /* Dark forest green — headings, dark sections, footer bg */
+  --comp-dark: #001C19;             /* Same dark forest */
+  --comp-body-text: #001C19;        /* Body text on light backgrounds */
+  --comp-white: #FFFFFF;            /* White — content areas, cards */
+  --comp-light: #F0EEE6;            /* Warm cream/beige — hero bg, light section backgrounds */
+  --comp-light-gray: #F0EEE6;      /* Same warm cream */
+  --comp-cream-text: #F0EEE6;       /* Cream text on dark backgrounds */
+
+  /* Battle Card UI — NEVER CHANGE THESE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #1F2937;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── HEADER ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.card-header .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #EEF2FF;
+  color: #4338CA;
+  margin-bottom: 12px;
+}
+.card-header .date {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 24px;
+}
+.card-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.card-header .tagline {
+  font-size: 20px;
+  color: #6B7280;
+  margin-top: 12px;
+  font-weight: 400;
+}
+.card-header .url {
+  margin-top: 16px;
+}
+.card-header .url a {
+  color: #6366F1;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.card-header .url a:hover { text-decoration: underline; }
+
+/* ── SECTIONS ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.section-header .left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--comp-primary);
+  color: #FFFFFF;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+.badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-confirmed);
+  color: var(--badge-confirmed-text);
+}
+.badge-research {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-verify);
+  color: var(--badge-verify-text);
+}
+
+/* ── SECTION 1: LOGO ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.logo-preview {
+  border-radius: 12px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: transform 0.2s;
+}
+.logo-preview:hover { transform: translateY(-2px); }
+.logo-preview img { height: 50px; width: auto; }
+.logo-preview .bg-label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: #9CA3AF;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.logo-preview.on-white { background: #FFFFFF; }
+.logo-preview.on-dark { background: var(--comp-black); }
+.logo-preview.on-light { background: var(--comp-light); }
+.logo-preview.on-primary { background: var(--comp-primary); }
+
+.logo-description {
+  background: #F9FAFB;
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid #F3F4F6;
+}
+.logo-description h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+.logo-description p {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.7;
+}
+.logo-description .asset-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #F3F4F6;
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+}
+
+/* ── SECTION 2: COLORS ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.color-card {
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.color-card:hover { transform: translateY(-2px); }
+.color-swatch {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+}
+.color-swatch .hex-overlay {
+  font-family: 'DM Sans', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.color-swatch.light-swatch .hex-overlay {
+  color: #374151;
+  text-shadow: none;
+}
+.color-info {
+  padding: 14px;
+}
+.color-info .name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.color-info .role {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+}
+.color-info .detail {
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+  line-height: 1.8;
+}
+
+.note-box {
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.verified-note {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #166534;
+}
+.warning-note {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+}
+
+/* ── SECTION 3: TYPOGRAPHY ── */
+.type-specimen {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 16px;
+  transition: transform 0.2s;
+}
+.type-specimen:hover { transform: translateY(-2px); }
+.type-specimen .font-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.type-specimen .font-role {
+  font-size: 12px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+.type-specimen .display-sample {
+  font-size: 42px;
+  font-weight: 500;
+  color: #111827;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.type-specimen .body-sample {
+  font-size: 16px;
+  color: #4B5563;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 640px;
+}
+.type-specimen .alphabet {
+  font-size: 14px;
+  color: #9CA3AF;
+  letter-spacing: 0.04em;
+  word-break: break-all;
+  margin-bottom: 16px;
+}
+.type-specimen .css-detail {
+  font-family: 'DM Sans', monospace;
+  font-size: 12px;
+  color: #6B7280;
+  background: #F9FAFB;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.8;
+}
+
+/* ── SECTION 4: POSITIONING ── */
+.position-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.position-card {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.position-card:hover { transform: translateY(-2px); }
+.position-card .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.position-card .value {
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.6;
+  font-weight: 500;
+}
+.position-card .value.italic { font-style: italic; color: #6B7280; font-weight: 400; }
+
+/* ── SECTION 5: DESIGN LANGUAGE ── */
+.design-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.design-attr {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.design-attr:hover { transform: translateY(-2px); }
+.design-attr .attr-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.design-attr .attr-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.strategy-callout {
+  padding: 28px 32px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #F5F3FF 0%, #EEF2FF 100%);
+  border: 1px solid #DDD6FE;
+}
+.strategy-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4338CA;
+  margin-bottom: 16px;
+}
+.strategy-callout ul {
+  list-style: none;
+  padding: 0;
+}
+.strategy-callout li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+}
+.strategy-callout li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #6366F1;
+  font-weight: 600;
+}
+
+/* ── SECTION 6: REFERENCES ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ref-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ref-card:hover {
+  border-color: #6366F1;
+  transform: translateY(-2px);
+}
+.ref-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #F3F4F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ref-card .ref-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.ref-card .ref-desc {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+/* ── FOOTER ── */
+.card-footer {
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 12px;
+  color: #9CA3AF;
+}
+.card-footer .main-line {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.card-footer .sub-line {
+  font-size: 11px;
+  color: #D1D5DB;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { padding: 0 16px 16px 16px; }
+  .card-header h1 { font-size: 36px; }
+  .color-grid { grid-template-columns: 1fr 1fr; }
+  .position-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr; }
+  .ref-grid { grid-template-columns: 1fr; }
+  .logo-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link comp-nav__link--active" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+
+<div class="battle-card">
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="card-header">
+    <div class="badge">Design Battle Card</div>
+    <div class="date">April 2026 · Confidential</div>
+    <h1>Ellipsis Health</h1>
+    <div class="tagline">AI Care Manager — "The Most Trusted AI Care Manager in Healthcare"</div>
+    <div class="url"><a href="https://ellipsishealth.com/" target="_blank">ellipsishealth.com ↗</a></div>
+  </div>
+
+  <!-- ════════ SECTION 1: LOGO & LOGOMARK ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">1</span>
+        <span class="section-title">Logo &amp; Logomark</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="logo-grid">
+      <!-- White BG — natural dark logo -->
+      <div class="logo-preview on-white">
+        <img src="https://ellipsishealth.com/wp-content/uploads/2025/04/logo-ellipsis-1.png" alt="Ellipsis Health logo" style="height:50px;width:auto;">
+        <span class="bg-label">White</span>
+      </div>
+      <!-- Dark BG — inverted to white/cream -->
+      <div class="logo-preview on-dark">
+        <img src="https://ellipsishealth.com/wp-content/uploads/2025/04/logo-ellipsis-1.png" alt="Ellipsis Health logo on dark" style="height:50px;width:auto;filter:brightness(0) invert(1);">
+        <span class="bg-label" style="color:#6B7280;">Dark (#001C19)</span>
+      </div>
+      <!-- Cream BG — natural dark logo -->
+      <div class="logo-preview on-light">
+        <img src="https://ellipsishealth.com/wp-content/uploads/2025/04/logo-ellipsis-1.png" alt="Ellipsis Health logo on cream" style="height:50px;width:auto;">
+        <span class="bg-label">Cream (#F0EEE6)</span>
+      </div>
+      <!-- Primary BG — inverted to white -->
+      <div class="logo-preview on-primary">
+        <img src="https://ellipsishealth.com/wp-content/uploads/2025/04/logo-ellipsis-1.png" alt="Ellipsis Health logo on primary" style="height:50px;width:auto;filter:brightness(0) invert(1);">
+        <span class="bg-label" style="color:rgba(255,255,255,0.7);">Primary (#13AF8A)</span>
+      </div>
+    </div>
+
+    <div class="logo-description">
+      <h4>Logo Analysis</h4>
+      <p>
+        <strong>Type:</strong> Typographic wordmark — "ELLIPSIS" set in bold, wide-spaced uppercase sans-serif with "HEALTH" below in smaller tracked uppercase. The defining typographic detail is the "P" in ELLIPSIS, which incorporates three dots (an actual ellipsis "...") replacing the counter/bowl of the letter — a clever and distinctive visual pun that directly references the brand name. This creates an immediately recognizable typographic signature. The logo is rendered as a PNG (not SVG), hosted on WordPress. The footer uses a white/cream version on the dark forest green background.
+      </p>
+      <p style="margin-top:8px;">
+        <strong>Design Agency:</strong> Not publicly disclosed. Site built on WordPress.
+      </p>
+      <span class="asset-tag">PNG hosted · wp-content · 322×118px</span>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 2: BRAND COLOR PALETTE ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">2</span>
+        <span class="section-title">Brand Color Palette</span>
+      </div>
+      <span class="badge-verified">✓ Extracted from Live CSS</span>
+    </div>
+
+    <div class="color-grid">
+      <!-- Teal Green -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#13AF8A;">
+          <span class="hex-overlay">#13AF8A</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Ellipsis Teal</div>
+          <div class="role">Primary accent — CTA buttons, dots, quote marks, active states</div>
+          <div class="detail">
+            RGB: 19, 175, 138<br>
+            CSS: btn-primary bg
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Forest Green -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#001C19;">
+          <span class="hex-overlay">#001C19</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Forest</div>
+          <div class="role">Dark backgrounds — hero, product sections, footer, feature cards</div>
+          <div class="detail">
+            RGB: 0, 28, 25<br>
+            CSS: section bg / footer
+          </div>
+        </div>
+      </div>
+
+      <!-- Warm Cream -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background:#F0EEE6; border: 1px solid #DDD9CC;">
+          <span class="hex-overlay">#F0EEE6</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Warm Cream</div>
+          <div class="role">Light surface — hero bg, testimonial sections, body text on dark</div>
+          <div class="detail">
+            RGB: 240, 238, 230<br>
+            CSS: light section bg
+          </div>
+        </div>
+      </div>
+
+      <!-- White -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background:#FFFFFF; border: 1px solid #E5E7EB;">
+          <span class="hex-overlay">#FFFFFF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">White</div>
+          <div class="role">Content background — results sections, article cards</div>
+          <div class="detail">
+            RGB: 255, 255, 255<br>
+            CSS: content bg
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Extraction Note:</strong> Colors extracted from live WordPress site (April 2026). Ellipsis Health has <strong>the most restrained palette in the competitive set</strong> — only four core colors. The dark forest green (#001C19) and warm cream (#F0EEE6) pairing creates a distinctly <strong>organic, nature-inspired aesthetic</strong> that is unlike any other competitor. The teal accent (#13AF8A) bridges the warm/cool spectrum — green enough to feel natural, blue enough to feel technological. This is <strong>not a "blue healthcare" brand</strong> at all. The warm cream background (not pure white) gives the entire site a soft, approachable, almost paper-like quality that signals empathy over efficiency.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 3: TYPOGRAPHY SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">3</span>
+        <span class="section-title">Typography System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live CSS</span>
+    </div>
+
+    <div class="note-box verified-note" style="margin-bottom:24px;">
+      <strong>✓ Free / Open-Source Typefaces</strong> — Both Inter and Plus Jakarta Sans are available via Google Fonts at no cost. No licensing or proprietary font handling needed.
+    </div>
+
+    <!-- Inter -->
+    <div class="type-specimen">
+      <div class="font-name">Inter</div>
+      <div class="font-role">H1 Headlines · H2 Section Heads · Primary Display Typeface</div>
+      <div class="display-sample" style="font-family: 'Inter', sans-serif; font-weight: 500;">
+        The most trusted AI Care Manager in healthcare
+      </div>
+      <div class="body-sample" style="font-family: 'Inter', sans-serif;">
+        Inter is used for the primary headlines and section headings on the Ellipsis Health site. Notably, it is used at weight 400–500 (regular to medium) rather than bold — creating an elegant, light-touch headline style that feels editorial and confident rather than loud or aggressive.
+      </div>
+      <div class="alphabet" style="font-family: 'Inter', sans-serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%&amp;*()
+      </div>
+      <div class="css-detail">
+        font-family: "Inter", sans-serif;<br>
+        H1: font-size: 50px · font-weight: 500 · color: #001C19<br>
+        H2: font-size: 64px · font-weight: 400 · color: #001C19
+      </div>
+    </div>
+
+    <!-- Plus Jakarta Sans -->
+    <div class="type-specimen">
+      <div class="font-name">Plus Jakarta Sans</div>
+      <div class="font-role">H3 Subheadings · Body Copy · UI Text · Secondary Typeface</div>
+      <div class="display-sample" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; font-size: 34px;">
+        Engagements and enrollment
+      </div>
+      <div class="body-sample" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+        Plus Jakarta Sans handles the supporting content — H3 headings, body paragraphs, feature descriptions, and UI elements. Its rounded, geometric character gives a softer, more human feel than Inter's precision, creating a warm/technical contrast in the type hierarchy that mirrors the brand's "empathetic AI" positioning.
+      </div>
+      <div class="alphabet" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%&amp;*()
+      </div>
+      <div class="css-detail">
+        font-family: "Plus Jakarta Sans", sans-serif;<br>
+        H3: font-size: 34px · font-weight: 400 · color: #F0EEE6 (on dark) / #001C19 (on light)<br>
+        Body: font-size: 16px · font-weight: 400 · color: #001C19
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Typography Note:</strong> Ellipsis Health's <strong>dual-typeface system</strong> (Inter + Plus Jakarta Sans) is a thoughtful combination. Inter provides geometric precision for display headlines while Plus Jakarta Sans adds warmth and approachability for body content. Crucially, headlines use <strong>medium/regular weight</strong> (400–500) rather than bold — this light-touch approach is the most restrained headline weight in the competitive set and creates a distinctly calm, confident tone. The choice echoes Thesis's editorial sensibility but through sans-serifs rather than serifs. The type hierarchy reinforces the brand's "emotionally intelligent" positioning — measured, not aggressive.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 4: BRAND POSITIONING & MESSAGING ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">4</span>
+        <span class="section-title">Brand Positioning &amp; Messaging</span>
+      </div>
+      <span class="badge-research">◐ Research-Based</span>
+    </div>
+
+    <div class="position-grid">
+      <div class="position-card">
+        <div class="label">Hero Headline (Live Site)</div>
+        <div class="value">"The most trusted AI Care Manager in healthcare"</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Brand Tagline</div>
+        <div class="value">"Hearing is believing." — Footer tagline emphasizing voice AI and conversational intelligence as the core interaction modality.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Core Product</div>
+        <div class="value">"Sage" — AI Care Manager. Empathetic, consistent, multi-lingual, and friendly. Makes fully autonomous virtual care management calls. Three pillars: Engagements &amp; Enrollment, Assessments &amp; Surveys, Clinical Support.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Value Proposition</div>
+        <div class="value">24/7 emotionally intelligent care management for Health Plans, Health Systems, Specialty Care, and Pharma. Autonomous voice AI that conducts patient calls — reduces backlogs, increases enrollment revenue, improves patient satisfaction.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Category Descriptor</div>
+        <div class="value">AI Care Manager / Emotionally Intelligent Voice AI for Healthcare / Conversational AI Platform</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Key Trust Signals</div>
+        <div class="value">Trusted by CVS Health, Duke Health, Vivid Health. Dedicated "Ethical AI" and "AI Safety" pages. HIPAA compliant, SOC2 Type 2, end-to-end encryption, third-party security audits, transparent AI decision-making.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Differentiating Claim</div>
+        <div class="value">"The only" AI platform described as "emotionally intelligent" — emphasis on empathy, conversational quality, and handling complex clinical cases autonomously.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Company Info / Platform</div>
+        <div class="value">Based in San Francisco, CA. Originally focused on voice biomarker technology for mental health screening, pivoted/expanded to autonomous AI care management. Site built on WordPress. Copyright 2025.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 5: DESIGN LANGUAGE & VISUAL SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">5</span>
+        <span class="section-title">Design Language &amp; Visual System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="design-grid">
+      <div class="design-attr">
+        <div class="attr-label">Primary Theme</div>
+        <div class="attr-value">Warm earth tones — cream backgrounds with dark forest green content sections and teal accents</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Palette Strategy</div>
+        <div class="attr-value">Nature-inspired triad — forest green, warm cream, teal. Zero blue. Zero gray.</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Accent Color Approach</div>
+        <div class="attr-value">Teal as action + emphasis — CTA buttons, quote marks, progress dots, accent text highlighting</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Photography Style</div>
+        <div class="attr-value">Minimal — product-focused phone mockups, professional headshot testimonials. Real people in testimonials with warm lighting.</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Graphic System</div>
+        <div class="attr-value">Flowing organic wave lines (decorative), abstract leaf/eye icon motifs (teal/cream), rounded dark cards with cream text, pill-shaped section labels</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Identity Type</div>
+        <div class="attr-value">Typographic wordmark with embedded symbol (ellipsis dots in "P") — no separate logomark</div>
+      </div>
+    </div>
+
+    <div class="strategy-callout">
+      <h4>Strategic Analysis — Competitive Implications</h4>
+      <ul>
+        <li><strong>Ellipsis Health has the most distinctive color strategy in the competitive set.</strong> While every other competitor uses some form of blue (Suki's blue links, Ambience's violet, SmarterDx's teal, LeanTaaS's electric blue, Wellsheet's indigo), Ellipsis Health has completely avoided blue. The forest green + warm cream palette is unique in healthcare AI and creates instant visual differentiation.</li>
+        <li><strong>The "emotionally intelligent" positioning is a powerful differentiator.</strong> No other competitor claims emotional intelligence as a core capability. While Suki talks about "joy" and Ambience about "empathy," Ellipsis Health has built its entire brand around the concept — from the warm color palette to the product name "Sage" (which evokes wisdom and calm counsel) to the "Hearing is believing" tagline.</li>
+        <li><strong>The warm cream background (#F0EEE6) is a bold departure from the white/gray standard.</strong> It gives the entire site a distinctly different "temperature" than competitors — warmer, softer, more human. This is a textural choice that makes the brand feel more like a wellness or lifestyle product than a clinical tool.</li>
+        <li><strong>The voice AI positioning ("Hearing is believing") fills a unique niche.</strong> While most competitors focus on documentation (Suki, Ambience) or operations (LeanTaaS), Ellipsis Health's Sage makes autonomous phone calls to patients. This is a fundamentally different interaction model — proactive outbound voice AI rather than passive ambient listening.</li>
+        <li><strong>The "Ethical AI" navigation item is strategically prominent.</strong> It's a top-level nav item, not buried in a footer or about page. With healthcare AI under increasing scrutiny, this signals safety-first positioning. The dedicated AI safety section with six specific commitments (clinical oversight, HIPAA, SOC2, encryption, audits, transparency) is the most comprehensive trust architecture in the competitive set.</li>
+        <li><strong>Vulnerability: The organic, warm aesthetic may not read as "enterprise-grade" to some buyers.</strong> Health plan and health system executives accustomed to clinical blue and corporate gray may initially perceive the cream/green palette as less serious or less technically sophisticated. The brand is betting on differentiation over convention.</li>
+        <li><strong>Vulnerability: The four-color palette, while distinctive, offers limited flexibility.</strong> As the brand scales across more products and touchpoints, the narrow palette could feel constraining. Competitors with larger color systems (Wellsheet's 12+ variables, SmarterDx's product colors) have more visual vocabulary to work with.</li>
+        <li><strong>White space opportunity:</strong> Ellipsis Health has staked out the "warm, empathetic, nature-inspired AI" territory. A competitor that wanted to differentiate on emotional warmth would need to go somewhere Ellipsis hasn't — perhaps toward illustration-heavy, playful, or culturally rich visual storytelling.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 6: BRAND REFERENCES & RESOURCES ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">6</span>
+        <span class="section-title">Brand References &amp; Resources</span>
+      </div>
+    </div>
+
+    <div class="ref-grid">
+      <a href="https://ellipsishealth.com/" target="_blank" class="ref-card">
+        <div class="ref-icon">🌐</div>
+        <div>
+          <div class="ref-title">Ellipsis Health Website</div>
+          <div class="ref-desc">Primary company website — ellipsishealth.com</div>
+        </div>
+      </a>
+      <a href="https://ellipsishealth.com/about-us/" target="_blank" class="ref-card">
+        <div class="ref-icon">ℹ️</div>
+        <div>
+          <div class="ref-title">About Ellipsis Health</div>
+          <div class="ref-desc">Mission, team, and company background</div>
+        </div>
+      </a>
+      <a href="https://ellipsishealth.com/product/" target="_blank" class="ref-card">
+        <div class="ref-icon">📊</div>
+        <div>
+          <div class="ref-title">Sage Product Page</div>
+          <div class="ref-desc">AI Care Manager — features and capabilities</div>
+        </div>
+      </a>
+      <a href="https://ellipsishealth.com/ethical-ai/" target="_blank" class="ref-card">
+        <div class="ref-icon">🛡️</div>
+        <div>
+          <div class="ref-title">Ethical AI</div>
+          <div class="ref-desc">AI safety, security, and compliance framework</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/company/ellipsis-health/" target="_blank" class="ref-card">
+        <div class="ref-icon">💼</div>
+        <div>
+          <div class="ref-title">LinkedIn</div>
+          <div class="ref-desc">Company profile and employee network</div>
+        </div>
+      </a>
+      <a href="https://ellipsishealth.com/insights/" target="_blank" class="ref-card">
+        <div class="ref-icon">📚</div>
+        <div>
+          <div class="ref-title">Insights</div>
+          <div class="ref-desc">Blog posts, articles, and thought leadership</div>
+        </div>
+      </a>
+      <a href="https://ellipsishealth.com/partners/" target="_blank" class="ref-card">
+        <div class="ref-icon">🤝</div>
+        <div>
+          <div class="ref-title">Partners</div>
+          <div class="ref-desc">Integration partners and ecosystem</div>
+        </div>
+      </a>
+      <a href="https://www.crunchbase.com/organization/ellipsis-health" target="_blank" class="ref-card">
+        <div class="ref-icon">📈</div>
+        <div>
+          <div class="ref-title">Crunchbase Profile</div>
+          <div class="ref-desc">Funding history, investors, and financials</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ════════ FOOTER ════════ -->
+  <div class="card-footer">
+    <div class="main-line">Ellipsis Health Design Battle Card · Prepared April 2026 · Confidential — For Internal Rebrand Use Only</div>
+    <div class="sub-line">Colors, fonts, and logo verified from ellipsishealth.com live site via Chrome DevTools computed styles extraction + web research</div>
+  </div>
+
+</div>
+
+</body>
+</html>

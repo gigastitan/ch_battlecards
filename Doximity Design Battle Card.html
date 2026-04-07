@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doximity Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* ═══ VERIFIED Doximity Brand Colors (from live CSS, March 2026) ═══ */
+  --comp-primary: #1276D3;         /* Primary blue — CTAs, links, "Ask" button, "Add Colleague" button */
+  --comp-primary-dark: #09447A;    /* Dark blue overlay — stats section overlay */
+  --comp-navy: #1B3A5C;            /* Deep navy — stats section background */
+  --comp-orange: #FF9500;          /* Orange accent — DoxGPT sparkle, highlight text */
+  --comp-amber-light: #FFE0A3;     /* Light amber — subtle highlight backgrounds */
+  --comp-black: #000000;           /* Pure black — headings */
+  --comp-dark: #333333;            /* Dark gray — footer background, secondary dark */
+  --comp-body-text: #444444;       /* Body text gray */
+  --comp-mid-gray: #666666;        /* Mid-tone gray — secondary text */
+  --comp-light-gray: #999999;      /* Light gray — tertiary text, numbers */
+  --comp-border: #EEEEEE;          /* Border/divider gray */
+  --comp-light-bg: #F5F5F5;        /* Light surface background */
+  --comp-lighter-bg: #F9F9F9;      /* Lighter surface background */
+  --comp-white: #FFFFFF;           /* Pure white — primary background */
+
+  /* Battle Card UI — NEVER CHANGE THESE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #374151;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── HEADER ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.card-header .badge {
+  display: inline-block;
+  background: #EEF2FF;
+  color: #4338CA;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+}
+.card-header .date-line {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 20px;
+}
+.card-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+.card-header .tagline {
+  font-size: 18px;
+  color: #6B7280;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.card-header .url-link {
+  font-size: 14px;
+  color: var(--comp-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+.card-header .url-link:hover { text-decoration: underline; }
+
+/* ── SECTIONS ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-bottom: 24px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--comp-primary);
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #111827;
+}
+.section-badge {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.badge-verified {
+  background: var(--badge-confirmed);
+  color: var(--badge-confirmed-text);
+}
+.badge-research {
+  background: var(--badge-verify);
+  color: var(--badge-verify-text);
+}
+
+/* ── SECTION 1: LOGO ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.logo-preview {
+  border-radius: 12px;
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border: 1px solid var(--card-border);
+  position: relative;
+}
+.logo-preview .bg-label {
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.logo-preview.dark .bg-label { color: rgba(255,255,255,0.5); }
+.logo-preview.brand-light { background: #F5F5F5; }
+.logo-preview.dark { background: var(--comp-dark); border-color: transparent; }
+.logo-preview.brand-blue { background: var(--comp-primary); border-color: transparent; }
+.logo-preview.brand-navy { background: var(--comp-navy); border-color: transparent; }
+
+.logo-svg { height: 40px; width: auto; }
+
+.logo-description {
+  background: #F9FAFB;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.logo-description h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 10px;
+}
+.logo-description p {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.7;
+}
+.logo-description .asset-tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  background: #F3F4F6;
+  color: #6B7280;
+  padding: 4px 10px;
+  border-radius: 6px;
+  word-break: break-all;
+}
+
+/* ── SECTION 2: COLORS ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.color-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.color-card:hover { transform: translateY(-2px); }
+.color-swatch {
+  height: 90px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 10px 12px;
+}
+.color-swatch .hex-overlay {
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'DM Sans', monospace;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.color-swatch.light-text .hex-overlay {
+  color: #374151;
+  text-shadow: none;
+}
+.color-info {
+  padding: 12px;
+}
+.color-info .color-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.color-info .color-role {
+  font-size: 11px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.color-info .color-values {
+  font-size: 10px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+  line-height: 1.6;
+}
+
+.verified-note, .warning-note {
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.verified-note {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #166534;
+}
+.warning-note {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+}
+
+/* ── SECTION 3: TYPOGRAPHY ── */
+.font-callout {
+  background: #FFF7ED;
+  border: 2px solid #FB923C;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+}
+.font-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #9A3412;
+  margin-bottom: 6px;
+}
+.font-callout p {
+  font-size: 13px;
+  color: #C2410C;
+  line-height: 1.6;
+}
+
+.type-specimens {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.type-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px;
+}
+.type-card .font-role {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--comp-primary);
+  margin-bottom: 12px;
+}
+.type-card .font-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+}
+.type-card .display-sample {
+  font-size: 36px;
+  line-height: 1.15;
+  margin-bottom: 14px;
+  color: #111827;
+}
+.type-card .body-sample {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #6B7280;
+  margin-bottom: 14px;
+}
+.type-card .alphabet {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #9CA3AF;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+  word-break: break-all;
+}
+.type-card .css-details {
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  background: #F9FAFB;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #6B7280;
+  line-height: 1.8;
+}
+
+/* ── SECTION 4: POSITIONING ── */
+.positioning-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.pos-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+.pos-card .pos-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+}
+.pos-card .pos-value {
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.5;
+  font-weight: 500;
+}
+.pos-card .pos-value.italic { font-style: italic; color: #6B7280; font-weight: 400; }
+
+/* ── SECTION 5: DESIGN LANGUAGE ── */
+.design-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.design-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+.design-card .attr-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+}
+.design-card .attr-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.design-card .attr-desc {
+  font-size: 12px;
+  color: #6B7280;
+  line-height: 1.5;
+}
+
+.strategy-box {
+  background: linear-gradient(135deg, #EEF2FF 0%, #F0F9FF 100%);
+  border: 2px solid #C7D2FE;
+  border-radius: 14px;
+  padding: 28px 32px;
+}
+.strategy-box h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #312E81;
+  margin-bottom: 16px;
+}
+.strategy-box ul {
+  list-style: none;
+  padding: 0;
+}
+.strategy-box li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.strategy-box li::before {
+  content: "\25B8";
+  position: absolute;
+  left: 0;
+  color: var(--comp-primary);
+  font-weight: bold;
+}
+
+/* ── SECTION 6: REFERENCES ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.ref-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ref-card:hover { border-color: #93C5FD; transform: translateY(-2px); }
+.ref-icon {
+  width: 36px;
+  height: 36px;
+  background: #EEF2FF;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.ref-card .ref-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.ref-card .ref-desc {
+  font-size: 12px;
+  color: #9CA3AF;
+  line-height: 1.4;
+}
+
+/* ── FOOTER ── */
+.card-footer {
+  text-align: center;
+  padding: 32px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-top: 24px;
+}
+.card-footer .footer-main {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6B7280;
+  margin-bottom: 6px;
+}
+.card-footer .footer-sub {
+  font-size: 11px;
+  color: #9CA3AF;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .logo-grid, .type-specimens, .positioning-grid, .ref-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr 1fr; }
+  .card-header h1 { font-size: 36px; }
+  .section { padding: 24px 20px; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link comp-nav__link--active" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+<div class="battle-card">
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<div class="card-header">
+  <div class="badge">Design Battle Card</div>
+  <div class="date-line">March 2026 &bull; Confidential</div>
+  <h1>Doximity</h1>
+  <p class="tagline">The #1 Professional Medical Network &amp; AI Platform for U.S. Physicians</p>
+  <a class="url-link" href="https://www.doximity.com" target="_blank">doximity.com &nearr;</a>
+</div>
+
+<!-- ══════════════════ SECTION 1: LOGO ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">1</span>
+    <span class="section-title">Logo &amp; Logomark</span>
+    <span class="section-badge badge-verified">Verified from Live Site</span>
+  </div>
+
+  <div class="logo-grid">
+    <!-- White BG -->
+    <div class="logo-preview brand-light">
+      <span class="bg-label">White / Light</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1094 275" class="logo-svg">
+        <path fill="#333333" d="M547.6 94.7h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V100.3c0-3.1-2.5-5.6-5.6-5.6zm194-2.8c-18.4 0-33.1 7.7-44.9 23.5l-.9 1.2-.7-1.3c-7.5-15.1-21.6-23.3-39.7-23.3-21.2 0-32.8 12.3-40.6 23l-1.7 2.3v-16.9c0-3.1-2.5-5.6-5.6-5.6h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6v-69.9c0-21 11.7-34.5 29.9-34.5 18 0 28.4 12.3 28.4 33.8v70.7c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V153c0-21.3 11.5-34.5 29.9-34.5 24.7 0 28.4 21.3 28.4 34V223c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6v-79.9c0-32.7-16.9-51.2-46.5-51.2zm97.2 2.9h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V100.4c0-3.1-2.5-5.6-5.6-5.6zm101.8 0h-30.9V63.2c0-3.1-2.5-5.6-5.6-5.6h-18c-3.1 0-5.6 2.5-5.6 5.6v31.6H869c-3.1 0-5.6 2.5-5.6 5.6v13.7c0 3.1 2.5 5.6 5.6 5.6h11.6v72.2c0 26.1 12.4 38.8 38.1 38.8 9.1 0 16.7-1.6 23.8-4.9 2-.9 3.2-2.9 3.2-5.1v-12c0-1.7-.8-3.4-2.2-4.4-1.4-1.1-3.2-1.4-4.9-.9-3.6 1-7.3 1.5-11.3 1.5-11.7 0-17.6-6-17.6-17.9v-67.4h30.9c3.1 0 5.6-2.5 5.6-5.6v-13.7c0-3-2.5-5.5-5.6-5.5zm147.3 2.4c-1-1.5-2.8-2.4-4.6-2.4h-18.2c-2.4 0-4.5 1.5-5.3 3.7l-34.5 98.6-37.5-98.7c-.8-2.2-2.9-3.6-5.2-3.6h-19.1c-1.9 0-3.6.9-4.6 2.5-1 1.5-1.2 3.5-.5 5.2l52.8 127.1-.2.3c-5.9 13.2-12.3 16-20.1 16-4.2 0-8.6-.9-13-2.6-2.8-1.1-5.9.2-7.1 2.9l-5.2 11.4c-.6 1.4-.7 2.9-.1 4.3.5 1.4 1.6 2.5 3 3.1 8.2 3.6 16.4 5.2 25.7 5.2 21.3 0 33.2-10.1 43.8-37.4l50.4-130.4c.8-1.7.5-3.6-.5-5.2zM217.1 42.9h-18c-3.1 0-5.6 2.5-5.6 5.6v69.1l-1.7-2.2c-12-15.8-26.9-23.5-45.4-23.5-30.8 0-61.9 23.8-61.9 69.4v.5c0 45 31.9 69.4 61.9 69.4 18.6 0 33.5-8.2 45.4-25l1.7-2.4v19c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V48.5c0-3.1-2.5-5.6-5.6-5.6zM113.9 161.8v-.5c0-25.7 16.8-44.3 39.9-44.3 22.9 0 40.2 19 40.2 44.3v.5c0 24.8-17.6 44.3-40.2 44.3-22.7-.1-39.9-19.1-39.9-44.3zm199-69.9c-40 0-71.4 30.7-71.4 69.9v.5c0 38.7 31.1 69.1 70.9 69.1 40.2 0 71.7-30.6 71.7-69.6v-.5c0-39-31.3-69.4-71.2-69.4zm0 114.1c-23.7 0-42.2-19.5-42.2-44.3v-.5c0-25.5 17.5-44 41.7-44 24.2 0 42.5 19.2 42.5 44.5v.5c0 25.4-17.6 43.8-42 43.8zm147.8-46.1l40.7-56.4c1.2-1.7 1.4-3.9.4-5.8-1-1.9-2.9-3-5-3h-17c-1.8 0-3.6.9-4.6 2.4l-30.1 43.7L415 97.1c-1-1.5-2.8-2.4-4.6-2.4h-17.7c-2.1 0-4 1.2-5 3-1 1.9-.8 4.1.4 5.8l40.7 56.7-42.5 59.2c-1.2 1.7-1.4 3.9-.4 5.8 1 1.9 2.9 3 5 3h17c1.8 0 3.6-.9 4.6-2.4l31.9-46.5 32.2 46.5c1 1.5 2.8 2.4 4.6 2.4H499c2.1 0 4-1.2 5-3 1-1.9.8-4.1-.4-5.8l-42.9-59.5z"/>
+        <path fill="#1276D3" d="M46 129.9c-.7-7.8-.5-17.2 3.2-30.1 3.1-10.4 10.5-21.9 19.1-30 8.4-7.9 19.8-14.1 32.2-16.9 11.8-2.7 21.7-2.5 29.2-1.6 1.1 0 1.9.5 2.3 1 .8.8.9 2.6.5 3.1-.4.4-1.4.8-2.4.8-16.3 1-33.8 9.8-50.6 25.6-15.4 14.5-26.4 32.9-28.5 48.8-.1 1-.5 1.9-1 2.3-.5.4-2.4.3-3.1-.5-.4-.6-.8-1.4-.9-2.5zM5 111.3c-.9-10.3-.7-22.9 4.3-40.1 4.1-13.9 13.9-29.1 25.4-39.9C45.9 20.8 61 12.6 77.6 8.8c15.7-3.6 28.9-3.3 38.8-2.2 1.4 0 2.5.7 3.1 1.3 1 1.1 1.2 3.5.6 4.1-.5.5-1.8 1-3.1 1.1-21.7 1.4-45 13.1-67.3 34.1-20.6 19.4-35.2 43.8-38 65-.2 1.3-.7 2.5-1.3 3.1-.6.6-3.1.4-4.2-.7-.6-.6-1.1-1.7-1.2-3.3z"/>
+        <path fill="#333333" d="M538.6 53.9c-8 0-14.6 6.5-14.6 14.6 0 8 6.5 14.6 14.6 14.6 8 0 14.6-6.5 14.6-14.6 0-8-6.5-14.6-14.6-14.6zm291.2 0c-8 0-14.6 6.5-14.6 14.6 0 8 6.5 14.6 14.6 14.6 8 0 14.6-6.5 14.6-14.6 0-8-6.6-14.6-14.6-14.6z"/>
+      </svg>
+    </div>
+
+    <!-- Dark BG -->
+    <div class="logo-preview dark">
+      <span class="bg-label">Dark Background</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1094 275" class="logo-svg">
+        <path fill="#FFFFFF" d="M547.6 94.7h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V100.3c0-3.1-2.5-5.6-5.6-5.6zm194-2.8c-18.4 0-33.1 7.7-44.9 23.5l-.9 1.2-.7-1.3c-7.5-15.1-21.6-23.3-39.7-23.3-21.2 0-32.8 12.3-40.6 23l-1.7 2.3v-16.9c0-3.1-2.5-5.6-5.6-5.6h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6v-69.9c0-21 11.7-34.5 29.9-34.5 18 0 28.4 12.3 28.4 33.8v70.7c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V153c0-21.3 11.5-34.5 29.9-34.5 24.7 0 28.4 21.3 28.4 34V223c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6v-79.9c0-32.7-16.9-51.2-46.5-51.2zm97.2 2.9h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V100.4c0-3.1-2.5-5.6-5.6-5.6zm101.8 0h-30.9V63.2c0-3.1-2.5-5.6-5.6-5.6h-18c-3.1 0-5.6 2.5-5.6 5.6v31.6H869c-3.1 0-5.6 2.5-5.6 5.6v13.7c0 3.1 2.5 5.6 5.6 5.6h11.6v72.2c0 26.1 12.4 38.8 38.1 38.8 9.1 0 16.7-1.6 23.8-4.9 2-.9 3.2-2.9 3.2-5.1v-12c0-1.7-.8-3.4-2.2-4.4-1.4-1.1-3.2-1.4-4.9-.9-3.6 1-7.3 1.5-11.3 1.5-11.7 0-17.6-6-17.6-17.9v-67.4h30.9c3.1 0 5.6-2.5 5.6-5.6v-13.7c0-3-2.5-5.5-5.6-5.5zm147.3 2.4c-1-1.5-2.8-2.4-4.6-2.4h-18.2c-2.4 0-4.5 1.5-5.3 3.7l-34.5 98.6-37.5-98.7c-.8-2.2-2.9-3.6-5.2-3.6h-19.1c-1.9 0-3.6.9-4.6 2.5-1 1.5-1.2 3.5-.5 5.2l52.8 127.1-.2.3c-5.9 13.2-12.3 16-20.1 16-4.2 0-8.6-.9-13-2.6-2.8-1.1-5.9.2-7.1 2.9l-5.2 11.4c-.6 1.4-.7 2.9-.1 4.3.5 1.4 1.6 2.5 3 3.1 8.2 3.6 16.4 5.2 25.7 5.2 21.3 0 33.2-10.1 43.8-37.4l50.4-130.4c.8-1.7.5-3.6-.5-5.2zM217.1 42.9h-18c-3.1 0-5.6 2.5-5.6 5.6v69.1l-1.7-2.2c-12-15.8-26.9-23.5-45.4-23.5-30.8 0-61.9 23.8-61.9 69.4v.5c0 45 31.9 69.4 61.9 69.4 18.6 0 33.5-8.2 45.4-25l1.7-2.4v19c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V48.5c0-3.1-2.5-5.6-5.6-5.6zM113.9 161.8v-.5c0-25.7 16.8-44.3 39.9-44.3 22.9 0 40.2 19 40.2 44.3v.5c0 24.8-17.6 44.3-40.2 44.3-22.7-.1-39.9-19.1-39.9-44.3zm199-69.9c-40 0-71.4 30.7-71.4 69.9v.5c0 38.7 31.1 69.1 70.9 69.1 40.2 0 71.7-30.6 71.7-69.6v-.5c0-39-31.3-69.4-71.2-69.4zm0 114.1c-23.7 0-42.2-19.5-42.2-44.3v-.5c0-25.5 17.5-44 41.7-44 24.2 0 42.5 19.2 42.5 44.5v.5c0 25.4-17.6 43.8-42 43.8zm147.8-46.1l40.7-56.4c1.2-1.7 1.4-3.9.4-5.8-1-1.9-2.9-3-5-3h-17c-1.8 0-3.6.9-4.6 2.4l-30.1 43.7L415 97.1c-1-1.5-2.8-2.4-4.6-2.4h-17.7c-2.1 0-4 1.2-5 3-1 1.9-.8 4.1.4 5.8l40.7 56.7-42.5 59.2c-1.2 1.7-1.4 3.9-.4 5.8 1 1.9 2.9 3 5 3h17c1.8 0 3.6-.9 4.6-2.4l31.9-46.5 32.2 46.5c1 1.5 2.8 2.4 4.6 2.4H499c2.1 0 4-1.2 5-3 1-1.9.8-4.1-.4-5.8l-42.9-59.5z"/>
+        <path fill="#FFFFFF" d="M46 129.9c-.7-7.8-.5-17.2 3.2-30.1 3.1-10.4 10.5-21.9 19.1-30 8.4-7.9 19.8-14.1 32.2-16.9 11.8-2.7 21.7-2.5 29.2-1.6 1.1 0 1.9.5 2.3 1 .8.8.9 2.6.5 3.1-.4.4-1.4.8-2.4.8-16.3 1-33.8 9.8-50.6 25.6-15.4 14.5-26.4 32.9-28.5 48.8-.1 1-.5 1.9-1 2.3-.5.4-2.4.3-3.1-.5-.4-.6-.8-1.4-.9-2.5zM5 111.3c-.9-10.3-.7-22.9 4.3-40.1 4.1-13.9 13.9-29.1 25.4-39.9C45.9 20.8 61 12.6 77.6 8.8c15.7-3.6 28.9-3.3 38.8-2.2 1.4 0 2.5.7 3.1 1.3 1 1.1 1.2 3.5.6 4.1-.5.5-1.8 1-3.1 1.1-21.7 1.4-45 13.1-67.3 34.1-20.6 19.4-35.2 43.8-38 65-.2 1.3-.7 2.5-1.3 3.1-.6.6-3.1.4-4.2-.7-.6-.6-1.1-1.7-1.2-3.3z"/>
+        <path fill="#FFFFFF" d="M538.6 53.9c-8 0-14.6 6.5-14.6 14.6 0 8 6.5 14.6 14.6 14.6 8 0 14.6-6.5 14.6-14.6 0-8-6.5-14.6-14.6-14.6zm291.2 0c-8 0-14.6 6.5-14.6 14.6 0 8 6.5 14.6 14.6 14.6 8 0 14.6-6.5 14.6-14.6 0-8-6.6-14.6-14.6-14.6z"/>
+      </svg>
+    </div>
+
+    <!-- Brand Light BG -->
+    <div class="logo-preview" style="background: var(--comp-light-bg);">
+      <span class="bg-label">Brand Light</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1094 275" class="logo-svg">
+        <path fill="#333333" d="M547.6 94.7h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V100.3c0-3.1-2.5-5.6-5.6-5.6zm194-2.8c-18.4 0-33.1 7.7-44.9 23.5l-.9 1.2-.7-1.3c-7.5-15.1-21.6-23.3-39.7-23.3-21.2 0-32.8 12.3-40.6 23l-1.7 2.3v-16.9c0-3.1-2.5-5.6-5.6-5.6h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6v-69.9c0-21 11.7-34.5 29.9-34.5 18 0 28.4 12.3 28.4 33.8v70.7c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V153c0-21.3 11.5-34.5 29.9-34.5 24.7 0 28.4 21.3 28.4 34V223c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6v-79.9c0-32.7-16.9-51.2-46.5-51.2zm97.2 2.9h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V100.4c0-3.1-2.5-5.6-5.6-5.6zm101.8 0h-30.9V63.2c0-3.1-2.5-5.6-5.6-5.6h-18c-3.1 0-5.6 2.5-5.6 5.6v31.6H869c-3.1 0-5.6 2.5-5.6 5.6v13.7c0 3.1 2.5 5.6 5.6 5.6h11.6v72.2c0 26.1 12.4 38.8 38.1 38.8 9.1 0 16.7-1.6 23.8-4.9 2-.9 3.2-2.9 3.2-5.1v-12c0-1.7-.8-3.4-2.2-4.4-1.4-1.1-3.2-1.4-4.9-.9-3.6 1-7.3 1.5-11.3 1.5-11.7 0-17.6-6-17.6-17.9v-67.4h30.9c3.1 0 5.6-2.5 5.6-5.6v-13.7c0-3-2.5-5.5-5.6-5.5zm147.3 2.4c-1-1.5-2.8-2.4-4.6-2.4h-18.2c-2.4 0-4.5 1.5-5.3 3.7l-34.5 98.6-37.5-98.7c-.8-2.2-2.9-3.6-5.2-3.6h-19.1c-1.9 0-3.6.9-4.6 2.5-1 1.5-1.2 3.5-.5 5.2l52.8 127.1-.2.3c-5.9 13.2-12.3 16-20.1 16-4.2 0-8.6-.9-13-2.6-2.8-1.1-5.9.2-7.1 2.9l-5.2 11.4c-.6 1.4-.7 2.9-.1 4.3.5 1.4 1.6 2.5 3 3.1 8.2 3.6 16.4 5.2 25.7 5.2 21.3 0 33.2-10.1 43.8-37.4l50.4-130.4c.8-1.7.5-3.6-.5-5.2zM217.1 42.9h-18c-3.1 0-5.6 2.5-5.6 5.6v69.1l-1.7-2.2c-12-15.8-26.9-23.5-45.4-23.5-30.8 0-61.9 23.8-61.9 69.4v.5c0 45 31.9 69.4 61.9 69.4 18.6 0 33.5-8.2 45.4-25l1.7-2.4v19c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V48.5c0-3.1-2.5-5.6-5.6-5.6zM113.9 161.8v-.5c0-25.7 16.8-44.3 39.9-44.3 22.9 0 40.2 19 40.2 44.3v.5c0 24.8-17.6 44.3-40.2 44.3-22.7-.1-39.9-19.1-39.9-44.3zm199-69.9c-40 0-71.4 30.7-71.4 69.9v.5c0 38.7 31.1 69.1 70.9 69.1 40.2 0 71.7-30.6 71.7-69.6v-.5c0-39-31.3-69.4-71.2-69.4zm0 114.1c-23.7 0-42.2-19.5-42.2-44.3v-.5c0-25.5 17.5-44 41.7-44 24.2 0 42.5 19.2 42.5 44.5v.5c0 25.4-17.6 43.8-42 43.8zm147.8-46.1l40.7-56.4c1.2-1.7 1.4-3.9.4-5.8-1-1.9-2.9-3-5-3h-17c-1.8 0-3.6.9-4.6 2.4l-30.1 43.7L415 97.1c-1-1.5-2.8-2.4-4.6-2.4h-17.7c-2.1 0-4 1.2-5 3-1 1.9-.8 4.1.4 5.8l40.7 56.7-42.5 59.2c-1.2 1.7-1.4 3.9-.4 5.8 1 1.9 2.9 3 5 3h17c1.8 0 3.6-.9 4.6-2.4l31.9-46.5 32.2 46.5c1 1.5 2.8 2.4 4.6 2.4H499c2.1 0 4-1.2 5-3 1-1.9.8-4.1-.4-5.8l-42.9-59.5z"/>
+        <path fill="#1276D3" d="M46 129.9c-.7-7.8-.5-17.2 3.2-30.1 3.1-10.4 10.5-21.9 19.1-30 8.4-7.9 19.8-14.1 32.2-16.9 11.8-2.7 21.7-2.5 29.2-1.6 1.1 0 1.9.5 2.3 1 .8.8.9 2.6.5 3.1-.4.4-1.4.8-2.4.8-16.3 1-33.8 9.8-50.6 25.6-15.4 14.5-26.4 32.9-28.5 48.8-.1 1-.5 1.9-1 2.3-.5.4-2.4.3-3.1-.5-.4-.6-.8-1.4-.9-2.5zM5 111.3c-.9-10.3-.7-22.9 4.3-40.1 4.1-13.9 13.9-29.1 25.4-39.9C45.9 20.8 61 12.6 77.6 8.8c15.7-3.6 28.9-3.3 38.8-2.2 1.4 0 2.5.7 3.1 1.3 1 1.1 1.2 3.5.6 4.1-.5.5-1.8 1-3.1 1.1-21.7 1.4-45 13.1-67.3 34.1-20.6 19.4-35.2 43.8-38 65-.2 1.3-.7 2.5-1.3 3.1-.6.6-3.1.4-4.2-.7-.6-.6-1.1-1.7-1.2-3.3z"/>
+        <path fill="#333333" d="M538.6 53.9c-8 0-14.6 6.5-14.6 14.6 0 8 6.5 14.6 14.6 14.6 8 0 14.6-6.5 14.6-14.6 0-8-6.5-14.6-14.6-14.6zm291.2 0c-8 0-14.6 6.5-14.6 14.6 0 8 6.5 14.6 14.6 14.6 8 0 14.6-6.5 14.6-14.6 0-8-6.6-14.6-14.6-14.6z"/>
+      </svg>
+    </div>
+
+    <!-- Brand Primary BG -->
+    <div class="logo-preview brand-blue">
+      <span class="bg-label" style="color:rgba(255,255,255,0.5)">Brand Primary</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1094 275" class="logo-svg">
+        <path fill="#FFFFFF" d="M547.6 94.7h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V100.3c0-3.1-2.5-5.6-5.6-5.6zm194-2.8c-18.4 0-33.1 7.7-44.9 23.5l-.9 1.2-.7-1.3c-7.5-15.1-21.6-23.3-39.7-23.3-21.2 0-32.8 12.3-40.6 23l-1.7 2.3v-16.9c0-3.1-2.5-5.6-5.6-5.6h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6v-69.9c0-21 11.7-34.5 29.9-34.5 18 0 28.4 12.3 28.4 33.8v70.7c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V153c0-21.3 11.5-34.5 29.9-34.5 24.7 0 28.4 21.3 28.4 34V223c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6v-79.9c0-32.7-16.9-51.2-46.5-51.2zm97.2 2.9h-18c-3.1 0-5.6 2.5-5.6 5.6v122.4c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V100.4c0-3.1-2.5-5.6-5.6-5.6zm101.8 0h-30.9V63.2c0-3.1-2.5-5.6-5.6-5.6h-18c-3.1 0-5.6 2.5-5.6 5.6v31.6H869c-3.1 0-5.6 2.5-5.6 5.6v13.7c0 3.1 2.5 5.6 5.6 5.6h11.6v72.2c0 26.1 12.4 38.8 38.1 38.8 9.1 0 16.7-1.6 23.8-4.9 2-.9 3.2-2.9 3.2-5.1v-12c0-1.7-.8-3.4-2.2-4.4-1.4-1.1-3.2-1.4-4.9-.9-3.6 1-7.3 1.5-11.3 1.5-11.7 0-17.6-6-17.6-17.9v-67.4h30.9c3.1 0 5.6-2.5 5.6-5.6v-13.7c0-3-2.5-5.5-5.6-5.5zm147.3 2.4c-1-1.5-2.8-2.4-4.6-2.4h-18.2c-2.4 0-4.5 1.5-5.3 3.7l-34.5 98.6-37.5-98.7c-.8-2.2-2.9-3.6-5.2-3.6h-19.1c-1.9 0-3.6.9-4.6 2.5-1 1.5-1.2 3.5-.5 5.2l52.8 127.1-.2.3c-5.9 13.2-12.3 16-20.1 16-4.2 0-8.6-.9-13-2.6-2.8-1.1-5.9.2-7.1 2.9l-5.2 11.4c-.6 1.4-.7 2.9-.1 4.3.5 1.4 1.6 2.5 3 3.1 8.2 3.6 16.4 5.2 25.7 5.2 21.3 0 33.2-10.1 43.8-37.4l50.4-130.4c.8-1.7.5-3.6-.5-5.2zM217.1 42.9h-18c-3.1 0-5.6 2.5-5.6 5.6v69.1l-1.7-2.2c-12-15.8-26.9-23.5-45.4-23.5-30.8 0-61.9 23.8-61.9 69.4v.5c0 45 31.9 69.4 61.9 69.4 18.6 0 33.5-8.2 45.4-25l1.7-2.4v19c0 3.1 2.5 5.6 5.6 5.6h18c3.1 0 5.6-2.5 5.6-5.6V48.5c0-3.1-2.5-5.6-5.6-5.6zM113.9 161.8v-.5c0-25.7 16.8-44.3 39.9-44.3 22.9 0 40.2 19 40.2 44.3v.5c0 24.8-17.6 44.3-40.2 44.3-22.7-.1-39.9-19.1-39.9-44.3zm199-69.9c-40 0-71.4 30.7-71.4 69.9v.5c0 38.7 31.1 69.1 70.9 69.1 40.2 0 71.7-30.6 71.7-69.6v-.5c0-39-31.3-69.4-71.2-69.4zm0 114.1c-23.7 0-42.2-19.5-42.2-44.3v-.5c0-25.5 17.5-44 41.7-44 24.2 0 42.5 19.2 42.5 44.5v.5c0 25.4-17.6 43.8-42 43.8zm147.8-46.1l40.7-56.4c1.2-1.7 1.4-3.9.4-5.8-1-1.9-2.9-3-5-3h-17c-1.8 0-3.6.9-4.6 2.4l-30.1 43.7L415 97.1c-1-1.5-2.8-2.4-4.6-2.4h-17.7c-2.1 0-4 1.2-5 3-1 1.9-.8 4.1.4 5.8l40.7 56.7-42.5 59.2c-1.2 1.7-1.4 3.9-.4 5.8 1 1.9 2.9 3 5 3h17c1.8 0 3.6-.9 4.6-2.4l31.9-46.5 32.2 46.5c1 1.5 2.8 2.4 4.6 2.4H499c2.1 0 4-1.2 5-3 1-1.9.8-4.1-.4-5.8l-42.9-59.5z"/>
+        <path fill="rgba(255,255,255,0.85)" d="M46 129.9c-.7-7.8-.5-17.2 3.2-30.1 3.1-10.4 10.5-21.9 19.1-30 8.4-7.9 19.8-14.1 32.2-16.9 11.8-2.7 21.7-2.5 29.2-1.6 1.1 0 1.9.5 2.3 1 .8.8.9 2.6.5 3.1-.4.4-1.4.8-2.4.8-16.3 1-33.8 9.8-50.6 25.6-15.4 14.5-26.4 32.9-28.5 48.8-.1 1-.5 1.9-1 2.3-.5.4-2.4.3-3.1-.5-.4-.6-.8-1.4-.9-2.5zM5 111.3c-.9-10.3-.7-22.9 4.3-40.1 4.1-13.9 13.9-29.1 25.4-39.9C45.9 20.8 61 12.6 77.6 8.8c15.7-3.6 28.9-3.3 38.8-2.2 1.4 0 2.5.7 3.1 1.3 1 1.1 1.2 3.5.6 4.1-.5.5-1.8 1-3.1 1.1-21.7 1.4-45 13.1-67.3 34.1-20.6 19.4-35.2 43.8-38 65-.2 1.3-.7 2.5-1.3 3.1-.6.6-3.1.4-4.2-.7-.6-.6-1.1-1.7-1.2-3.3z"/>
+        <path fill="#FFFFFF" d="M538.6 53.9c-8 0-14.6 6.5-14.6 14.6 0 8 6.5 14.6 14.6 14.6 8 0 14.6-6.5 14.6-14.6 0-8-6.5-14.6-14.6-14.6zm291.2 0c-8 0-14.6 6.5-14.6 14.6 0 8 6.5 14.6 14.6 14.6 8 0 14.6-6.5 14.6-14.6 0-8-6.6-14.6-14.6-14.6z"/>
+      </svg>
+    </div>
+  </div>
+
+    <div class="logo-description">
+    <h4>Logo Analysis</h4>
+    <p>
+      <strong>Type:</strong> Combination mark &mdash; custom lowercase wordmark "doximity" with a distinctive blue "d" + stethoscope/droplet monogram. The leading "d" character and its accompanying icon are rendered in the brand's primary blue (#1276D3) while the remaining letterforms are dark gray/black, creating a clear brand signature element. The monogram features a circular dot above a teardrop/stethoscope shape that doubles as a location pin &mdash; a clever nod to physician connectivity and medical networking. The wordmark uses smooth, rounded letterforms with generous letterspacing, projecting approachability and professionalism. A minimized "d" monogram version appears in the footer for compact contexts.
+    </p>
+    <span class="asset-tag">Source: Inline SVG &mdash; dox-illustration-asset-logo-doximity-dark &bull; CDN: assets.doxcdn.com</span>
+  </div>
+</div>
+
+<!-- ══════════════════ SECTION 2: COLOR PALETTE ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">2</span>
+    <span class="section-title">Brand Color Palette</span>
+    <span class="section-badge badge-verified">Extracted from Live CSS</span>
+  </div>
+
+  <div class="color-grid">
+    <!-- Primary Blue -->
+    <div class="color-card">
+      <div class="color-swatch" style="background: #1276D3;">
+        <span class="hex-overlay">#1276D3</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">Doximity Blue</div>
+        <div class="color-role">Primary accent &mdash; CTAs, links, "Ask" button, logo mark</div>
+        <div class="color-values">
+          RGB: 18, 118, 211<br>
+          Computed: rgb(18, 118, 211)
+        </div>
+      </div>
+    </div>
+
+    <!-- Dark Navy -->
+    <div class="color-card">
+      <div class="color-swatch" style="background: #1B3A5C;">
+        <span class="hex-overlay">#1B3A5C</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">Navy</div>
+        <div class="color-role">Stats section hero background, dark blue panels</div>
+        <div class="color-values">
+          RGB: 27, 58, 92<br>
+          Computed: rgb(27, 58, 92)
+        </div>
+      </div>
+    </div>
+
+    <!-- Navy Overlay -->
+    <div class="color-card">
+      <div class="color-swatch" style="background: #09447A;">
+        <span class="hex-overlay">#09447A</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">Deep Navy</div>
+        <div class="color-role">Dark overlay on stats/hero sections</div>
+        <div class="color-values">
+          RGB: 9, 68, 122<br>
+          Computed: rgba(9, 68, 122, 0.7)
+        </div>
+      </div>
+    </div>
+
+    <!-- Orange Accent -->
+    <div class="color-card">
+      <div class="color-swatch" style="background: #FF9500;">
+        <span class="hex-overlay">#FF9500</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">DoxGPT Orange</div>
+        <div class="color-role">AI sparkle accent, warm highlight text</div>
+        <div class="color-values">
+          RGB: 255, 149, 0<br>
+          Computed: rgb(255, 149, 0)
+        </div>
+      </div>
+    </div>
+
+    <!-- Amber Light -->
+    <div class="color-card">
+      <div class="color-swatch light-text" style="background: #FFE0A3;">
+        <span class="hex-overlay">#FFE0A3</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">Warm Amber</div>
+        <div class="color-role">Subtle warm highlight backgrounds</div>
+        <div class="color-values">
+          RGB: 255, 224, 163<br>
+          Computed: rgb(255, 224, 163)
+        </div>
+      </div>
+    </div>
+
+    <!-- Pure Black -->
+    <div class="color-card">
+      <div class="color-swatch" style="background: #000000;">
+        <span class="hex-overlay">#000000</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">Black</div>
+        <div class="color-role">Primary headings, DoxGPT pill button</div>
+        <div class="color-values">
+          RGB: 0, 0, 0<br>
+          Computed: rgb(0, 0, 0)
+        </div>
+      </div>
+    </div>
+
+    <!-- Dark Gray -->
+    <div class="color-card">
+      <div class="color-swatch" style="background: #333333;">
+        <span class="hex-overlay">#333333</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">Charcoal</div>
+        <div class="color-role">Footer background, logo wordmark dark</div>
+        <div class="color-values">
+          RGB: 51, 51, 51<br>
+          Computed: rgb(51, 51, 51)
+        </div>
+      </div>
+    </div>
+
+    <!-- Body Text -->
+    <div class="color-card">
+      <div class="color-swatch" style="background: #444444;">
+        <span class="hex-overlay">#444444</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">Body Gray</div>
+        <div class="color-role">Primary body text color</div>
+        <div class="color-values">
+          RGB: 68, 68, 68<br>
+          Computed: rgb(68, 68, 68)
+        </div>
+      </div>
+    </div>
+
+    <!-- Mid Gray -->
+    <div class="color-card">
+      <div class="color-swatch" style="background: #666666;">
+        <span class="hex-overlay">#666666</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">Mid Gray</div>
+        <div class="color-role">Secondary text, descriptions</div>
+        <div class="color-values">
+          RGB: 102, 102, 102<br>
+          Computed: rgb(102, 102, 102)
+        </div>
+      </div>
+    </div>
+
+    <!-- Light Gray -->
+    <div class="color-card">
+      <div class="color-swatch" style="background: #999999;">
+        <span class="hex-overlay">#999999</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">Light Gray</div>
+        <div class="color-role">Tertiary text, section numbers, placeholders</div>
+        <div class="color-values">
+          RGB: 153, 153, 153<br>
+          Computed: rgb(153, 153, 153)
+        </div>
+      </div>
+    </div>
+
+    <!-- Light BG -->
+    <div class="color-card">
+      <div class="color-swatch light-text" style="background: #F5F5F5;">
+        <span class="hex-overlay">#F5F5F5</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">Light Surface</div>
+        <div class="color-role">Section backgrounds, alternating panels</div>
+        <div class="color-values">
+          RGB: 245, 245, 245<br>
+          Computed: rgb(245, 245, 245)
+        </div>
+      </div>
+    </div>
+
+    <!-- White -->
+    <div class="color-card">
+      <div class="color-swatch light-text" style="background: #FFFFFF; border: 1px solid #E5E7EB;">
+        <span class="hex-overlay">#FFFFFF</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">White</div>
+        <div class="color-role">Primary page background, card surfaces</div>
+        <div class="color-values">
+          RGB: 255, 255, 255<br>
+          Computed: rgb(255, 255, 255)
+        </div>
+      </div>
+    </div>
+
+    <!-- Border Gray -->
+    <div class="color-card">
+      <div class="color-swatch light-text" style="background: #EEEEEE;">
+        <span class="hex-overlay">#EEEEEE</span>
+      </div>
+      <div class="color-info">
+        <div class="color-name">Border</div>
+        <div class="color-role">Dividers, button outlines, card borders</div>
+        <div class="color-values">
+          RGB: 238, 238, 238<br>
+          Computed: rgb(238, 238, 238)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="verified-note">
+    <strong>Extraction method:</strong> Colors extracted via JavaScript <code>getComputedStyle()</code> on live elements (buttons, links, headings, footer, sections) at doximity.com on March 27, 2026. Doximity uses no CSS custom properties on <code>:root</code> &mdash; all colors are applied directly via compiled CSS classes. <strong>Key observation:</strong> The palette is intentionally restrained &mdash; a single blue accent (#1276D3) with warm orange (#FF9500) reserved exclusively for AI/DoxGPT features, paired with a wide neutral gray ramp. This signals <em>clinical trustworthiness</em> over flashy design, consistent with their physician-first positioning.
+  </div>
+</div>
+
+<!-- ══════════════════ SECTION 3: TYPOGRAPHY ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">3</span>
+    <span class="section-title">Typography System</span>
+    <span class="section-badge badge-verified">Verified from Live CSS</span>
+  </div>
+
+  <div class="type-specimens">
+    <!-- Source Serif Pro -->
+    <div class="type-card">
+      <div class="font-role">Display / Headlines</div>
+      <div class="font-name">Source Serif Pro</div>
+      <div class="display-sample" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 400;">
+        How can I assist you?
+      </div>
+      <div class="body-sample" style="font-family: 'Source Serif 4', Georgia, serif;">
+        Integrated intelligence across your entire workflow. AI-powered. Physician-verified.
+      </div>
+      <div class="alphabet" style="font-family: 'Source Serif 4', Georgia, serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+      </div>
+      <div class="css-details">
+        font-family: "Source Serif Pro", Georgia, serif;<br>
+        font-weight: 400;<br>
+        font-size: 32px (H1/H2); 28px (H3);<br>
+        text-transform: none;
+      </div>
+    </div>
+
+    <!-- Inter -->
+    <div class="type-card">
+      <div class="font-role">Body / UI / Navigation</div>
+      <div class="font-name">Inter</div>
+      <div class="display-sample" style="font-family: Inter, sans-serif; font-weight: 600; font-size: 28px;">
+        The #1 healthcare network
+      </div>
+      <div class="body-sample" style="font-family: Inter, sans-serif;">
+        Doximity is the largest community of healthcare professionals in the country &mdash; with over 80% of U.S. doctors as verified members.
+      </div>
+      <div class="alphabet" style="font-family: Inter, sans-serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+      </div>
+      <div class="css-details">
+        font-family: Inter, -apple-system, "system-ui", Helvetica, system-ui, sans-serif;<br>
+        font-size: 16px (body); 14px (nav);<br>
+        font-weight: 400 (body), 500&ndash;600 (buttons/nav);<br>
+        text-transform: none (nav uppercase on about page);
+      </div>
+    </div>
+  </div>
+
+  <div class="verified-note" style="margin-top: 20px;">
+    <strong>Typography strategy:</strong> Doximity pairs a classic serif (Source Serif Pro) for headlines with a modern geometric sans (Inter) for body and UI. This serif-for-headlines approach is notably traditional for healthcare SaaS &mdash; it signals editorial authority and medical gravitas rather than Silicon Valley flash. Inter handles all functional text (nav, buttons, body copy), providing legibility and neutrality. Neither font is custom/proprietary; both are open-source Google Fonts, making this stack highly accessible but less distinctive from a pure branding standpoint.
+  </div>
+</div>
+
+<!-- ══════════════════ SECTION 4: POSITIONING ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">4</span>
+    <span class="section-title">Brand Positioning &amp; Messaging</span>
+    <span class="section-badge badge-verified">Verified from Live Site</span>
+  </div>
+
+  <div class="positioning-grid">
+    <div class="pos-card">
+      <div class="pos-label">Hero Headline (Homepage)</div>
+      <div class="pos-value">"How can I assist you?"</div>
+    </div>
+    <div class="pos-card">
+      <div class="pos-label">Page Title / Browser Tab</div>
+      <div class="pos-value">"AI for Doctors"</div>
+    </div>
+    <div class="pos-card">
+      <div class="pos-label">Mission</div>
+      <div class="pos-value">Help every physician be more productive and provide better care for their patients</div>
+    </div>
+    <div class="pos-card">
+      <div class="pos-label">Vision</div>
+      <div class="pos-value">A future where medical communication is effortless &mdash; fast, simple, seamless, and secure</div>
+    </div>
+    <div class="pos-card">
+      <div class="pos-label">Category Descriptor</div>
+      <div class="pos-value">The #1 professional medical network &amp; integrated AI platform for U.S. healthcare professionals</div>
+    </div>
+    <div class="pos-card">
+      <div class="pos-label">Design Agency</div>
+      <div class="pos-value italic">Not publicly stated</div>
+    </div>
+    <div class="pos-card">
+      <div class="pos-label">Key Trust Signal</div>
+      <div class="pos-value">3M+ verified members including 85%+ of U.S. physicians; partners include Mayo Clinic, Cleveland Clinic, Penn Medicine, Mass General</div>
+    </div>
+    <div class="pos-card">
+      <div class="pos-label">Product Suite</div>
+      <div class="pos-value">DoxGPT &bull; Scribe &bull; Dialer &bull; Fax &bull; Newsfeed &bull; Residency Navigator</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ SECTION 5: DESIGN LANGUAGE ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">5</span>
+    <span class="section-title">Design Language &amp; Visual System</span>
+    <span class="section-badge badge-verified">Verified from Live Site</span>
+  </div>
+
+  <div class="design-grid">
+    <div class="design-card">
+      <div class="attr-label">Primary Theme</div>
+      <div class="attr-value">Light-First</div>
+      <div class="attr-desc">Clean white backgrounds dominate. Dark navy used only for stats hero section and footer. Overall light, clinical aesthetic.</div>
+    </div>
+    <div class="design-card">
+      <div class="attr-label">Palette Strategy</div>
+      <div class="attr-value">Monochrome + Single Accent</div>
+      <div class="attr-desc">Gray ramp (#000&ndash;#F5F5F5) with one blue accent (#1276D3). Orange reserved exclusively for AI features.</div>
+    </div>
+    <div class="design-card">
+      <div class="attr-label">Accent Approach</div>
+      <div class="attr-value">Institutional Blue</div>
+      <div class="attr-desc">A medium-saturation, trustworthy blue that reads as "reliable corporate" rather than "innovative startup."</div>
+    </div>
+    <div class="design-card">
+      <div class="attr-label">Photography Style</div>
+      <div class="attr-value">Lifestyle + Device</div>
+      <div class="attr-desc">About page hero features warm lifestyle photo of doctor with phone. Product sections lean on device UI screenshots and partner logos over stock.</div>
+    </div>
+    <div class="design-card">
+      <div class="attr-label">Graphic System</div>
+      <div class="attr-value">Minimal / UI-Driven</div>
+      <div class="attr-desc">No custom illustrations or graphic system visible. Visual interest comes from product UI screenshots, partner logo grids, and clean iconography.</div>
+    </div>
+    <div class="design-card">
+      <div class="attr-label">Identity Type</div>
+      <div class="attr-value">Static / Established</div>
+      <div class="attr-desc">Consistent, mature brand execution. No generative or dynamic elements. The AI chat interface on the homepage is the most "modern" design element.</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <h4>Strategic Design Analysis &mdash; Competitive Implications</h4>
+    <ul>
+      <li><strong>Doximity owns the "institutional trust + network scale" territory.</strong> Their design deliberately reads as an established platform, not a startup. The serif headlines (Source Serif Pro), muted gray palette, and Mayo Clinic / Cleveland Clinic partner logos all signal entrenched credibility that's difficult to replicate.</li>
+      <li><strong>The homepage pivot to "AI for Doctors" is significant.</strong> As of March 2026, Doximity leads with a full-screen AI chat interface (DoxGPT) — a dramatic departure from their legacy network/directory positioning. This signals aggressive intent to own the "AI clinical assistant" space alongside their network moat.</li>
+      <li><strong>Their blue (#1276D3) is generic healthcare blue.</strong> It sits squarely in the same hue range as dozens of health tech competitors (Epic, Athenahealth, etc.). This is both safe and undifferentiated — a clear opportunity for a rebrand that chooses a distinctive, non-blue primary color to stand out.</li>
+      <li><strong>The warm orange accent for AI features (#FF9500) is a clever but isolated choice.</strong> It differentiates the "DoxGPT" AI product from the legacy blue platform without changing the core brand. However, it creates a visually split identity — the AI product feels like a different brand grafted on.</li>
+      <li><strong>No custom illustration system or distinctive graphic language exists.</strong> Doximity relies entirely on UI screenshots, logo walls, and serif type for visual identity. This leaves significant white space for a competitor to own a distinctive illustration or data visualization style as a differentiator.</li>
+      <li><strong>The typography pairing (serif headlines + Inter body) is safe but dated.</strong> While Source Serif Pro adds editorial weight, it makes Doximity's site feel more like a medical journal than a cutting-edge AI platform. A competitor with a modern geometric or humanist sans across the board could signal innovation more effectively.</li>
+      <li><strong>Vulnerability: Their AI pivot creates a brand coherence challenge.</strong> The split between "trusted physician network" and "AI assistant" identities (visible in the orange vs. blue color system, the chat-first homepage vs. the traditional about page) may confuse positioning. A competitor with a unified AI-native brand from day one could exploit this.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════ SECTION 6: REFERENCES ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">6</span>
+    <span class="section-title">Brand References &amp; Resources</span>
+  </div>
+
+  <div class="ref-grid">
+    <a class="ref-card" href="https://www.doximity.com" target="_blank">
+      <div class="ref-icon">&#127760;</div>
+      <div>
+        <div class="ref-title">Doximity Website</div>
+        <div class="ref-desc">Main website &mdash; AI-first homepage with DoxGPT chat</div>
+      </div>
+    </a>
+    <a class="ref-card" href="https://www.doximity.com/about/company" target="_blank">
+      <div class="ref-icon">&#128196;</div>
+      <div>
+        <div class="ref-title">About Page</div>
+        <div class="ref-desc">Company description, mission, leadership context</div>
+      </div>
+    </a>
+    <a class="ref-card" href="https://www.linkedin.com/company/doximity" target="_blank">
+      <div class="ref-icon">&#128101;</div>
+      <div>
+        <div class="ref-title">LinkedIn</div>
+        <div class="ref-desc">Company profile — Doximity, Inc.</div>
+      </div>
+    </a>
+    <a class="ref-card" href="https://apps.apple.com/us/app/doximity/id393642611" target="_blank">
+      <div class="ref-icon">&#128241;</div>
+      <div>
+        <div class="ref-title">iOS App Store</div>
+        <div class="ref-desc">Doximity app listing — AI tools, HIPAA-compliant messaging</div>
+      </div>
+    </a>
+    <a class="ref-card" href="https://play.google.com/store/apps/details?id=com.doximity.doximitydroid" target="_blank">
+      <div class="ref-icon">&#128241;</div>
+      <div>
+        <div class="ref-title">Google Play Store</div>
+        <div class="ref-desc">Doximity &mdash; Medical Network for Android</div>
+      </div>
+    </a>
+    <a class="ref-card" href="https://press.doximity.com" target="_blank">
+      <div class="ref-icon">&#128240;</div>
+      <div>
+        <div class="ref-title">Press &amp; Newsroom</div>
+        <div class="ref-desc">Official press releases and media resources</div>
+      </div>
+    </a>
+    <a class="ref-card" href="https://workat.doximity.com/" target="_blank">
+      <div class="ref-icon">&#128188;</div>
+      <div>
+        <div class="ref-title">Careers (Work @ Doximity)</div>
+        <div class="ref-desc">Engineering-focused employer brand site</div>
+      </div>
+    </a>
+    <a class="ref-card" href="https://en.wikipedia.org/wiki/Doximity" target="_blank">
+      <div class="ref-icon">&#128214;</div>
+      <div>
+        <div class="ref-title">Wikipedia</div>
+        <div class="ref-desc">General company history and overview</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<div class="card-footer">
+  <div class="footer-main">Doximity Design Battle Card &bull; Prepared March 27, 2026 &bull; Confidential &mdash; For Internal Rebrand Use Only</div>
+  <div class="footer-sub">Colors, fonts, and logo verified from doximity.com via Chrome extension live CSS extraction + JavaScript getComputedStyle()</div>
+</div>
+
+</div><!-- /.battle-card -->
+</body>
+</html>

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeanTaaS — Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ═══ VERIFIED LeanTaaS Brand Colors (from live CSS, April 2026) ═══ */
+  --comp-primary: #1C4ADE;          /* Primary brand blue — headings, hero stats, links */
+  --comp-primary-dark: #1539B5;     /* Darker blue for hover states */
+  --comp-black: #081B5F;            /* Dark navy — headings, footer bg, section accents */
+  --comp-dark: #081B5F;             /* Same dark navy */
+  --comp-body-text: #4E5364;        /* Slate gray — body text, descriptions */
+  --comp-white: #FFFFFF;            /* Primary background */
+  --comp-light: #F4F7FA;            /* Off-white surface */
+  --comp-light-gray: #E6EAED;      /* Light blue-gray surface — card containers */
+  --comp-green: #5ED283;            /* Action green — CTA buttons */
+  --comp-dark-blue: #064676;        /* Deep teal — dark section backgrounds */
+
+  /* Battle Card UI — NEVER CHANGE THESE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #1F2937;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── HEADER ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.card-header .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #EEF2FF;
+  color: #4338CA;
+  margin-bottom: 12px;
+}
+.card-header .date {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 24px;
+}
+.card-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.card-header .tagline {
+  font-size: 20px;
+  color: #6B7280;
+  margin-top: 12px;
+  font-weight: 400;
+}
+.card-header .url {
+  margin-top: 16px;
+}
+.card-header .url a {
+  color: #6366F1;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.card-header .url a:hover { text-decoration: underline; }
+
+/* ── SECTIONS ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.section-header .left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--comp-primary);
+  color: #FFFFFF;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+.badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-confirmed);
+  color: var(--badge-confirmed-text);
+}
+.badge-research {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--badge-verify);
+  color: var(--badge-verify-text);
+}
+
+/* ── SECTION 1: LOGO ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.logo-preview {
+  border-radius: 12px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: transform 0.2s;
+}
+.logo-preview:hover { transform: translateY(-2px); }
+.logo-preview img { height: 40px; width: auto; }
+.logo-preview .bg-label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: #9CA3AF;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.logo-preview.on-white { background: #FFFFFF; }
+.logo-preview.on-dark { background: var(--comp-black); }
+.logo-preview.on-light { background: var(--comp-light-gray); }
+.logo-preview.on-primary { background: var(--comp-primary); }
+
+.logo-description {
+  background: #F9FAFB;
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid #F3F4F6;
+}
+.logo-description h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+.logo-description p {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.7;
+}
+.logo-description .asset-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #F3F4F6;
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+}
+
+/* ── SECTION 2: COLORS ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.color-card {
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.color-card:hover { transform: translateY(-2px); }
+.color-swatch {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+}
+.color-swatch .hex-overlay {
+  font-family: 'DM Sans', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.color-swatch.light-swatch .hex-overlay {
+  color: #374151;
+  text-shadow: none;
+}
+.color-info {
+  padding: 14px;
+}
+.color-info .name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.color-info .role {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+}
+.color-info .detail {
+  font-size: 11px;
+  font-family: 'DM Sans', monospace;
+  color: #6B7280;
+  line-height: 1.8;
+}
+
+.note-box {
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.verified-note {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #166534;
+}
+.warning-note {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+}
+
+/* ── SECTION 3: TYPOGRAPHY ── */
+.type-callout {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 2px solid #F97316;
+  background: #FFF7ED;
+  margin-bottom: 24px;
+}
+.type-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #9A3412;
+  margin-bottom: 6px;
+}
+.type-callout p {
+  font-size: 13px;
+  color: #9A3412;
+  line-height: 1.6;
+}
+
+.type-specimen {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 16px;
+  transition: transform 0.2s;
+}
+.type-specimen:hover { transform: translateY(-2px); }
+.type-specimen .font-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.type-specimen .font-role {
+  font-size: 12px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+.type-specimen .display-sample {
+  font-size: 42px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.type-specimen .body-sample {
+  font-size: 16px;
+  color: #4B5563;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 640px;
+}
+.type-specimen .alphabet {
+  font-size: 14px;
+  color: #9CA3AF;
+  letter-spacing: 0.04em;
+  word-break: break-all;
+  margin-bottom: 16px;
+}
+.type-specimen .css-detail {
+  font-family: 'DM Sans', monospace;
+  font-size: 12px;
+  color: #6B7280;
+  background: #F9FAFB;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.8;
+}
+
+/* ── SECTION 4: POSITIONING ── */
+.position-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.position-card {
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.position-card:hover { transform: translateY(-2px); }
+.position-card .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.position-card .value {
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.6;
+  font-weight: 500;
+}
+.position-card .value.italic { font-style: italic; color: #6B7280; font-weight: 400; }
+
+/* ── SECTION 5: DESIGN LANGUAGE ── */
+.design-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.design-attr {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s;
+}
+.design-attr:hover { transform: translateY(-2px); }
+.design-attr .attr-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.design-attr .attr-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.strategy-callout {
+  padding: 28px 32px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #F5F3FF 0%, #EEF2FF 100%);
+  border: 1px solid #DDD6FE;
+}
+.strategy-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4338CA;
+  margin-bottom: 16px;
+}
+.strategy-callout ul {
+  list-style: none;
+  padding: 0;
+}
+.strategy-callout li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+}
+.strategy-callout li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #6366F1;
+  font-weight: 600;
+}
+
+/* ── SECTION 6: REFERENCES ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ref-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ref-card:hover {
+  border-color: #6366F1;
+  transform: translateY(-2px);
+}
+.ref-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #F3F4F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ref-card .ref-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.ref-card .ref-desc {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+/* ── FOOTER ── */
+.card-footer {
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 12px;
+  color: #9CA3AF;
+}
+.card-footer .main-line {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.card-footer .sub-line {
+  font-size: 11px;
+  color: #D1D5DB;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { padding: 0 16px 16px 16px; }
+  .card-header h1 { font-size: 36px; }
+  .color-grid { grid-template-columns: 1fr 1fr; }
+  .position-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr; }
+  .ref-grid { grid-template-columns: 1fr; }
+  .logo-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link comp-nav__link--active" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+
+<div class="battle-card">
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="card-header">
+    <div class="badge">Design Battle Card</div>
+    <div class="date">April 2026 · Confidential</div>
+    <h1>LeanTaaS</h1>
+    <div class="tagline">AI-Driven Capacity Management &amp; Prescriptive Analytics for Healthcare</div>
+    <div class="url"><a href="https://leantaas.com/" target="_blank">leantaas.com ↗</a></div>
+  </div>
+
+  <!-- ════════ SECTION 1: LOGO & LOGOMARK ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">1</span>
+        <span class="section-title">Logo &amp; Logomark</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="logo-grid">
+      <!-- White BG — natural colors -->
+      <div class="logo-preview on-white">
+        <img src="https://leantaas.com/wp-content/uploads/2022/10/LeanTaaS_Main_Logo.svg" alt="LeanTaaS logo" style="height:40px;width:auto;">
+        <span class="bg-label">White</span>
+      </div>
+      <!-- Dark BG — inverted to white -->
+      <div class="logo-preview on-dark">
+        <img src="https://leantaas.com/wp-content/uploads/2022/10/LeanTaaS_Main_Logo.svg" alt="LeanTaaS logo on dark" style="height:40px;width:auto;filter:brightness(0) invert(1);">
+        <span class="bg-label" style="color:#6B7280;">Dark (#081B5F)</span>
+      </div>
+      <!-- Light BG — natural colors -->
+      <div class="logo-preview on-light">
+        <img src="https://leantaas.com/wp-content/uploads/2022/10/LeanTaaS_Main_Logo.svg" alt="LeanTaaS logo on light" style="height:40px;width:auto;">
+        <span class="bg-label">Light (#E6EAED)</span>
+      </div>
+      <!-- Primary BG — inverted to white -->
+      <div class="logo-preview on-primary">
+        <img src="https://leantaas.com/wp-content/uploads/2022/10/LeanTaaS_Main_Logo.svg" alt="LeanTaaS logo on primary" style="height:40px;width:auto;filter:brightness(0) invert(1);">
+        <span class="bg-label" style="color:rgba(255,255,255,0.7);">Primary (#1C4ADE)</span>
+      </div>
+    </div>
+
+    <div class="logo-description">
+      <h4>Logo Analysis</h4>
+      <p>
+        <strong>Type:</strong> Combination mark — a stylized ascending bar chart icon (three vertical bars in graduated blue tones suggesting growth and analytics) paired with the "LeanTaaS" wordmark. The distinctive camelCase capitalization ("LeanTaaS" with capital S) is a deliberate typographic choice that creates brand recognition. The bar chart icon directly communicates the company's core value proposition: data-driven optimization and upward performance trends. The wordmark is set in a clean geometric sans-serif, likely a customized cut. The logo is hosted as an SVG on WordPress (10,319 characters — too large to embed inline multiple times).
+      </p>
+      <p style="margin-top:8px;">
+        <strong>Design Agency:</strong> Not publicly disclosed. Site built on WordPress + Elementor.
+      </p>
+      <span class="asset-tag">SVG hosted · wp-content CDN · 526×99 viewBox</span>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 2: BRAND COLOR PALETTE ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">2</span>
+        <span class="section-title">Brand Color Palette</span>
+      </div>
+      <span class="badge-verified">✓ Extracted from Live CSS</span>
+    </div>
+
+    <div class="color-grid">
+      <!-- Primary Blue -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#1C4ADE;">
+          <span class="hex-overlay">#1C4ADE</span>
+        </div>
+        <div class="color-info">
+          <div class="name">LeanTaaS Blue</div>
+          <div class="role">Primary brand — headings, hero statistics, text links</div>
+          <div class="detail">
+            RGB: 28, 74, 222<br>
+            CSS: --comp-primary
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Navy -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#081B5F;">
+          <span class="hex-overlay">#081B5F</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Navy</div>
+          <div class="role">Dark headings — section backgrounds, footer, H2/H3 text</div>
+          <div class="detail">
+            RGB: 8, 27, 95<br>
+            CSS: h2 color / footer bg
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Green -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#5ED283;">
+          <span class="hex-overlay" style="color:#081B5F;text-shadow:none;">#5ED283</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Action Green</div>
+          <div class="role">CTA buttons — "Request a demo", success states</div>
+          <div class="detail">
+            RGB: 94, 210, 131<br>
+            CSS: .btn-cta bg
+          </div>
+        </div>
+      </div>
+
+      <!-- Slate -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#4E5364;">
+          <span class="hex-overlay">#4E5364</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Slate</div>
+          <div class="role">Body text — descriptions, secondary copy</div>
+          <div class="detail">
+            RGB: 78, 83, 100<br>
+            CSS: p color
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep Teal -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#064676;">
+          <span class="hex-overlay">#064676</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Deep Teal</div>
+          <div class="role">Dark section backgrounds — stats band, awards area</div>
+          <div class="detail">
+            RGB: 6, 70, 118<br>
+            CSS: section bg variant
+          </div>
+        </div>
+      </div>
+
+      <!-- Cloud -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background:#E6EAED; border: 1px solid #D1D5DB;">
+          <span class="hex-overlay">#E6EAED</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Cloud</div>
+          <div class="role">Light surface — card containers, feature backgrounds</div>
+          <div class="detail">
+            RGB: 230, 234, 237<br>
+            CSS: section bg light
+          </div>
+        </div>
+      </div>
+
+      <!-- White -->
+      <div class="color-card">
+        <div class="color-swatch light-swatch" style="background:#FFFFFF; border: 1px solid #E5E7EB;">
+          <span class="hex-overlay">#FFFFFF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">White</div>
+          <div class="role">Primary content background</div>
+          <div class="detail">
+            RGB: 255, 255, 255<br>
+            CSS: body background
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Extraction Note:</strong> Colors extracted from live WordPress/Elementor site (April 2026). LeanTaaS runs a classic <strong>blue-dominant B2B healthcare palette</strong>. The primary blue (#1C4ADE) is vibrant and saturated — closer to electric blue than the muted navy-blues typical of enterprise healthcare. The green CTA (#5ED283) is a minty, approachable green that creates clear call-to-action hierarchy against the blue system. The dark navy (#081B5F) provides gravitas for headings and section backgrounds. The overall impression is <strong>"data-forward, enterprise-grade"</strong> — functional and credible, but not emotionally distinctive.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 3: TYPOGRAPHY SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">3</span>
+        <span class="section-title">Typography System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live CSS</span>
+    </div>
+
+    <div class="note-box verified-note" style="margin-bottom:24px;">
+      <strong>✓ Free / Open-Source Typeface</strong> — Public Sans is an open-source typeface originally developed for the U.S. federal government (USWDS — U.S. Web Design System). It is freely available via Google Fonts. No licensing costs or proprietary font handling is needed.
+    </div>
+
+    <!-- Public Sans -->
+    <div class="type-specimen">
+      <div class="font-name">Public Sans</div>
+      <div class="font-role">Display · Headings · Body · UI — Sole Brand Typeface</div>
+      <div class="display-sample" style="font-family: 'Public Sans', sans-serif; font-weight: 300;">
+        Maximize healthcare capacity with AI and prescriptive analytics.
+      </div>
+      <div class="body-sample" style="font-family: 'Public Sans', sans-serif;">
+        Public Sans is a neutral, highly legible sans-serif originally designed for the U.S. federal government's design system (USWDS). It offers a wide range of weights (100–900) with italic variants. LeanTaaS uses it as their sole typeface across all touchpoints — from light-weight display headlines (weight 300) to bold UI elements (weight 700). The typeface is a fork of Libre Franklin with improved metrics and optical sizing.
+      </div>
+      <div class="alphabet" style="font-family: 'Public Sans', sans-serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%&amp;*()
+      </div>
+      <div class="css-detail">
+        font-family: "Public Sans", sans-serif;<br>
+        H1: font-size: 56px · font-weight: 300 (light) · color: #081B5F · letter-spacing: -0.02em<br>
+        H2: font-size: 32px · font-weight: 700 · color: #081B5F<br>
+        Body: font-size: 16px · font-weight: 400 · color: #4E5364 · line-height: 1.6<br>
+        Nav: font-size: 15px · font-weight: 600 · color: #081B5F<br>
+        CTA Button: font-weight: 600 · border-radius: 100px (pill)
+      </div>
+    </div>
+
+    <div class="note-box verified-note">
+      <strong>Typography Note:</strong> LeanTaaS is a <strong>single-typeface brand</strong> using Public Sans for everything. The choice of a U.S. government-origin typeface signals institutional credibility and accessibility — appropriate for a company selling to hospital administrators and health system C-suites. Notably, H1 headlines use <strong>weight 300 (light)</strong>, creating an elegant, editorial feel that contrasts with the bold data-heavy content. This is a mature, conservative typography choice — functional but not distinctive. Hundreds of government and enterprise sites also use Public Sans, so there is no typographic signature here.
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 4: BRAND POSITIONING & MESSAGING ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">4</span>
+        <span class="section-title">Brand Positioning &amp; Messaging</span>
+      </div>
+      <span class="badge-research">◐ Research-Based</span>
+    </div>
+
+    <div class="position-grid">
+      <div class="position-card">
+        <div class="label">Hero Headline (Live Site)</div>
+        <div class="value">"Maximize healthcare capacity with AI and prescriptive analytics."</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Brand Tagline</div>
+        <div class="value italic">No distinct tagline — positioning is data/ROI-centric rather than emotional. Messaging leads with operational metrics and financial outcomes.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Core Product</div>
+        <div class="value">"iQueue" — AI-powered capacity management platform. Three product lines: iQueue for Operating Rooms, iQueue for Infusion Centers, iQueue for Inpatient Flow.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Value Proposition</div>
+        <div class="value">Operations-first AI — reduce costs, increase throughput, optimize scheduling. Key metrics prominently displayed: $100K/OR/year ROI, $10K/bed/year, $20K/infusion chair/year, 2–5% EBITDA improvement.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Category Descriptor</div>
+        <div class="value">AI-Powered Healthcare Capacity Management / Prescriptive Analytics Platform</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Key Trust Signals</div>
+        <div class="value">"Best in KLAS" — Capacity Optimization Management three consecutive years (2024, 2025, 2026). Major clients: Stanford Health Care, NewYork-Presbyterian, Penn Medicine, Yale New Haven Health, UCHealth, Novant Health.</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Company History</div>
+        <div class="value">Founded 2010 in Santa Clara, CA by Mohan Giridharadas. Originally applied lean manufacturing principles to healthcare operations. Pivoted to AI/ML-driven capacity optimization. Name combines "Lean" (lean methodology) + "TaaS" (Transformation as a Service).</div>
+      </div>
+      <div class="position-card">
+        <div class="label">Design Agency / Platform</div>
+        <div class="value italic">Not publicly disclosed. Website built on WordPress 6.9 + Elementor page builder.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 5: DESIGN LANGUAGE & VISUAL SYSTEM ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">5</span>
+        <span class="section-title">Design Language &amp; Visual System</span>
+      </div>
+      <span class="badge-verified">✓ Verified from Live Site</span>
+    </div>
+
+    <div class="design-grid">
+      <div class="design-attr">
+        <div class="attr-label">Primary Theme</div>
+        <div class="attr-value">Light-dominant — white content sections with dark navy (#081B5F) accent bands</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Palette Strategy</div>
+        <div class="attr-value">Blue monochrome system with green CTA accent</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Accent Color Approach</div>
+        <div class="attr-value">Green as action — CTAs only. Blue carries everything else (stats, headings, links)</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Photography Style</div>
+        <div class="attr-value">Minimal — primarily product screenshots, data visualizations, and partner/client logos. Limited human photography.</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Graphic System</div>
+        <div class="attr-value">Flat illustration icons (blue/green duotone), rounded card UI, metric callout cards with large numbers</div>
+      </div>
+      <div class="design-attr">
+        <div class="attr-label">Identity Type</div>
+        <div class="attr-value">Static combination mark — consistent application, bar chart icon + wordmark</div>
+      </div>
+    </div>
+
+    <div class="strategy-callout">
+      <h4>Strategic Analysis — Competitive Implications</h4>
+      <ul>
+        <li><strong>LeanTaaS occupies the "enterprise operations" territory</strong> in healthcare AI. While competitors like Suki and Ambience focus on clinical documentation, LeanTaaS targets C-suite operations: capacity, throughput, and financial performance. This is a fundamentally different buyer persona (COO/CFO vs. clinicians).</li>
+        <li><strong>The visual identity is competent but generic.</strong> The blue-dominant palette, sans-serif typography, and light-on-dark sections could belong to any enterprise SaaS company. There is nothing in the design language that says "healthcare" or creates memorable brand distinctiveness. Compare this to Suki's bold black-and-yellow or Thesis's warm serif editorial approach.</li>
+        <li><strong>The ROI-first messaging strategy is effective for their buyer.</strong> Every major content block leads with dollar figures ($100K, $10K, $20K). This is the opposite of Suki's emotion-first approach — LeanTaaS sells to CFOs and COOs, not clinicians. The "Best in KLAS" badge (three consecutive years) is their most powerful trust signal.</li>
+        <li><strong>Single-typeface, single-color-family approach keeps the brand simple but undifferentiated.</strong> Public Sans is used by hundreds of government and enterprise sites. There is no typographic signature. The light-weight H1 (300) is the one nuanced choice — it creates an elegant contrast against the data-heavy content.</li>
+        <li><strong>The green CTA is a smart color hierarchy decision.</strong> Against the dominant blue system, the minty green (#5ED283) "Request a demo" button stands out clearly — it's the only non-blue color on most pages, creating an effective visual funnel toward conversion.</li>
+        <li><strong>Vulnerability: The brand lacks warmth and human connection.</strong> In a market where competitors are investing heavily in emotional resonance (Suki's "joy," Thesis's editorial warmth, Ambience's clinical empathy), LeanTaaS's purely operational positioning may feel cold to clinical stakeholders who also influence purchasing decisions.</li>
+        <li><strong>White space opportunity:</strong> A competitor could bridge the gap between LeanTaaS's operational credibility and Suki's emotional warmth — speaking to both the C-suite and the clinician with a single, unified brand voice that combines ROI data with human-centered design.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 6: BRAND REFERENCES & RESOURCES ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="left">
+        <span class="section-number">6</span>
+        <span class="section-title">Brand References &amp; Resources</span>
+      </div>
+    </div>
+
+    <div class="ref-grid">
+      <a href="https://leantaas.com/" target="_blank" class="ref-card">
+        <div class="ref-icon">🌐</div>
+        <div>
+          <div class="ref-title">LeanTaaS Website</div>
+          <div class="ref-desc">Primary company website — leantaas.com</div>
+        </div>
+      </a>
+      <a href="https://leantaas.com/company/" target="_blank" class="ref-card">
+        <div class="ref-icon">ℹ️</div>
+        <div>
+          <div class="ref-title">About LeanTaaS</div>
+          <div class="ref-desc">Company overview, leadership, and mission</div>
+        </div>
+      </a>
+      <a href="https://leantaas.com/products/" target="_blank" class="ref-card">
+        <div class="ref-icon">📊</div>
+        <div>
+          <div class="ref-title">iQueue Platform</div>
+          <div class="ref-desc">Product overview — OR, Infusion Centers, Inpatient Flow</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/company/leantaas/" target="_blank" class="ref-card">
+        <div class="ref-icon">💼</div>
+        <div>
+          <div class="ref-title">LinkedIn</div>
+          <div class="ref-desc">Company profile and employee network</div>
+        </div>
+      </a>
+      <a href="https://klasresearch.com/" target="_blank" class="ref-card">
+        <div class="ref-icon">🏆</div>
+        <div>
+          <div class="ref-title">Best in KLAS</div>
+          <div class="ref-desc">Capacity Optimization Management — 2024, 2025, 2026</div>
+        </div>
+      </a>
+      <a href="https://www.crunchbase.com/organization/leantaas" target="_blank" class="ref-card">
+        <div class="ref-icon">📈</div>
+        <div>
+          <div class="ref-title">Crunchbase Profile</div>
+          <div class="ref-desc">Funding history, investors, and financials</div>
+        </div>
+      </a>
+      <a href="https://leantaas.com/success-stories/" target="_blank" class="ref-card">
+        <div class="ref-icon">🏥</div>
+        <div>
+          <div class="ref-title">Success Stories</div>
+          <div class="ref-desc">Client case studies and ROI documentation</div>
+        </div>
+      </a>
+      <a href="https://leantaas.com/resources/" target="_blank" class="ref-card">
+        <div class="ref-icon">📚</div>
+        <div>
+          <div class="ref-title">Resources</div>
+          <div class="ref-desc">Whitepapers, webinars, blog posts, and industry insights</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ════════ FOOTER ════════ -->
+  <div class="card-footer">
+    <div class="main-line">LeanTaaS Design Battle Card · Prepared April 2026 · Confidential — For Internal Rebrand Use Only</div>
+    <div class="sub-line">Colors, fonts, and logo verified from leantaas.com live site via Chrome DevTools computed styles extraction + web research</div>
+  </div>
+
+</div>
+
+</body>
+</html>
