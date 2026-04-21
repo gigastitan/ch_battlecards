@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capacity Health &mdash; Design Battle Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ═══ VERIFIED Capacity Health Brand Colors (from live CSS, April 2026) ═══ */
+  --comp-primary: #0891A1;        /* Teal — CTAs, buttons, section labels */
+  --comp-primary-alt: #7C3AED;    /* Purple — secondary accent (sparingly used) */
+  --comp-indigo: #4F46E6;         /* Indigo — tertiary accent */
+  --comp-black: #1A1A2E;          /* Dark navy — primary text, headings */
+  --comp-dark: #5A5F68;           /* Secondary gray — nav, supporting text */
+  --comp-body-text: #1A1A2E;      /* Body text */
+  --comp-white: #FFFFFF;          /* Primary background */
+  --comp-light: #F8F7F4;          /* Warm cream — alternate backgrounds */
+  --comp-light-gray: #E2E4E8;     /* Light gray — borders, dividers */
+  --comp-mid-gray: #8A8F98;       /* Tertiary gray — light text */
+
+  /* Battle Card UI — NEVER CHANGE THESE */
+  --card-bg: #FAFAFA;
+  --card-border: #E5E7EB;
+  --section-bg: #FFFFFF;
+  --badge-verify: #FEF3C7;
+  --badge-verify-text: #92400E;
+  --badge-confirmed: #D1FAE5;
+  --badge-confirmed-text: #065F46;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--card-bg);
+  color: #374151;
+  line-height: 1.6;
+  padding: 0 32px 32px 32px;
+}
+
+.battle-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+
+/* ── Header ── */
+.card-header {
+  text-align: center;
+  padding: 48px 40px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.card-header .badge {
+  display: inline-block;
+  background: var(--comp-black);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.card-header .date {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 20px;
+}
+
+.card-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.card-header .tagline {
+  font-size: 18px;
+  color: #6B7280;
+  margin-bottom: 16px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-header .url {
+  font-size: 14px;
+  color: var(--comp-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+.card-header .url:hover { text-decoration: underline; }
+
+/* ── Section Container ── */
+.section {
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-bottom: 24px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.section-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--comp-primary);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.section-badge {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.badge-verified {
+  background: var(--badge-confirmed);
+  color: var(--badge-confirmed-text);
+}
+
+.badge-research {
+  background: var(--badge-verify);
+  color: var(--badge-verify-text);
+}
+
+/* ── Section 1: Logo ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.logo-preview {
+  border-radius: 12px;
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border: 1px solid var(--card-border);
+  position: relative;
+}
+
+.logo-preview .wordmark {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.2px;
+}
+
+.logo-preview .bg-label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.logo-description {
+  background: #F9FAFB;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.logo-description h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.logo-description p {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.7;
+}
+
+.logo-description .asset-tag {
+  display: inline-block;
+  background: #EEF2FF;
+  color: #4338CA;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-family: 'DM Sans', monospace;
+  word-break: break-all;
+}
+
+/* ── Section 2: Colors ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.color-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.15s ease;
+}
+
+.color-card:hover { transform: translateY(-2px); }
+
+.color-swatch {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+}
+
+.color-swatch .hex-overlay {
+  font-family: 'DM Sans', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.9);
+  color: #111;
+}
+
+.color-swatch.dark-text .hex-overlay {
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+}
+
+.color-info {
+  padding: 14px;
+}
+
+.color-info .name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+
+.color-info .role {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 8px;
+}
+
+.color-info .values {
+  font-size: 11px;
+  color: #6B7280;
+  font-family: 'DM Sans', monospace;
+  line-height: 1.8;
+}
+
+.note-box {
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.note-verified {
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+}
+
+.note-warning {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+}
+
+/* ── Section 3: Typography ── */
+.type-callout {
+  border-left: 4px solid #F97316;
+  background: #FFF7ED;
+  border-radius: 0 12px 12px 0;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.type-callout h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #9A3412;
+  margin-bottom: 4px;
+}
+
+.type-callout p {
+  font-size: 13px;
+  color: #78350F;
+  line-height: 1.6;
+}
+
+.type-specimen {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 16px;
+}
+
+.type-specimen .type-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.type-specimen .type-display {
+  font-size: 42px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+
+.type-specimen .type-body {
+  font-size: 16px;
+  color: #6B7280;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.type-specimen .type-alpha {
+  font-size: 14px;
+  color: #9CA3AF;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+.type-specimen .type-css {
+  font-family: 'DM Sans', monospace;
+  font-size: 12px;
+  color: #6B7280;
+  background: #F9FAFB;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.8;
+}
+
+/* ── Section 4: Positioning ── */
+.positioning-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pos-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.pos-card .pos-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.pos-card .pos-value {
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.6;
+}
+
+.pos-card .pos-value.not-found {
+  color: #D1D5DB;
+  font-style: italic;
+}
+
+/* ── Section 5: Design Language ── */
+.design-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.design-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.design-card .design-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.design-card .design-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.design-card .design-desc {
+  font-size: 12px;
+  color: #6B7280;
+  line-height: 1.5;
+}
+
+.strategy-box {
+  background: linear-gradient(135deg, #F0FDFA 0%, #ECFDF5 100%);
+  border: 2px solid #99F6E4;
+  border-radius: 14px;
+  padding: 28px 32px;
+}
+
+.strategy-box h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #134E4A;
+  margin-bottom: 16px;
+}
+
+.strategy-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.strategy-box li {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+  padding: 6px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.strategy-box li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 10px;
+  height: 10px;
+  background: var(--comp-primary);
+  border-radius: 3px;
+}
+
+/* ── Section 6: References ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.ref-card {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.ref-card:hover {
+  border-color: var(--comp-primary);
+  transform: translateY(-2px);
+}
+
+.ref-icon {
+  width: 36px;
+  height: 36px;
+  background: #F3F4F6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.ref-card .ref-title {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+
+.ref-card .ref-desc {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+/* ── Footer ── */
+.card-footer {
+  text-align: center;
+  padding: 28px 40px;
+  background: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+}
+
+.card-footer p {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 4px;
+}
+
+.card-footer .footer-note {
+  font-size: 11px;
+  color: #D1D5DB;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .logo-grid, .positioning-grid, .ref-grid { grid-template-columns: 1fr; }
+  .design-grid { grid-template-columns: 1fr 1fr; }
+  .card-header h1 { font-size: 36px; }
+  .section { padding: 24px 20px; }
+}
+
+/* ── Competitive Nav Bar ── */
+.comp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0;
+  overflow: hidden;
+}
+.comp-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #F9FAFB;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-right: 16px;
+  margin-right: 8px;
+  border-right: 1px solid #374151;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.comp-nav__home:hover { color: #D1D5DB; }
+.comp-nav__home svg { width: 14px; height: 14px; flex-shrink: 0; }
+.comp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.comp-nav__links::-webkit-scrollbar { display: none; }
+.comp-nav__link {
+  text-decoration: none;
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.comp-nav__link:hover {
+  background: #374151;
+  color: #F3F4F6;
+}
+.comp-nav__link--active {
+  background: #374151;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<!-- ── Competitive Landscape Nav ── -->
+<nav class="comp-nav">
+  <a class="comp-nav__home" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l6-4.5L14 6v7.5a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/><path d="M6 14.5V8h4v6.5"/></svg>
+    All Cards
+  </a>
+  <div class="comp-nav__links">
+    <a class="comp-nav__link" href="Abridge Design Battle Card.html">Abridge</a>
+    <a class="comp-nav__link" href="Ambience Design Battle Card.html">Ambience</a>
+    <a class="comp-nav__link comp-nav__link--active" href="Capacity Health Design Battle Card.html">Capacity Health</a>
+    <a class="comp-nav__link" href="Doximity Design Battle Card.html">Doximity</a>
+    <a class="comp-nav__link" href="Ellipsis Health Design Battle Card.html">Ellipsis Health</a>
+    <a class="comp-nav__link" href="LeanTaas Design Battle Card.html">LeanTaas</a>
+    <a class="comp-nav__link" href="Nabla Design Battle Card.html">Nabla</a>
+    <a class="comp-nav__link" href="Open Evidence Design Battle Card.html">Open Evidence</a>
+    <a class="comp-nav__link" href="Qventus Design Battle Card.html">Qventus</a>
+    <a class="comp-nav__link" href="Regard Design Battle Card.html">Regard</a>
+    <a class="comp-nav__link" href="SmarterDx Design Battle Card.html">SmarterDx</a>
+    <a class="comp-nav__link" href="Suki Design Battle Card.html">Suki</a>
+    <a class="comp-nav__link" href="Thesis Design Battle Card.html">Thesis</a>
+    <a class="comp-nav__link" href="Wellsheet Design Battle Card.html">Wellsheet</a>
+  </div>
+</nav>
+
+<div class="battle-card">
+
+  <!-- ═════════════════════ HEADER ═════════════════════ -->
+  <div class="card-header">
+    <div class="badge">Design Battle Card</div>
+    <div class="date">April 2026 &bull; Confidential</div>
+    <h1>Capacity Health</h1>
+    <p class="tagline">The AI Operating System for High-Performance Acute Care &mdash; a real-time clinical reasoning engine for the emergency department, the hospital, and the health system</p>
+    <a class="url" href="https://capacityhealth-light.lovable.app" target="_blank">capacityhealth-light.lovable.app &nearr;</a>
+  </div>
+
+  <!-- ═════════════════════ SECTION 1: Logo ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Logo &amp; Logomark</div>
+      <span class="section-badge badge-verified">Verified from Live Site</span>
+    </div>
+
+    <div class="logo-grid">
+      <div class="logo-preview" style="background: #FFFFFF;">
+        <span class="wordmark" style="color: #1A1A2E;">Capacity Health</span>
+        <span class="bg-label">White</span>
+      </div>
+      <div class="logo-preview" style="background: #1A1A2E;">
+        <span class="wordmark" style="color: #FFFFFF;">Capacity Health</span>
+        <span class="bg-label" style="color: #5A5F68;">Dark Navy</span>
+      </div>
+      <div class="logo-preview" style="background: #F8F7F4;">
+        <span class="wordmark" style="color: #1A1A2E;">Capacity Health</span>
+        <span class="bg-label">Warm Cream</span>
+      </div>
+      <div class="logo-preview" style="background: #0891A1;">
+        <span class="wordmark" style="color: #FFFFFF;">Capacity Health</span>
+        <span class="bg-label" style="color: rgba(255,255,255,0.5);">Primary Teal</span>
+      </div>
+    </div>
+
+    <div class="logo-description">
+      <h4>Logo Analysis</h4>
+      <p>
+        <strong>Type:</strong> Text-only wordmark. &ldquo;Capacity Health&rdquo; is rendered in Space Grotesk Medium (500), 16px, color #1A1A2E. There is no SVG logomark, icon, or graphic element &mdash; the brand identity is purely typographic at this stage.<br><br>
+        <strong>Characteristics:</strong> The wordmark uses dark navy (#1A1A2E) on light backgrounds. Space Grotesk provides a geometric, modern sans-serif feel with distinctive character shapes. The text-only approach is clean but will need evolution as the brand matures beyond MVP &mdash; a distinctive logomark will be essential for recognition at small sizes (favicons, app icons, conference badges).<br><br>
+        <strong>Platform:</strong> Site built on Lovable (prototype/MVP stage). No separate logo asset files detected.
+      </p>
+      <span class="asset-tag">Wordmark: Space Grotesk 500, 16px, #1A1A2E</span><br>
+      <span class="asset-tag">Format: Text-only (no SVG/PNG logo asset)</span>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ SECTION 2: Colors ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Brand Color Palette</div>
+      <span class="section-badge badge-verified">Extracted from Live CSS</span>
+    </div>
+
+    <div class="color-grid">
+      <!-- Primary Teal -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #0891A1;">
+          <span class="hex-overlay">#0891A1</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Primary Teal</div>
+          <div class="role">CTAs, buttons, section labels</div>
+          <div class="values">
+            rgb(8, 145, 161)<br>
+            --comp-primary
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Navy -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #1A1A2E;">
+          <span class="hex-overlay" style="background:rgba(0,0,0,0.4);color:#fff;">#1A1A2E</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Dark Navy</div>
+          <div class="role">Body text, H1 headlines, wordmark</div>
+          <div class="values">
+            rgb(26, 26, 46)<br>
+            CSS var: --light (inverted)
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Gray -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #5A5F68;">
+          <span class="hex-overlay" style="background:rgba(0,0,0,0.4);color:#fff;">#5A5F68</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Secondary Gray</div>
+          <div class="role">Nav links, secondary body text</div>
+          <div class="values">
+            rgb(90, 95, 104)<br>
+            CSS var: --secondary
+          </div>
+        </div>
+      </div>
+
+      <!-- Tertiary Gray -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #8A8F98;">
+          <span class="hex-overlay">#8A8F98</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Tertiary Gray</div>
+          <div class="role">Lighter supporting text</div>
+          <div class="values">
+            rgb(138, 143, 152)<br>
+            CSS var: --tertiary
+          </div>
+        </div>
+      </div>
+
+      <!-- White -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #E5E7EB;">
+          <span class="hex-overlay">#FFFFFF</span>
+        </div>
+        <div class="color-info">
+          <div class="name">White</div>
+          <div class="role">Primary page background</div>
+          <div class="values">
+            rgb(255, 255, 255)<br>
+            CSS var: --dark (inverted)
+          </div>
+        </div>
+      </div>
+
+      <!-- Warm Cream -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #F8F7F4; border: 1px solid #EBE8E4;">
+          <span class="hex-overlay">#F8F7F4</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Warm Cream</div>
+          <div class="role">Alternate section backgrounds</div>
+          <div class="values">
+            rgb(248, 247, 244)<br>
+            CSS var: --deeper
+          </div>
+        </div>
+      </div>
+
+      <!-- Light Gray -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #E2E4E8; border: 1px solid #D1D3D7;">
+          <span class="hex-overlay">#E2E4E8</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Light Gray</div>
+          <div class="role">Borders, dividers, card outlines</div>
+          <div class="values">
+            rgb(226, 228, 232)<br>
+            CSS var: --mid
+          </div>
+        </div>
+      </div>
+
+      <!-- Purple -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #7C3AED;">
+          <span class="hex-overlay">#7C3AED</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Purple (Secondary)</div>
+          <div class="role">Sparingly used secondary accent</div>
+          <div class="values">
+            rgb(124, 58, 237)<br>
+            CSS var: --purple
+          </div>
+        </div>
+      </div>
+
+      <!-- Indigo -->
+      <div class="color-card">
+        <div class="color-swatch" style="background: #4F46E6;">
+          <span class="hex-overlay">#4F46E6</span>
+        </div>
+        <div class="color-info">
+          <div class="name">Indigo (Secondary)</div>
+          <div class="role">Sparingly used tertiary accent</div>
+          <div class="values">
+            rgb(79, 70, 230)<br>
+            CSS var: --indigo
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box note-warning">
+      <strong>CSS Quirk:</strong> The CSS variable naming is inverted &mdash; <code>--light</code> maps to the dark navy (#1A1A2E) and <code>--dark</code> maps to white (#FFFFFF). This is an interesting technical debt detail that could cause confusion as the design system scales.
+    </div>
+
+    <div class="note-box note-verified" style="margin-top: 12px;">
+      <strong>Extraction Note:</strong> All colors extracted via <code>getComputedStyle()</code> from the live Capacity Health site (April 2026). The palette follows a <strong>monochrome neutrals + single teal accent</strong> strategy. The warm cream (#F8F7F4) alternate backgrounds create approachability, while the teal (#0891A1) is reserved for all interactive elements and section labels. Purple and indigo are defined in CSS but used very sparingly.
+    </div>
+  </div>
+
+  <!-- ═════════════════════ SECTION 3: Typography ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">Typography System</div>
+      <span class="section-badge badge-verified">Verified from Live CSS</span>
+    </div>
+
+    <div class="type-callout">
+      <h4>Multi-Font System: Playfair Display + Space Grotesk + Inter</h4>
+      <p>Capacity Health uses a distinctive <strong>serif + sans-serif pairing</strong> that differentiates from the geometric-sans-heavy competitor landscape. <strong>Playfair Display</strong> (serif) handles display headlines, creating an editorial, premium feel. <strong>Space Grotesk</strong> is used for the brand wordmark and navigation. <strong>Inter</strong> handles body/UI text and CTAs. Additional fonts loaded include DM Mono (monospace) and CameraPlainVariable (decorative, appears unused).</p>
+    </div>
+
+    <!-- Playfair Display Specimen -->
+    <div class="type-specimen">
+      <div class="type-label">Display &amp; Headlines &mdash; Playfair Display</div>
+      <div class="type-display" style="font-family: 'Playfair Display', serif; font-weight: 400; color: #1A1A2E;">
+        The AI Operating System for High-Performance Acute Care.
+      </div>
+      <div class="type-body" style="font-family: 'Playfair Display', serif;">
+        Playfair Display is used for hero headlines and section headlines. Its high-contrast, transitional serif design gives Capacity Health an editorial, authoritative feel &mdash; a bold differentiation from competitors who rely on geometric sans-serifs like Sora, Euclid, or Helvetica Neue.
+      </div>
+      <div class="type-alpha" style="font-family: 'Playfair Display', serif;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+        abcdefghijklmnopqrstuvwxyz<br>
+        0123456789 &amp; !@#$%
+      </div>
+      <div class="type-css">
+        <strong>H1:</strong> font-family: "Playfair Display", serif; font-weight: 400; font-size: 56px; color: #1A1A2E<br>
+        <strong>Section Headings:</strong> font-family: "Playfair Display", serif; font-weight: 400<br>
+        <strong>Source:</strong> Google Fonts &mdash; fonts.googleapis.com
+      </div>
+    </div>
+
+    <!-- Space Grotesk Specimen -->
+    <div class="type-specimen">
+      <div class="type-label">Brand Wordmark &amp; Navigation &mdash; Space Grotesk</div>
+      <div class="type-display" style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 500; color: #1A1A2E;">
+        Capacity Health
+      </div>
+      <div class="type-body" style="font-family: 'Space Grotesk', sans-serif;">
+        Space Grotesk is a proportional sans-serif with a geometric skeleton and distinctive character. Used at 500 weight, 16px for the brand wordmark in navigation. Its slightly quirky letterforms give the brand a modern, tech-forward identity.
+      </div>
+      <div class="type-css">
+        <strong>Wordmark:</strong> font-family: "Space Grotesk", sans-serif; font-weight: 500; font-size: 16px; color: #1A1A2E<br>
+        <strong>Source:</strong> Google Fonts &mdash; fonts.googleapis.com
+      </div>
+    </div>
+
+    <!-- Inter Specimen -->
+    <div class="type-specimen">
+      <div class="type-label">Body / UI / CTA &mdash; Inter</div>
+      <div class="type-display" style="font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 500; color: #5A5F68;">
+        Request Demo &bull; Navigation &bull; Body Text
+      </div>
+      <div class="type-body" style="font-family: 'Inter', sans-serif;">
+        Inter handles all body text, navigation links, CTA buttons, and general UI elements. At 500 weight, 14px, it provides excellent legibility across screen sizes. The &ldquo;Request Demo&rdquo; CTA uses Inter 500, white on teal (#0891A1), with 6px border-radius.
+      </div>
+      <div class="type-css">
+        <strong>Nav:</strong> font-family: Inter, sans-serif; font-weight: 500; font-size: 14px; color: #5A5F68<br>
+        <strong>CTA:</strong> font-family: Inter, sans-serif; font-weight: 500; color: #FFFFFF; background: #0891A1; border-radius: 6px<br>
+        <strong>Source:</strong> Google Fonts &mdash; fonts.googleapis.com
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ SECTION 4: Positioning ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">Brand Positioning &amp; Messaging</div>
+      <span class="section-badge badge-verified">Verified from Live Site</span>
+    </div>
+
+    <div class="positioning-grid">
+      <div class="pos-card">
+        <div class="pos-label">Hero Headline (Live H1)</div>
+        <div class="pos-value">&ldquo;The AI Operating System for High-Performance Acute Care.&rdquo;</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Subtitle</div>
+        <div class="pos-value">&ldquo;A real-time clinical reasoning engine for the emergency department, the hospital, and the health system.&rdquo;</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Mission</div>
+        <div class="pos-value">&ldquo;Amplifying Clinical Capacity Through Intelligent Monitoring&rdquo;</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Vision</div>
+        <div class="pos-value">&ldquo;Every hospital, clinician, and patient learning continuously from their own data. A healthcare system where every signal teaches the next decision.&rdquo;</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Category Descriptor</div>
+        <div class="pos-value">AI Operating System for Acute Care / Clinical Reasoning Engine</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Founders &amp; Origin</div>
+        <div class="pos-value"><strong>William Dixon, MD, MSEd</strong> (Co-Founder &amp; CEO &mdash; Stanford, Princeton, Signos, Emergency physician, prior company backed by Google Ventures and Dexcom) and <strong>David Kim, MD, PhD</strong> (Co-Founder &amp; AI Scientist &mdash; Stanford, Harvard, NIH, Emergency physician, NIH-funded Stanford AI researcher). Backed by Stanford Executive Venture Fund.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Key Trust Signal</div>
+        <div class="pos-value">&ldquo;Built by the people who understand the problem&rdquo; &mdash; Stanford-pedigreed founding team, both active emergency physicians. Three Convictions: (1) AI should enhance clinical intuition, never override it. (2) Transparency, interpretability, and security are non-negotiable. (3) Most impactful technology is built with clinicians, for clinicians.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Architecture</div>
+        <div class="pos-value">3-level system (Patient &rarr; Hospital &rarr; System) with a 4-stage process loop (Integrate &rarr; Reason &rarr; Predict &rarr; Act)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ SECTION 5: Design Language ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">Design Language &amp; Visual System</div>
+      <span class="section-badge badge-verified">Verified from Live Site</span>
+    </div>
+
+    <div class="design-grid">
+      <div class="design-card">
+        <div class="design-label">Primary Theme</div>
+        <div class="design-value">Light-First, Warm</div>
+        <div class="design-desc">White primary background with warm cream (#F8F7F4) alternate sections for the challenge and system areas. Clean, generous whitespace throughout.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Palette Strategy</div>
+        <div class="design-value">Monochrome + Single Accent</div>
+        <div class="design-desc">Monochrome neutrals (navy/gray spectrum) with a single teal (#0891A1) accent. Purple and indigo defined but used very sparingly. Disciplined and restrained.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Accent Approach</div>
+        <div class="design-value">Teal for Everything Interactive</div>
+        <div class="design-desc">Teal (#0891A1) used for all CTAs, buttons, section labels like &ldquo;LEVEL 01 &middot; THE PATIENT&rdquo;, and interactive elements. Single-accent system.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Photography</div>
+        <div class="design-value">Clinical / Documentary</div>
+        <div class="design-desc">Real hospital environments, ED settings, doctors at workstations, nurses with patients. Warm, humanistic tone. Not stock-y &mdash; editorial and documentary feel.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Typography Pairing</div>
+        <div class="design-value">Serif Display + Geometric Sans</div>
+        <div class="design-desc">Playfair Display (serif) for headlines + Space Grotesk/Inter (sans) for body. Creates an editorial, authoritative feel. Distinctive in the competitor landscape.</div>
+      </div>
+      <div class="design-card">
+        <div class="design-label">Identity Type</div>
+        <div class="design-value">Text-Only / MVP Stage</div>
+        <div class="design-desc">Purely typographic identity. Card-based layout with thin #E2E4E8 borders. Subtle scroll-triggered fade-up animations. 6px border-radius buttons. Built on Lovable platform.</div>
+      </div>
+    </div>
+
+    <div class="strategy-box">
+      <h4>Strategic Self-Assessment &mdash; Design System Insights</h4>
+      <ul>
+        <li><strong>Serif + sans pairing is distinctive.</strong> Playfair Display gives an editorial, premium feel that differentiates from the geometric-sans-heavy competitor landscape (Sora, Euclid, Helvetica Neue used by competitors). This is a genuine brand asset.</li>
+        <li><strong>Single teal accent is clean but risks being forgettable.</strong> #0891A1 is professional but doesn&rsquo;t command attention the way Qventus purple or Regard indigo does. Consider whether a bolder accent or secondary color is needed as the brand scales.</li>
+        <li><strong>Warm cream backgrounds create approachability.</strong> The #F8F7F4 tone signals warmth and trustworthiness vs. the cold whites of most health-tech competitors. This is a subtle but meaningful differentiation.</li>
+        <li><strong>Text-only wordmark needs evolution.</strong> As the brand matures beyond MVP, a distinctive logomark will be essential for recognition at small sizes (favicons, app icons, conference badges). This should be a near-term brand investment.</li>
+        <li><strong>&ldquo;Operating System&rdquo; positioning is bold and ownable.</strong> Few competitors claim OS-level positioning. This creates clear differentiation from point solutions and signals platform-level ambition.</li>
+        <li><strong>Stanford founder pedigree is a strong trust signal.</strong> The &ldquo;built by practicing ER doctors&rdquo; narrative is authentic and differentiating vs. pure-tech competitors. Both founders being active emergency physicians is a rare and powerful proof point.</li>
+        <li><strong>The inverted CSS variable naming (--light = dark, --dark = white) should be cleaned up.</strong> This technical debt could cause confusion as the design system scales and new designers/developers onboard. Low effort, high impact fix.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ SECTION 6: References ═════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Brand References &amp; Resources</div>
+      <span class="section-badge badge-research">Research-Based</span>
+    </div>
+
+    <div class="ref-grid">
+      <a class="ref-card" href="https://capacityhealth-light.lovable.app" target="_blank">
+        <div class="ref-icon">&#127760;</div>
+        <div>
+          <div class="ref-title">Company Website (Home)</div>
+          <div class="ref-desc">Primary marketing site &mdash; built on Lovable platform (MVP stage)</div>
+        </div>
+      </a>
+      <a class="ref-card" href="https://capacityhealth-light.lovable.app/site/about.html" target="_blank">
+        <div class="ref-icon">&#128101;</div>
+        <div>
+          <div class="ref-title">About Page</div>
+          <div class="ref-desc">Founder bios, mission, vision, three convictions</div>
+        </div>
+      </a>
+      <a class="ref-card" href="mailto:hello@capacityhealth.com">
+        <div class="ref-icon">&#9993;</div>
+        <div>
+          <div class="ref-title">Contact Email</div>
+          <div class="ref-desc">hello@capacityhealth.com &mdash; primary contact</div>
+        </div>
+      </a>
+      <div class="ref-card" style="cursor: default;">
+        <div class="ref-icon">&#128202;</div>
+        <div>
+          <div class="ref-title">Brand Guide / Design System</div>
+          <div class="ref-desc" style="color: #D1D5DB; font-style: italic;">No public brand guide or design case study found (early-stage)</div>
+        </div>
+      </div>
+      <div class="ref-card" style="cursor: default;">
+        <div class="ref-icon">&#128279;</div>
+        <div>
+          <div class="ref-title">LinkedIn / Social</div>
+          <div class="ref-desc" style="color: #D1D5DB; font-style: italic;">No LinkedIn company page, app store listing, or press coverage found</div>
+        </div>
+      </div>
+      <div class="ref-card" style="cursor: default;">
+        <div class="ref-icon">&#9881;</div>
+        <div>
+          <div class="ref-title">Platform</div>
+          <div class="ref-desc">Built on Lovable &mdash; prototype/MVP stage. Stanford Executive Venture Fund backed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ FOOTER ═════════════════════ -->
+  <div class="card-footer">
+    <p><strong>Capacity Health Design Battle Card</strong> &bull; Prepared April 2026 &bull; Confidential &mdash; For Internal Brand Use Only</p>
+    <p class="footer-note">Colors, fonts, and identity verified from capacityhealth-light.lovable.app via Chrome DevTools live CSS extraction (getComputedStyle + document.fonts API)</p>
+  </div>
+
+</div>
+</body>
+</html>
